@@ -1,3 +1,5 @@
+import grails.plugin.springsecurity.SecurityConfigType
+
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
@@ -115,3 +117,45 @@ log4j.main = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.bayalpatra.hrm.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.bayalpatra.hrm.UserRole'
+grails.plugin.springsecurity.authority.className = 'com.bayalpatra.hrm.Role'
+//grails.plugin.springsecurity.securityConfigType = SecurityConfigType.Requestmap
+grails.plugin.springsecurity.requestMap.className = 'com.bayalpatra.hrm.Requestmap'
+grails.plugin.springsecurity.securityConfigType = 'Requestmap'
+grails.plugin.springsecurity.password.algorithm= 'MD5'
+grails.plugin.springsecurity.logout.afterLogoutUrl='/login/'
+grails.plugin.springsecurity.auth.loginFormUrl = '/login/'
+
+
+//Added for mail plugin:
+grails {
+    mail {
+        host = "smtp.gmail.com"
+        port = 465
+        username = "psychovipers@gmail.com"
+        password = "ratmrhcp"
+        props = ["mail.smtp.auth":"true",
+                 "mail.smtp.socketFactory.port":"465",
+                 "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+                 "mail.smtp.socketFactory.fallback":"false"]
+    }
+}
+grails.mail.default.from = "psychovipers@gmail.com"
+
+grails.plugin.springsecurity.ui.register.postRegisterUrl = '/register/registrationMessage'
+
+grails.plugin.springsecurity.ui.register.emailFrom = 'psychovipers@gmail.com'
+grails.plugin.springsecurity.ui.register.emailSubject = 'Verify your registration'
+
+//grails.plugin.springsecurity.ui.register.defaultRoleNames = ['ROLE_USER']
+
+grails.plugin.springsecurity.ui.forgotPassword.emailFrom = 'psychovipers@gmail.com'
+
+grails.plugin.springsecurity.ui.admin.email = 'psychovipers@gmail.com'
+
+grails.plugin.springsecurity.eventlog.eventLogger = commons.EventLogger
+
