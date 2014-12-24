@@ -1,0 +1,90 @@
+.selectedanchor{ /*CSS class that gets added to the currently selected anchor link (assuming it's a text link)*/
+background-color:#6eaef1;-moz-border-radius: 6px;-webkit-border-radius: 6px; -khtml-border-radius: 6px;border-radius: 6px;margin:4px 4px 4px 2px;padding: 0 4px 0 0;
+}
+
+/* ######### Default class for drop down menus ######### */
+
+.anylinkmenu{
+position: absolute;
+left: 0;
+top: 0;
+visibility: hidden;
+line-height: 18px;
+z-index: 100; /* zIndex should be greater than that of shadow's below */
+width: 280px; /* default width for menu */
+background-color:#CDE9EC;-moz-border-radius: 6px;-webkit-border-radius: 6px; -khtml-border-radius: 6px;border-radius: 6px;margin:4px 4px 4px 2px;padding: 0 4px 0 0;
+
+}
+
+.anylinkmenu ul{
+margin: 0;
+padding: 0;
+list-style-type: none;
+}
+.anylinkmenu ul li {
+  border-bottom:1px solid #a9d0fa;
+  background:url(../images/bullet4_active.png) 14px 11px no-repeat;
+
+}
+
+.anylinkmenu ul li a{
+width: 100%;
+padding: 4px 0;
+text-decoration: none;
+display:block;color:#0C7684;text-decoration:none;font: normal 13px/22px Helvetica CE, Arial, Sans-Serif;text-indent:24px;
+}
+
+.anylinkmenu a:hover{ /*hover background color*/
+background: #0C7684 url(../images/bullet4.png) 14px 11px no-repeat;;
+color: #fff;
+display:block;
+
+}
+
+/* ######### Alternate multi-column class for drop down menus ######### */
+
+
+.anylinkmenucols{
+position: absolute;
+width: 350px;
+left: 0;
+top: 0;
+visibility: hidden;
+border: 1px solid black;
+padding: 10px;
+font: normal 12px Verdana;
+z-index: 100; /*zIndex should be greater than that of shadow's below*/
+background: #E9E9E9;
+}
+
+.anylinkmenucols li{
+padding-bottom: 3px;
+}
+
+.anylinkmenucols .column{
+float: left;
+padding: 3px 8px;
+margin-right: 5px;
+background: #E0E0E0;
+}
+
+.anylinkmenucols .column ul{
+margin: 0;
+padding: 0;
+list-style-type: none;
+}
+
+
+
+/* ######### class for shadow DIV ######### */
+
+
+.anylinkshadow1{ /*CSS for shadow. Keep this as is */
+position: absolute;
+left: 0;
+top: 0;
+z-index: 99; /*zIndex for shadow*/
+background: #e4f2ff;
+visibility: hidden;
+-moz-border-radius: 6px;-webkit-border-radius: 6px; -khtml-border-radius: 6px;border-radius: 6px;
+}

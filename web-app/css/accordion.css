@@ -1,0 +1,22 @@
+dl#accordion { list-style-type:none; margin: 0; padding: 0; width:100%; min-height:272px; height:auto !important; height:272px; clear:both;}
+dl#accordion a { display: block; text-decoration: none; }
+dl#accordion dt { margin-top:1px; }
+dl#accordion dt a { background:url(../images/arrowdown.png) no-repeat 1px 4px #187984; color:#fff; padding:0px 0 0 40px; text-decoration:none; display:block; font-size:17px; font-family:"Trebuchet MS", Arial, Helvetica, sans-serif; line-height:38px; }
+dl#accordion dt a:hover { background:url(../images/arrowdown.png) no-repeat 1px 4px #084148; color:#fff; }
+dl#accordion dt.active a { background:url(../images/arrowright.png) no-repeat 1px 4px #084148 !important; color:#fff !important; padding:0 0 0 40px; }
+dl#accordion dd { background:#e5ebef; display:none; margin:0; color:#000; font-size:13px; }
+dl#accordion dd .indent { padding:16px 15px 20px 20px; }
+dl#accordion dd a { display:inline; background:none; padding:0; color:#6c6c6c; width:auto; text-decoration:underline; }
+dl#accordion dd a:hover { text-decoration:none; background:none; }
+/*dl#accordion dd span { width:120px; color:#31a6be; font-weight:700; font-size:13px; line-height:28px; float:left; }*/
+dl#accordion1 { list-style-type:none; margin: 0; padding: 0; width:558px; min-height:272px; height:auto !important; height:272px; }
+dl#accordion1 a { display: block; text-decoration: none; }
+dl#accordion1 dt { margin-top:1px; }
+dl#accordion1 dt a { background:#b2bbc3; color:#fff; padding:0px 0 0 20px; text-decoration:none; display:block; font-size:17px; font-family:"Trebuchet MS", Arial, Helvetica, sans-serif; line-height:38px; }
+dl#accordion1 dt a:hover { background:url(../images/bg-top-accordion.jpg) 0 0 repeat-x; color:#fff; }
+dl#accordion1 dt.active a { background:url(../images/bg-top-accordion.jpg) 0 0 repeat-x !important; color:#fff !important; }
+dl#accordion1 dd { background:#e5ebef; display:none; margin-bottom:0; color:#6d777e; font-size:13px; }
+dl#accordion1 dd .indent { padding:16px 15px 20px 20px; }
+dl#accordion1 dd a { display:inline; background:none; padding:0; color:#6c6c6c; font-weight:bold; width:auto; text-decoration:underline; }
+dl#accordion1 dd a:hover { text-decoration:none; background:none; }
+dl#accordion1 dd span { width:120px; color:#31a6be; font-weight:700; font-size:13px; line-height:28px; float:left; }

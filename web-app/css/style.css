@@ -1,0 +1,1410 @@
+@charset "utf-8";
+/* CSS Document */
+html,body {
+    height: 100%;
+}
+body {
+	margin: 0;
+	padding: 0;
+	font: 12px Arial, Helvetica, sans-serif;
+}
+
+div,html,p,span,h1,h2,h3,h4,h5,h6 {
+	margin: 0;
+	padding: 0;
+}
+
+img {
+	border: none;
+}
+
+ul,li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+	color: #000;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #056195;
+}
+
+.clear {
+	clear: both;
+}
+
+h4 {
+	font: bold 15px Arial, Helvetica, sans-serif;
+	color: #000000;
+	padding: 3px;
+	border-bottom: 2px solid #035c8e;
+	margin: 0 0 10px 0;
+}
+
+
+
+#wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -82px; /* the bottom margin is the negative value of the footer's height */
+}
+
+/*.....................footer...........*/
+.footer, .push {
+    height: 82px;
+    clear:both;
+}
+
+/*
+#wrapper {
+     min-height: 100%;
+     height: auto !important;
+     height: 100%;
+     margin: 0 auto -50px; */
+/* the bottom margin is the negative value of the footer's height *//*
+
+ }
+
+*/
+/*.....................footer...........*//*
+
+.footer, .push {
+    height: 50px;
+    clear:both;
+}
+*/
+
+.footer {
+    background: #005e93;
+    width: 100%;
+}
+
+
+.footer_content {
+    width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 20px;
+    color: #fff;
+
+}
+
+
+.footer_content {
+    width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 20px;
+    color: #fff;
+
+}
+.header {
+	overflow: hidden;
+	clear: both;
+	padding: 10px 0 0 0;
+	background: url(../images/topbg.jpg) #fff repeat-x top left;
+}
+
+.top_part {
+	width: 1150px;
+	margin: 0 auto;
+}
+
+.logo {
+	width: 270px;
+	float: left;
+	padding: 0 0 30px 0;
+}
+
+.header_right {
+	width: 500px;
+	float: right;
+	font: 12px Arial, Helvetica, sans-serif !important;
+	color: #004973;
+}
+
+.header_right .admin_welcome {
+	float: right;
+} /* padding:0 0 0 45px;*/
+.header_right .admin_welcome1 {
+	float: right;
+} /*padding:0 0 0 85px;*/
+.header_right a {
+	font: 12px Arial, Helvetica, sans-serif !important;
+	color: #004973;
+	padding: 0 5px;
+}
+
+.header_right a:hover {
+	font: 12px Arial, Helvetica, sans-serif !important;
+	color: #004973;
+	padding: 0 5px;
+	text-decoration: underline
+}
+
+.main_navigation {
+	background: #3a3a3a;
+}
+
+.nav {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.navigation {
+	margin: 0;
+	padding: 0;
+	border-right: 1px solid #636363;
+	width: 280px;
+}
+
+.navigation ul li {
+	float: left;
+	padding: 0 15px;
+	border-left: 1px solid #636363;
+}
+
+.navigation ul li a {
+	font: 14px/34px Arial, Helvetica, sans-serif;
+	color: #fff;
+}
+
+.navigation ul li a:hover {
+	font: 14px/34px Arial, Helvetica, sans-serif;
+	color: #6fc2f1;
+}
+
+.body {
+	padding: 5px 0 5px 0;
+	/* overflow: hidden; */
+	clear: both;
+	min-height: 400px;
+	width: 1150px;
+	margin: 0 auto;
+	position: relative;
+}
+.body_part {
+	padding: 15px 0 15px 0;
+	overflow: hidden;
+	clear: both;
+	min-height: 400px;
+	width: 1150px;
+	margin: 0 auto;
+}
+
+.salary_report_list{
+	width: 90%;
+
+}
+#grid{
+	/* overflow: hidden; */
+
+}
+.filters{
+	overflow: hidden;
+}
+
+.left_part {
+	float: left;
+	width: 462px;
+}
+
+.dashbord_box {
+	margin: 0 0 12px 0;
+}
+
+.dashbord_box h2 {
+	background: url(../images/dashbord-boxbg.jpg) repeat-x top left;
+	font: bold 12px/27px Arial, Helvetica, sans-serif;
+	color: #fff;
+	padding: 0 0 0 12px
+}
+
+.dashbord_box_content {
+	border-left: #8cb9d3 1px solid;
+	border-right: #8cb9d3 1px solid;
+	border-bottom: #8cb9d3 1px solid;
+	padding: 10px;
+}
+
+.dsbord_con_txt {
+	text-align: center;
+}
+
+.latest_news {
+	margin: 0;
+	padding: ;
+}
+
+.latest_news ul {
+	margin: 0;
+	padding: 0;
+}
+
+.latest_news ul li {
+	padding: 4px;
+	border-bottom: 1px dotted #999;
+	background: url(../images/news-bullet.jpg) no-repeat 0px 6px;
+}
+.formbuttons {
+	border-top: 1px solid #999999;
+	display: block;
+	border: none; ! important;	
+	width:1100px;
+	text-align: center;
+}
+.formbuttons_edit_employee {
+	border-top: 1px solid #999999;
+	display: block;
+	border: none; ! important;	
+	width:925px;
+	text-align: left;
+	padding:0 0 0 166px;
+}
+.formbuttons_edit_employee1 {
+	border-top: 1px solid #999999;
+	display: block;
+	border: none; ! important;	
+	width:925px;
+	text-align: left;
+	padding:0 0 0 220px;
+}
+.createbuttons{
+	border-top: 1px solid #999999;
+	display: block;
+	border: none; ! important;	
+	width:1100px;
+	margin:0 0 0 335px;
+	
+}
+.employee_edit{
+	border-top: 1px solid #999999;
+	display: block;
+	border: none; ! important;		
+	text-align: center;
+}
+.employee_training{
+	
+	width:1100px;
+	margin:0 0 0 535px;
+}
+.employee_education{
+	padding: 0 0 0 285px;
+}
+.profile_buttons {
+	border-top: 1px solid #999999;
+	display: block;
+	border: none; ! important;
+	margin: 10px 0 0 203px;
+}
+.userAdmin{
+    text-align: center;
+}
+
+
+.latest_news ul li a {
+	font: 12px Arial, Helvetica, sans-serif;
+	color: #555;
+	padding: 0 0 0 9px;
+}
+
+.latest_news ul li a:hover {
+	font: 12px Arial, Helvetica, sans-serif;
+	color: #555;
+	text-decoration: underline;
+	padding: 0 0 0 9px;
+}
+
+.latest_news ul li a span {
+	color: #00588A;
+}
+
+.timesheet {
+	
+}
+
+.timesheet ul {
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.timesheet ul li {
+	float: left;
+	padding: 5px 10px;
+	width: 67px;
+	text-align: center;
+	height: 100px;
+}
+
+.dashboardMain {
+	
+}
+
+.dashboardMain ul {
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.dashboardMain ul li {
+	float: left;
+	padding: 5px 10px;
+	width: 200px;
+	text-align: center;
+	height: 215px;
+}
+
+.leave_top {
+	background: #b7daee;
+	color: #056195;
+}
+
+.mid_part {
+	float: left;
+	width: 286px;
+	padding: 0 15px 0 15px;
+}
+
+.mid_partDashboard {
+	float: left;
+	width: 250px;
+	padding: 0 15px 0 15px;
+}
+
+.right_part {
+	float: right;
+	width: 207px;
+}
+
+.leave {
+	min-width: 371px;
+	float: left;
+}
+
+.dialogDependent {
+	width: 925px;
+	float: right;
+}
+.dialogDependent img{
+	background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    padding: 3px;
+}
+
+.assigned_emergency_con h5 {
+	background: none repeat scroll 0 0 #045F93;
+	font: 15px Arial, Helvetica, sans-serif;
+	color: #fff;
+	padding: 7px;
+	width: 245px;
+	margin: 0 0 10px
+}
+
+.assigned_emergency_con {
+	margin: 15px 0 0;
+}
+
+.actionbar {
+	overflow: hidden;
+	padding: 0 0 15px;
+}
+
+.employee_right {
+	width: 785px;
+	float: right;
+}
+
+/*...............login box.......................*/
+.login_page {
+	overflow: hidden;
+}
+
+#login-box {
+	float: left;
+	padding: 16px 8px 16px 16px;
+	width: 318px;
+}
+
+.content-loginhead1 {
+	background-color: #CDE9EC;
+	border: 1px solid #cbe2ef;
+	margin: 0 0 10px;
+	padding: 0;
+	width: 308px;
+	-moz-border-radius: 6px 6px 6px 6px;
+	padding: 5px;
+}
+
+.curvedlogin {
+	background-color: #FFFFFF;
+	border: 1px solid #6ec6cf;
+	float: left;
+	height: 200px;
+	margin: 0;
+	padding: 10px;
+	text-indent: 4px;
+	width: 298px;
+	-moz-border-radius: 6px 6px 6px 6px;
+}
+
+.my_profile {
+	background-color: #FFFFFF;
+	border: 1px solid #6ec6cf;
+	margin: 0;
+	padding: 10px;
+	text-indent: 4px;
+	width: 400px;
+	-moz-border-radius: 6px 6px 6px 6px;
+}
+.curvedlogin span{
+	font: 12px/17px arial;
+	color:#555;
+	text-align: justify;
+}
+
+#login-box h2 {
+	color: #056195;
+	float: left;
+	font: 16px/20px Verdana, Arial, Helvetica, sans-serif;
+	text-indent: 6px;
+}
+
+#login-box img {
+	float: left;
+	margin: 2px 0 0 6px;
+	padding: 0;
+}
+
+.content-loginhead2 {
+	background-color: #CDE9EC;
+	border: 1px solid #CBE2EF;
+	margin: 0 0 10px;
+	padding: 5px;
+	width: 308px;
+	-moz-border-radius: 6px 6px 6px 6px;
+}
+
+.curvedlogin form span {
+	display: block;
+	float: left;
+	font-size: 12px;
+	margin: 10px 15px 0;
+	padding: 0;
+}
+
+.curvedlogin form label {
+	float: left;
+	width: 105px;
+	color:#005E93;
+	font:bold 12px arial;
+}
+
+.curvedlogin form input {
+	float: left;
+}
+
+.cssform{
+	padding:42px 0 0 0;
+}
+/*.cssform span input{
+	border-radius:5px;
+	padding:3px;
+	border:1px solid #d7d8db;
+}*/
+.darkgreen_btn{
+	padding: 3px 7px !important;
+}
+
+
+.savebutton1 {
+/* 	background: none repeat scroll 0 0 #CCCCCC;
+	border: 1px solid #999999 !important; */
+	cursor: pointer;
+	margin: 10px 0 !important;
+	padding: 5px !important;
+	width: 170px !important;
+	 background-color: #E0E0E0;
+    background-image: -moz-linear-gradient(center top , #FFFFFF 0pt, #E0E0E0 100%);
+    border-color: #CCCCCC #CCCCCC #AAAAAA;
+    box-shadow: 0 0 1px #FFFFFF inset;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+.savebutton1:hover {
+/* 	background: none repeat scroll 0 0 #CCCCCC;
+	border: 1px solid #999999 !important; */
+	cursor: pointer;	
+	margin: 10px 0 !important;
+	padding: 5px;
+	width: 170px !important;
+	 background-color: #E0E0E0;
+    background-image: -moz-linear-gradient(center top , #FFFFFF 0pt, #E0E0E0 100%);
+    border-color: #999999;
+    box-shadow: 0 0 1px #FFFFFF inset;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+.savebutton {
+    /* 	background: none repeat scroll 0 0 #CCCCCC;
+        border: 1px solid #999999 !important; */
+    cursor: pointer;
+    margin: 10px 0 !important;
+    padding: 5px !important;
+    width: 70px !important;
+    background-color: #E0E0E0;
+    background-image: -moz-linear-gradient(center top , #FFFFFF 0pt, #E0E0E0 100%);
+    border-color: #CCCCCC #CCCCCC #AAAAAA;
+    box-shadow: 0 0 1px #FFFFFF inset;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+.savebutton:hover {
+    /* 	background: none repeat scroll 0 0 #CCCCCC;
+        border: 1px solid #999999 !important; */
+    cursor: pointer;
+    margin: 10px 0 !important;
+    padding: 5px;
+    width: 70px !important;
+    background-color: #E0E0E0;
+    background-image: -moz-linear-gradient(center top , #FFFFFF 0pt, #E0E0E0 100%);
+    border-color: #999999;
+    box-shadow: 0 0 1px #FFFFFF inset;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+.resetbutton {
+	background: none repeat scroll 0 0 #CCCCCC;
+	border: 1px solid #999999 !important;
+	cursor: pointer;
+	margin: 0 10px 0 0 !important;
+	padding: 3px;
+	width: 70px !important;
+	
+}
+
+/*..........................job title...................*/
+.darkgreen_btn {
+	background: #0789c6;
+	border: 1px solid #128DA0;
+	color: #FFFFFF;
+	cursor: pointer;
+	font: bold 12px/22px arial;
+	padding: 2px 12px;
+}
+.darkgreen_btn:hover {
+	background: #CDE9EC;
+	border: 1px solid #CBE2EF;
+	color: #555;
+	cursor: pointer;
+	font: bold 12px/22px arial;
+	padding: 2px 12px;
+}
+
+.dialog {
+	margin: 0 0 5px 0;
+	padding: 0;
+}
+
+.icon_btn {
+	float: right;
+	margin: 0 7px;
+	padding: 0;
+}
+
+.icon_btn span {
+	display: block;
+	float: right;
+	line-height: 26px;
+}
+
+.icon_btn img {
+	margin: 3px 5px;
+}
+
+#myDasboard {
+	float: left;
+	margin: 14px;
+	padding: 0;
+	width: 972px;
+}
+
+#content-wrap {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+#content-wrap h4 {
+	font-size: 14px;
+	padding: 0 4px;
+}
+
+.personal_detail1 {
+	color: #000000;
+	float: right;
+	width: 880px;
+}
+
+.personal_detail {
+	color: #000000;
+	float: right;
+	width: 925px;
+	padding:0 0 15px 0;
+}
+
+.personal_detail_eld {	
+	width: 81%;
+	float:right;
+}
+.personal_detail_eld1 {
+	width: 100%;
+}
+
+.personal_detail_content {
+	border: 1px solid #045f93;
+	padding: 10px;
+}
+
+.personal_detail label {
+	display: block;
+	float: left;
+	margin: 10px 0 2px;
+	/* padding-left: 15px; */
+	width: 130px;
+}
+
+.personal_detail input {
+	border: 1px solid #666666; /*float: left;*/
+	/* margin: 10px 0; */
+	padding: 2px;
+}
+
+#volunteerDays {
+	width: 250px;
+}
+
+.days_no {
+	width: 40px !important;
+}
+
+.personal_detail select {
+	border: 1px solid #666666;
+	float: left;
+	margin: 10px 0;
+	padding: 2px;
+}
+
+.personal_detail #country {
+	width: 160px;
+}
+
+.personal_detail textarea {
+	border: 1px solid #666666;
+	float: left;
+	margin: 10px 0;
+	padding: 2px;
+	width: 160px;
+}
+
+.detail_heading {
+	background: #045f93;
+	color: #FFFFFF;
+	font: bold 13px Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 5px;
+}
+
+.other_detail {
+	padding-left: 10px;
+}
+
+.other_detail table td {
+	width: 130px;
+}
+
+
+
+
+
+input.formRadio,input.formCheckbox {
+	display: block;
+	float: left;
+	margin: 10px 0 2px;
+	width: 10px;
+}
+
+label.optionlabel {
+	margin-right: 2px;
+	width: auto;
+}
+
+#menuholder {
+	padding: 0;
+	width: 200px;
+}
+
+#menuholder ul#menu {
+	background: none repeat scroll 0 0 transparent;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#menuholder ul#menuholder {
+	margin: 0;
+	padding: 0;
+}
+
+#menuholder ul#menu .headholder {
+	background: url("../images/head_bg.jpg") repeat-x scroll 0 0 transparent;
+	float: left;
+	margin: 0;
+	padding: 0;
+	width: 242px;
+}
+
+#menuholder ul#menu .headholder2 {
+	background: url("../images/head_inactive_bg.jpg") repeat-x scroll 0 0
+		transparent;
+	float: left;
+	margin: 0;
+	padding: 0;
+	width: 242px;
+}
+
+#menuholder ul#menu .head {
+	color: #0C7684;
+	cursor: pointer;
+	display: block;
+	float: left;
+	font: bold 15px/32px Verdana, Arial, Helvetica, sans-serif;
+	height: 32px;
+	margin: 0;
+	padding: 0 0 0 2px;
+}
+
+#menuholder ul#menu .head a {
+	color: #0C7684;
+}
+
+#menuholder ul#menu .head img {
+	float: left;
+	margin: 0;
+	padding: 7px 6px 0 0;
+}
+
+#menuholder ul#menu li {
+	background: url("../images/inactive_navbg.jpg") repeat-x scroll 0 0
+		transparent;
+	display: block;
+	list-style-type: none;
+	margin: 3px 0;
+	padding: 0;
+	width: 200px;
+}
+
+#menuholder ul#menu li:hover {
+	background: url("../images/active_navbg.jpg") repeat-x scroll 0 0
+		transparent;
+	color: #033137;
+	display: block;
+	list-style-type: none;
+	margin: 3px 0;
+	padding: 0;
+}
+
+#menuholder ul#menu li a.menuitem {
+	background: url("../images/bullet1.png") no-repeat scroll 12px 11px
+		transparent;
+	color: #045F93;
+	cursor: pointer;
+	display: block;
+	font: 12px/30px Verdana, Arial, Helvetica, sans-serif;
+	height: 30px;
+	margin: 0 0 3px;
+	padding: 0;
+	text-indent: 23px;
+}
+
+#menuholder ul#menu li a.menuitem:hover {
+	background: url("../images/bullet1.png") no-repeat scroll 10px 11px
+		transparent;
+	color: #033137;
+	text-decoration: none;
+	text-indent: 21px;
+}
+
+#menuholder ul#menu li ul.submenu {
+	list-style-type: none;
+	margin: 0 0 8px;
+	padding: 0;
+}
+
+#menuholder ul#menu li ul.submenu li {
+	background: url("../images/submenu_navbg.jpg") repeat-x scroll 0 0
+		transparent;
+	display: block;
+	font: 12px/29px Verdana, Arial, Helvetica, sans-serif;
+	left: 12px;
+	margin: 2px 0;
+	padding: 0;
+	position: relative;
+	text-indent: 27px;
+	width: 188px;
+}
+
+#menuholder ul#menu li ul.submenu li a {
+	background: url("../images/submenu_bullet.png") no-repeat scroll 12px
+		13px transparent;
+	color: #555555;
+	cursor: pointer;
+	display: block;
+}
+
+#menuholder ul#menu li ul.submenu li a:hover {
+	background: url("../images/submenu_bullet.png") no-repeat scroll 10px
+		13px transparent;
+	text-decoration: none;
+}
+
+#photodiv {
+	padding: 0 0 5px;
+}
+
+#photodiv img {
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #ccc;
+	padding: 3px;
+}
+
+#photodiv p {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+#photodiv p a {
+	color: #045F93;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+.detail {
+	float: left;
+	width: 200px;
+	margin: 0 15px 0 0;
+	text-align:left;
+}
+
+.add_employee {
+	color: #333333;
+}
+
+.personal_detail_content {
+	border: 1px solid #045f93;
+	padding: 10px;
+}
+
+.add_employee label {
+	display: block;
+	float: left;
+	margin: 10px 0 2px;
+	padding-left: 15px;
+	width: 130px;
+}
+
+.add_employee input {
+	border: 1px solid #666666;
+	float: left;
+	margin: 10px 0;
+	padding: 2px;
+}
+
+.add_employee select {
+	border: 1px solid #666666;
+	float: left;
+	margin: 10px 0;
+	padding: 2px;
+}
+
+.add_employee textarea {
+	border: 1px solid #666666;
+	float: left;
+	margin: 10px 0;
+	padding: 2px;
+}
+
+.employee_detail_menu {
+	
+}
+
+.employee_detail_menu ul {
+	margin: 0;
+	padding: 0;
+}
+
+.employee_detail_menu ul li {
+	list-style: none;
+	background: url(../images/emp-det-menubg.jpg) repeat-x;
+	margin: 0 0 4px 0;
+	cursor: pointer
+}
+
+.employee_detail_menu ul li:hover {
+	list-style: none;
+	background: url(../images/emp-det-menubg-hover.jpg) repeat-x;
+	margin: 0 0 4px 0;
+	cursor: pointer
+}
+
+.employee_detail_menu ul li a {
+	font: 13px/26px Arial, Helvetica, sans-serif;
+	color: #fff;
+	padding: 0 10px;
+	display: block;
+}
+
+
+.addPane {
+	padding: 0 0 0 20px;
+	overflow: hidden;
+}
+
+.company_detail input {
+	border: 1px solid #CCCCCC;
+	float: left;
+	margin: 0 0 8px;
+	padding: 2px;
+	width: 160px;
+}
+
+.company_detail label {
+	float: left;
+	padding-left: 20px;
+	text-align: left;
+	width: 120px;
+}
+
+.company_detail select {
+	border: 1px solid #CCCCCC;
+	float: left;
+	margin: 0 0 8px;
+	padding: 2px;
+	width: 165px;
+}
+
+.company_stru {
+	float: right;
+	width: 700px;
+}
+
+.clearbutton {
+	background: none repeat scroll 0 0 #CCCCCC;
+	border: 1px solid #999999 !important;
+	cursor: pointer;
+	padding: 3px;
+	width: 70px !important;
+}
+
+.hide_detail {
+	margin: 0 0 0 280px;
+	padding: 4px;
+	border: 1px solid #999;
+	width: 100px;
+	text-align: center;
+}
+
+.clear {
+	clear: both;
+}
+
+.adduser_pending {
+	float: left;
+}
+.adduser a{
+	padding: 0 10px 0 0;
+}
+
+.pending-review {
+	float: right;
+	margin: 0 0 0 15px;
+	padding: 4px;
+	width: 220px;
+	text-align: center;
+}
+.employee_leave {
+	float: right;
+	margin: 0 0 0 5px;
+	padding: 4px;
+	width: auto;
+	text-align: center;
+}
+.leave_report {
+	float: right;
+	margin: 0 0 0 15px;
+	padding: 4px;
+	width: auto;
+	text-align: center;
+}
+
+
+
+.days {
+	width: 100px;
+	float: right;
+}
+
+.days_edit_emp {
+	width: 100px;
+	float: left;
+}
+
+#remVol {
+	width: 210px;
+}
+
+/*................Table..............*/
+.datatable { /*background-color:#FABA22;*/
+	border-collapse: collapse;
+}
+
+tr.rowtitle td {
+	background: #999;
+	font-weight: bold;
+	color: #FFF;
+	border: 1px solid #fff;
+	/*	padding:5px;*/
+}
+
+tr.rowtitlesub td {
+	background: #E0E0E0;
+	/*padding:5px;*/
+}
+
+tr.row td {
+	border-bottom: 1px solid #ccc;
+	padding: 5px;
+}
+
+/* TABLES
+------------------------------------------------------------------------- */
+.gtable {
+	width: 100%;
+}
+
+.innertable {
+	width: 48%;
+	float: left;
+}
+
+.innertable .inputs {
+	border: 1px solid #aed7fb;
+}
+
+.gtable th {
+	text-align: left;
+	padding: 5px 3px;
+}
+
+.gtable thead tr {
+	color: #333;
+	border: 1px solid #ccc;
+}
+
+.gtable thead th {
+	background: #056195 url(../images/table_th_bg2.jpg) top left repeat-x;
+	border-left: 1px solid #ccc;
+	color: #FFF;
+}
+
+.gtable tbody tr td {
+	border-bottom: 1px solid #eee;
+}
+
+.gtable tbody tr:nth-child(odd) td,.detailtable tbody tr.odd td {
+	background-color: #fff;
+}
+
+.gtable tbody tr:nth-child(even) td,.detailtable tbody tr.even td {
+	background-color: #f7f7f7;
+}
+
+.gtable tbody tr:hover td {
+	background-color: #d3e4ee;
+	cursor: pointer;
+}
+
+.gtable td {
+	padding: 5px 10px;
+}
+
+.gtable .detail table tr td,.gtable .detail table tr th {
+	background: #ffffed;
+	border-bottom: 1px solid #fff7d1;
+}
+
+/*changed while working on Education*/
+.list {
+	width: 100%;
+}
+
+.create-list {
+    width: 100%;
+}
+
+.innertable {
+	width: 48%;
+	float: left;
+}
+
+.innertable .inputs {
+	border: 1px solid #aed7fb;
+}
+
+.list th {
+	text-align: left;
+	padding: 5px 10px;
+}
+
+.list thead tr {
+	color: #333;
+	border: 1px solid #ccc;
+}
+
+.list thead th {
+	background: #056195 url(../images/table_th_bg2.jpg) top left repeat-x;
+	border: 1px solid #ccc;
+	color: #FFF;
+}
+
+.list tbody tr td {
+	border-bottom: 1px solid #eee;
+}
+
+.list tbody tr:nth-child(odd) td,.detailtable tbody tr.odd td {
+	background-color: #fff;
+}
+
+.list tbody tr:nth-child(even) td,.detailtable tbody tr.even td {
+	background-color: #f7f7f7;
+}
+
+.list tbody tr:hover td {
+	background-color: #d3e4ee;
+	cursor: pointer;
+}
+
+.list td {
+	padding: 5px 10px;
+}
+
+.list .detail table tr td,.list .detail table tr th {
+	background: #ffffed;
+	border-bottom: 1px solid #fff7d1;
+}
+
+
+.create-list th {
+    text-align: left;
+    padding: 5px 10px;
+}
+
+.create-list thead tr {
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.create-list thead th {
+    background: #056195 url(../images/table_th_bg2.jpg) top left repeat-x;
+    border: 1px solid #ccc;
+    color: #FFF;
+}
+
+.create-list tbody tr td {
+    border-bottom: 1px solid #eee;
+}
+
+.create-list tbody tr:nth-child(odd) td,.detailtable tbody tr.odd td {
+    background-color: #fff;
+}
+
+.create-list tbody tr:nth-child(even) td,.detailtable tbody tr.even td {
+    background-color: #f7f7f7;
+}
+
+.create-list tbody tr:hover td {
+    background-color: #d3e4ee;
+    cursor: pointer;
+}
+
+create-.list td {
+    padding: 5px 10px;
+}
+
+.create-list .detail table tr td,.create-list .detail table tr th {
+    background: #ffffed;
+    border-bottom: 1px solid #fff7d1;
+    border-top: 1px solid #fff7d1;
+
+}
+
+
+
+
+
+
+/*// for adjusting dashboard according to MockUp*/
+
+
+.dashbord_box {
+	margin: 0 0 12px 0;
+}
+
+.dashbord_box h2 {
+	background: url(../images/dashbord-boxbg.jpg) repeat-x top left;
+	font: bold 12px/27px Arial, Helvetica, sans-serif;
+	color: #fff;
+	padding: 0 0 0 12px
+}
+
+.dashbord_box_content {
+	border-left: #8cb9d3 1px solid;
+	border-right: #8cb9d3 1px solid;
+	border-bottom: #8cb9d3 1px solid;
+	padding: 10px;
+}
+
+.content-loginhead1 {
+	background-color: #CDE9EC;
+	border: 1px solid #CBE2EF;
+	border-radius: 6px 6px 6px 6px;
+	margin: 0 0 10px;
+	padding: 5px;
+	width: 308px;
+}
+
+.select_role {
+	padding: 0 0 10px 7px;
+}
+
+.administrator_part {
+	padding: 0 0 0 15px;
+}
+
+.duty_leave {
+	width: 70px;
+}
+
+.employee_txt {
+	width: 100px;
+}
+
+.employee_btn {
+	width: 55px;
+	background: #056195;
+	cursor: pointer;
+	color: #fff;
+}
+
+.employee_btn:hover {
+	width: 55px;
+	background: #777;
+	cursor: pointer;
+	color: #fff;
+}
+
+#linked {
+	text-decoration: underline
+}
+
+.export {
+	background: none !important;
+	border: none !important;
+	width: 45px !important;
+	padding: 13px 0 0 0 !important;
+}
+
+.printthis {
+	overflow: hidden;
+	position: absolute;
+	top: -13px;
+	right:0;
+}
+
+
+.print {
+	float: right;
+	width: 25px;
+}
+
+.excel {
+	text-indent: -999px;
+	color: #fff !important;
+}
+
+#totalTag {
+	color: #000;
+	font-weight: bolder;
+}
+
+#doubleBox {
+	width: 80px;
+}
+
+#country {
+	width: 150px;
+}
+
+.pct{
+	float:right;
+	width:160px;
+	margin:0 0 7px 0;
+}
+.pct ul{}
+.pct ul li{
+	float: left;
+	padding:0 3px;
+	width:38px;
+	
+}
+
+
+.main_store input{
+	margin:0 5px 0 0;
+	
+}
+
+.sub_store input{
+	margin:0 5px 0 0;
+}
+.main_st{
+	border:1px solid #999;
+	padding:5px;
+	width: 300px;
+}
+.main_st p{
+	padding:5px 0;
+}
+
+.employee_table th{
+    border-bottom:1px solid #fff;
+}
+
+.roster_report a li{
+	
+	padding:3px 0;
+}
+.seeMore{
+
+    font: 12px/17px arial;
+}
+
+.setting{ float:left; width: 678px;}
+.payroll{ float: right; width: 457px;}
+.days-edit-empl{padding-top: 4px;}
+
+

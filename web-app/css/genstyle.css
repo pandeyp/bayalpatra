@@ -1,0 +1,199 @@
+/* CSS Document 
+Created by: Kanchan Raj Pandey
+Created for: Deerwalk Inc.
+Website: Carolina Medical Homes */
+
+
+/* Reset */
+h1 img,h2 img,h3 img,h4 img,h5 img,h6 img,li ul,li ol,ul,ol{margin:0;padding:0;}
+h4 {font-family:Arial, Helvetica, sans-serif; font-weight:bold; font-size:14px;}
+
+body{background-color:#122F45;color:#000;font-family:"Helvetica Neue",Helvetica,Arial,Verdana,Tahoma,sans-serif;font-size:12px;line-height:18px;margin:0;padding:0}
+
+#wrapper{background:#FFF;margin:0 auto;width:97%;border-top:1px solid #FFF;}
+
+#welcome{-moz-border-radius:0 0 10px 10px;-webkit-border-radius:0 0 10px 10px;background:none repeat scroll 0 0 #EEE;border:1px solid #AAA;color:#444;float:right;font-size:11px;margin-top:-5px;padding:8px 15px 10px}
+
+.container{background:#FFF;margin:0 auto;min-height:200px;padding:10px;text-align:left}
+.sub-link{margin:0;padding:0}
+.sub-link li{float:left;margin:0 8px 0 5px;padding:5px}
+#sub-link-bg{background:#DCEEFD;border-bottom:1px solid #336A93;font-weight:700;height:29px;overflow:hidden}
+
+#member_details{float:left;margin-left:10px}
+
+#report table{background:none;width:100%}
+#active_report{}
+#active_report th {text-align:center !important;}
+#active_report td {border-bottom:1px solid #f1f1f1;}
+#report td{border-bottom:1px solid #eee;font-size:12px;font-weight:400}
+#section_wrapper{-moz-border-radius:5px;background:#c5d5e6 url(../images/section_outer_bg.png) repeat-x;border:1px solid #b7c7d6;margin:20px auto 0;width:530px}
+#section_wrapper a{-moz-border-radius:5px;-webkit-border-radius:5px;background:url(../images/section_button_bg.png) repeat-x;border:1px solid #a5b6c7;color:#597490;display:block;font-size:13px;padding:10px;text-shadow:1px 1px 1px #FFF;width:195px}
+#section_wrapper a:hover{background:url(../images/button_hover.png) repeat-x;color:#FFF;text-shadow:1px 1px 1px #597490;}
+#section_wrapper table{-moz-border-radius:5px;background:url(../images/section_outer_bg.png) repeat-x scroll 0 0 #C5D5E6;border:1px solid #B7C7D6;width:530px;}
+#section_wrapper td{padding:15px;text-align:center}
+
+.select a{background:none repeat scroll 0 0 #336A93;color:#FFF!important;display:block;padding:3px 10px;}
+
+.result td{font-weight:400}
+.user{-moz-border-radius:5px;border:1px solid #aaa;padding:3px;}
+#login table{-moz-border-radius:5px;background:url(../images/section_outer_bg.png) repeat-x scroll 0 0 #C5D5E6;border:1px solid #B7C7D6;width:290px;}
+.popup_container{background:#FFF;border:2px solid #aaa;margin:15px auto 0;min-height:150px;padding:10px;text-align:left;width:335px;}
+.container li{display:inline-block;float:left;margin:20px 0 25px -10px;position:relative;width:900px;}
+.main_data{left:0;position:absolute;top:0}
+
+.clearb{clear:both}
+
+/* Heading */
+h1,h2,h3,h4,h5,h6{color:#111;font-weight:400;}
+h1{font-size:3em;line-height:1;margin-bottom:.5em;}
+h2{font-size:2em;margin-bottom:.75em;}
+h3{font-size:1.5em;line-height:1;margin-bottom:1em;}
+h4{font-size:1.2em;line-height:1.25;margin-bottom:1.25em;}
+h5{font-size:1em;font-weight:700;margin-bottom:1.5em;}
+h6{font-size:1em;font-weight:700;}
+a img{border:none;outline:none;}
+p img.left{float:left;margin:1.5em 1.5em 1.5em 0;padding:0;}
+p img.right{float:right;margin:1.5em 0 1.5em 1.5em;}
+a{border:none;color:#009;outline:none;text-decoration:underline;}
+table img a{border:1px solid #FFF;padding:5px;}
+blockquote{color:#666;font-style:italic;margin:1.5em;}
+em,dfn{font-style:italic;}
+sup,sub{line-height:0;}
+abbr,acronym{border-bottom:1px dotted #666;}
+address{font-style:italic;margin:0 0 1.5em}
+del{color:#666}
+pre{margin:1.5em 0;white-space:pre}
+pre,code,tt{font:1em 'andale mono', 'lucida console', monospace;line-height:1.5}
+dd{margin-left:1.5em}
+#navmain{font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:700;padding:10px 0 0 10px}
+#header{margin:0 auto;width:97%}
+#logo{background:url(../images/header_bg.png) no-repeat scroll 0 0 #AECDE4;border-bottom:5px solid #F9CE0D;font:bold 18px Arial,Helvetica,sans-serif;height:87px;margin-bottom:20px;padding:4px 20px 0}
+#logo img{height:83px;width:162px;float:left;}
+#title{background-color:#DCEEFD;color:#336A93;font-size:19.5px;margin:0;padding:15px 30px;vertical-align:middle}
+.sub_link{-moz-box-shadow:0 1px 9px #CCC;background:#F7F7F7;border:1px solid #CCC;font-size:11px;margin-left:-32px;position:absolute;width:155px}
+.selectit{border-top:1px solid #aaa;cursor:pointer;padding:5px 0 5px 25px}
+
+#breadcrumb{background:#eee;border-bottom:1px solid #ccc;border-top:1px solid #ccc;color:gray;margin:10px 0;padding:5px}
+#breadcrumb a{color:#444;text-decoration:none}
+.buttons{float:right}
+#action_box{height:17px;margin-top:15px;padding:5px;width:233px}
+
+/* table Properties */
+table{background:#FFF;color:#444;margin:0 auto;width:99%}
+table th{background-color:#DCEEFD;border-top:2px solid #4C7DA6;font-size:13px;font-weight:700;padding:4px;text-align:left}
+.heading{background-color:#DCEEFD;border-top:2px solid #4C7DA6;font-size:13px;font-weight:700;margin-left:8px;padding:7px;text-align:left;text-decoration:none}
+table td{color:#666;font-size:11px;font-weight:700;padding:5px}
+.seperate td{border-bottom:2px solid #eee}
+
+.row-one{background-color:#FFF;padding:5px 0 5px 10px}
+.row-two{background-color:#f8fcfe;padding:5px 0 5px 10px}
+
+#tbl{margin-bottom:20px;width:100%;}
+#tbl td{border-bottom:none;}
+#start_table table{padding:5px;}
+#start_table h1{background:none repeat scroll 0 0 #F1F1F1;border:1px solid #CCC;font-size:18px;margin:0 0 10px;padding:5px;}
+#start_table h1 a{display:block;font-size:14px;font-weight:700;padding-left:3px;text-decoration:none;}
+#start_table img{vertical-align:text-bottom;}
+.sub_table{border-bottom:1px solid #aaa;}
+#sub_table td{border-bottom:1px solid #ccc;}
+#sub_table a{color:#069}
+table a,table a:hover{color:#0075CE;text-decoration:none;}
+
+
+#filter_box{border-top:1px solid #DDD;margin-top:15px;width:780px;}
+#demopdate {width:80px !important;}
+#imgStartDate {border:1px solid #4C7DA6;margin-top:1px;padding:1px;}
+
+
+/* Table row background color */
+.shade{background:#eee;color:#666;font-weight:700}
+.shade1{background:#f9f9f9;color:#666}
+.shade a{color:#666;font-weight:700;text-decoration:none}
+.total{background:#F9F9F9;border-top:1px solid #aaa !important;font-weight:bold !important;}
+.total td {font-weight:bold !important;}
+.blank {background:#FFF;}
+/* Form Field */
+
+input[type=text],input[type=password]{border-color:#ABADB3 #DBDFE6 #d6d8e1 #d6d8e1;border-style:solid;border-width:1px;font-size:12px;height:20px;}
+textarea,select{border-color:#ABADB3 #DBDFE6 #d6d8e1 #d6d8e1;border-style:solid;border-width:1px;font-size:12px}
+input[type=text]:hover,input[type=password]:hover,textarea:hover,select:hover{border-color:#6ea2d8;border-style:solid;border-width:1px}
+input[type=text]:focus,input[type=password]:focus,textarea:focus{border:1px solid #6ea2d8}
+input[type=button],input[type=submit],input[type=reset]{background:url(../images/button_bg.png) repeat-x;border:1px solid #aaa;cursor:pointer;height:26px;outline:none;-moz-border-radius:3px;-webkit-border-radius:3px;margin-right:5px;}
+input[type=button]:hover,input[type=submit]:hover,input[type=reset]:hover{background:url(../images/hover_button_bg.png) repeat-x;border:1px solid #aaa}
+input[type=checkbox]{margin-right:10px}
+.search {width:100%;}
+
+
+.head li{background:#eee;display:inline-block;float:left;margin-left:40px;margin-right:40px;margin-top:-10px;width:200px}
+
+/* Icons */
+.excel{background:url(../images/excel.jpg) no-repeat scroll 0 0 transparent;font-weight:700;padding-left:21px;padding-top:3px}
+.excel a:hover {text-decoration:underline !important;}
+.print{background:url(../images/print.png) no-repeat;padding-left:19px;padding-top:2px}
+
+/* Information, Error */
+.notification {
+-moz-border-radius:3px 3px 3px 3px;
+border:1px solid #666666;
+display:block;
+margin-bottom:15px;
+overflow:hidden;
+
+position:relative;
+z-index:1;
+}
+.notification a.close {
+background:url("ico_close_off.png") no-repeat scroll left top transparent;
+display:block;
+font-size:0;
+height:11px;
+position:absolute;
+right:3px;
+text-indent:-9999px;
+top:3px;
+width:11px;
+margin:10px;
+}
+.notification a.close:hover {
+background:url("../images/ico_close_ovr.png") no-repeat scroll left top transparent;
+}
+.notification p {
+color:#333333;
+line-height:0;
+padding:16px 25px 0 40px !important;
+}
+.note-error {
+background:url("ico_error.png") no-repeat scroll 2px 0 #FAE2E3;
+border-color:#EC9B9B;
+}
+.note-success {
+background:url("ico_success.png") no-repeat scroll 2px 0 #DFFAD3;
+border-color:#72CB67;
+}
+.note-info {
+background:url("ico_info.png") no-repeat scroll 2px 0 #DDE9F7;
+border-color:#50B0EC;
+}
+.note-attention {
+background:url("ico_attention.png") no-repeat scroll 2px 0 #FFFAC6;
+border-color:#D3C200;
+}
+
+
+#welcome a,.sub-link a,#header a:hover,.sub_link li a:hover{text-decoration:none}
+#welcome a:hover,.sub-link a:hover,#breadcrumb a:hover{text-decoration:underline}
+
+.container h2{color:#336A93;font-family:Arial,Helvetica,sans-serif;font-size:24px;line-height:normal;margin:10px 0 0;padding:0}
+
+
+
+p,dl{margin:0 0 1.5em}
+
+a:focus,a:hover,.sub_link a{color:#000}
+
+#main_table,table a img{border:none}
+
+#sorttable_sortfwdind,#sorttable_sortrevind{cursor:pointer;font-size:15px}
+
+strong,dfn,dl dt{font-weight:700}
+ul,ol{list-style:none}

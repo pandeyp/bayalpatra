@@ -1,0 +1,5 @@
+1. In main_hrm, change annapurna-hrm-logo.png.
+2. Remove all unnessary files from css, images and js folder of web-app. especially at the end with annapurna name.
+
+
+After layout wrk on user mgmt.

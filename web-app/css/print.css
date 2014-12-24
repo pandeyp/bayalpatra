@@ -1,0 +1,7 @@
+.logo,.top_part,.footer,.adduser,.printthis, .detail,.dialog, .notforprint,.hide_detail {
+      display:none;
+}
+
+/*head, title, link, meta, style, script {
+ display: none;
+}*/

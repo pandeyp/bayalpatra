@@ -43,9 +43,9 @@ class LoginController {
 	 * Default action; redirects to 'defaultTargetUrl' if logged in, /login/auth otherwise.
 	 */
 	def index() {
-		println "in login ctrller's index method"
 		if (springSecurityService.isLoggedIn()) {
 			redirect uri: SpringSecurityUtils.securityConfig.successHandler.defaultTargetUrl
+//			redirect controller: 'dashboard', action: 'index'
 		}
 		else {
 			redirect action: 'auth', params: params
@@ -56,8 +56,6 @@ class LoginController {
 	 * Show the login page.
 	 */
 	def auth() {
-		println 'in login ctrller auth method to show login page'
-
 		def config = SpringSecurityUtils.securityConfig
 
 		if (springSecurityService.isLoggedIn()) {
