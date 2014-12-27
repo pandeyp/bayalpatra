@@ -1,5 +1,6 @@
 1. In main_hrm, change annapurna-hrm-logo.png.
 2. Remove all unnessary files from css, images and js folder of web-app. especially at the end with annapurna name.
+3. Change redirection to dashboard in login controller after index is used.
 
-
-After layout wrk on user mgmt.
+4. Return to user mgmt after others done. tie up including forgot password.
+After layout wrk on user mgmt. Along with employee tie ups. why no name in admin page?

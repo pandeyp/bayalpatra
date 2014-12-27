@@ -30,7 +30,7 @@ class BootStrap {
         }
 
         for (String url in [
-                '/', '/index', '/index.gsp', '/favicon.ico',
+                /*'/', '/index', '/index.gsp',*/ '/favicon.ico',
                 '/assets/**', '/js/**', '/css/**', '/images/**',
                 '/login', '/login.*', '/login/*',
                 '/logout', '/logout.*', '/logout/*',
@@ -38,6 +38,10 @@ class BootStrap {
         ]) {
             Requestmap.findByUrl(url)?"":new Requestmap(url: url, configAttribute: 'permitAll').save()
         }
+
+            Requestmap.findByUrl('/**')?"":new Requestmap(url: '/**', configAttribute: 'IS_AUTHENTICATED_FULLY').save()
+
+
 /*        new Requestmap(url: '/profile*//**',    configAttribute: 'ROLE_USER').save()
         new Requestmap(url: '/admin*//**',      configAttribute: 'ROLE_ADMIN').save()
         new Requestmap(url: '/admin/role*//**', configAttribute: 'ROLE_SUPERVISOR').save()
