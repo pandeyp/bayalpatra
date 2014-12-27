@@ -1,3 +1,5 @@
+import com.bayalpatra.hrm.Department
+import com.bayalpatra.hrm.LeaveType
 import com.bayalpatra.hrm.Requestmap
 import com.bayalpatra.hrm.Role
 import com.bayalpatra.hrm.User
@@ -13,15 +15,12 @@ class BootStrap {
         def employeeRole = Role.findByAuthority(BayalpatraConstants.ROLE_EMPLOYEE) ?: new Role(authority: BayalpatraConstants.ROLE_EMPLOYEE).save(failOnError: true)
 
 //       def taxSetting = TaxSetting.findAll()?:new TaxSetting(singleMinLimit: 160000,singleMedLimit: 260000,marriedMinLimit: 200000,marriedMedLimit: 300000,taxAmountLimitForMedium: 100000,minTaxPercentage: 1,midTaxPercentage: 15,maxTaxPercentage: 25,dashainBonusCutOff: 30000,femaleRebatePercentage:10).save(failOnError: true)
-/*
 
-        def company = Company.findByName('PHECT')?:new Company(name: 'PHECT',taxId: '******').save(failOnError: true)
-        def department = Departments.findByName('PHECT')?:new Departments(name: 'PHECT',location: 'Kathmandu',parentId: 0,rootId:1,idNumber:"01",company: company,isMainStore:false,isSubStore:false).save(failOnError: true)
-        def dayOffLeave = LeaveType.findByLeaveType(AnnapurnaConstants.DAY_OFF_LEAVE)?:new LeaveType(leaveType: AnnapurnaConstants.DAY_OFF_LEAVE,paidUnpaid: AnnapurnaConstants.PAID_LEAVE,status: AnnapurnaConstants.STATUS_ACTIVE,Days: 0).save(failOnError: true)
-        def nightOffLeave = LeaveType.findByLeaveType(AnnapurnaConstants.NIGHT_OFF_LEAVE)?:new LeaveType(leaveType: AnnapurnaConstants.NIGHT_OFF_LEAVE,paidUnpaid: AnnapurnaConstants.PAID_LEAVE,status: AnnapurnaConstants.STATUS_ACTIVE,Days: 0).save(failOnError: true)
-        def substituteLeave = LeaveType.findByLeaveType(AnnapurnaConstants.SUBSTITUTE_LEAVE)?:new LeaveType(leaveType: AnnapurnaConstants.SUBSTITUTE_LEAVE,paidUnpaid: AnnapurnaConstants.PAID_LEAVE,status: AnnapurnaConstants.STATUS_ACTIVE,Days: 0).save(failOnError: true)
-        def festivalOffLeave = LeaveType.findByLeaveType(AnnapurnaConstants.FESTIVAL_OFF_LEAVE)?:new LeaveType(leaveType: AnnapurnaConstants.FESTIVAL_OFF_LEAVE,paidUnpaid: AnnapurnaConstants.PAID_LEAVE,status: AnnapurnaConstants.STATUS_ACTIVE,Days: 0).save(failOnError: true)
-*/
+        def department = Department.findByName('BAYALPATRA')?:new Department(name: 'BAYALPATRA',location: 'Accham',parentId: 0,rootId:1,idNumber:"01").save(failOnError: true)
+        def dayOffLeave = LeaveType.findByLeaveType(BayalpatraConstants.DAY_OFF_LEAVE)?:new LeaveType(leaveType: BayalpatraConstants.DAY_OFF_LEAVE,paidUnpaid: BayalpatraConstants.PAID_LEAVE,status: BayalpatraConstants.STATUS_ACTIVE,days: 0).save(failOnError: true)
+        def nightOffLeave = LeaveType.findByLeaveType(BayalpatraConstants.NIGHT_OFF_LEAVE)?:new LeaveType(leaveType: BayalpatraConstants.NIGHT_OFF_LEAVE,paidUnpaid: BayalpatraConstants.PAID_LEAVE,status: BayalpatraConstants.STATUS_ACTIVE,days: 0).save(failOnError: true)
+        def substituteLeave = LeaveType.findByLeaveType(BayalpatraConstants.SUBSTITUTE_LEAVE)?:new LeaveType(leaveType: BayalpatraConstants.SUBSTITUTE_LEAVE,paidUnpaid: BayalpatraConstants.PAID_LEAVE,status: BayalpatraConstants.STATUS_ACTIVE,days: 0).save(failOnError: true)
+        def festivalOffLeave = LeaveType.findByLeaveType(BayalpatraConstants.FESTIVAL_OFF_LEAVE)?:new LeaveType(leaveType: BayalpatraConstants.FESTIVAL_OFF_LEAVE,paidUnpaid: BayalpatraConstants.PAID_LEAVE,status: BayalpatraConstants.STATUS_ACTIVE,days: 0).save(failOnError: true)
 
         def testAdmin = User.findByUsername('admin')?:new User(id: '1', username: 'admin', enabled: true, password: 'admin').save(flush: true)
 
