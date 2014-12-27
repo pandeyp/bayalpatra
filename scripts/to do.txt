@@ -4,3 +4,5 @@
 
 4. Return to user mgmt after others done. tie up including forgot password.
 After layout wrk on user mgmt. Along with employee tie ups. why no name in admin page?
+
+crud. lists, email, role/leave, reports, history, user mgmt, design
