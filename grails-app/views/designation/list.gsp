@@ -1,5 +1,5 @@
 
-<%@ page import="hrm.Designation" %>
+<%@ page import="com.bayalpatra.hrm.Designation" %>
 <html>
 <head>
 
