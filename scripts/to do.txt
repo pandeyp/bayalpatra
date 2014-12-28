@@ -6,3 +6,5 @@
 After layout wrk on user mgmt. Along with employee tie ups. why no name in admin page?
 
 crud. lists, email, role/leave, reports, history, user mgmt, design
+
+populate salary using stored proc and cron
