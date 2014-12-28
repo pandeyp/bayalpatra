@@ -40,6 +40,7 @@ grails.project.dependency.resolution = {
         mavenLocal()
         grailsCentral()
         mavenCentral()
+        mavenRepo "http://repo.grails.org/grails/core"
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
@@ -69,8 +70,11 @@ grails.project.dependency.resolution = {
         // plugins for mail
         compile ":mail:1.0.7"
 
-        compile ":export:1.0"
+        //export
+        compile ":export:1.6"
 
+        //for export
+        compile 'commons-beanutils:commons-beanutils:1.8.3'
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.5.5" // or ":hibernate:3.6.10.18"

@@ -7,6 +7,20 @@ After layout wrk on user mgmt. Along with employee tie ups. why no name in admin
 
 crud. lists, email, role/leave, reports, history, user mgmt, design
 
-populate salary using stored proc and cron
+---------------------------
 
 Put punch in in employee landing page. In admin dashboard, show report of employee punch in with filter.
+
+For salary:-
+
+1. Add startSalary/basicSalary field to Designation.
+2. Add designation as a field to salary report the other being salary date.
+3. Employee generates salary through btn and stored proc. Salary will be based on salary date which always has to be the
+   latest one ('precedes') constraint.
+4. Filter salary report by department having various designations monthly, yearly, date between(months).
+
+Future Scope:-
+
+- Salary to be 'cron' based.
+- Timecard and salary to be tied up.
+-
