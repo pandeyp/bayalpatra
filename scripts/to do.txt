@@ -8,3 +8,5 @@ After layout wrk on user mgmt. Along with employee tie ups. why no name in admin
 crud. lists, email, role/leave, reports, history, user mgmt, design
 
 populate salary using stored proc and cron
+
+Put punch in in employee landing page. In admin dashboard, show report of employee punch in with filter.

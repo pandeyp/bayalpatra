@@ -39,7 +39,7 @@
         <div class="top_part">
             <div class="logo">
                 <h1>
-                    <g:link controller='hrmDashboard' action="dashboardHrm"><img src="${createLinkTo(dir:'images', file:'annapurna-hrm-logo.png')}" alt="logo" title="Annapurna" /></g:link>
+                    <g:link controller='dashboard' action="index"><img src="${createLinkTo(dir:'images', file:'annapurna-hrm-logo.png')}" alt="logo" title="Annapurna" /></g:link>
                 </h1>
             </div>
             <div class="header_right">

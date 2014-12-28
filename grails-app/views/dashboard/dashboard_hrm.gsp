@@ -77,6 +77,7 @@
                 <div class="dashbord_box_content">
                     <div class="timesheet">
                         <ul>
+%{--
                             <g:link controller="dutyRoster" action='create'>
                                 <li><img
                                         src="${createLinkTo(dir:'images', file:'duty-roster.jpg')}"
@@ -90,6 +91,7 @@
                                         alt="" /><br />
                                     <p class="dsbord_con_txt">Roster Report</p></li>
                             </g:link>
+--}%
                             <g:link controller="timecard" action='index'>
                                 <li><img
                                         src="${createLinkTo(dir:'images', file:'app-time.jpg')}"
@@ -202,25 +204,25 @@
                                     alt="" /><br />
                                 <p class="dsbord_con_txt">Designation</p></li>
                         </g:link>
-                        <g:link controller="shiftSetting" action='list'>
+                        %{--<g:link controller="shiftSetting" action='list'>
                             <li><img
                                     src="${createLinkTo(dir:'images', file:'shift-setting.jpg')}"
                                     alt="" /><br />
                                 <p class="dsbord_con_txt">Shift Setting</p></li>
                         </g:link>
-
+--}%
                         <g:link controller="departments" action="showTree">
                             <li><img
                                     src="${createLinkTo(dir:'images', file:'structure.jpg')}" alt="" /><br />
                                 <p class="dsbord_con_txt">Structure</p></li>
                         </g:link>
 
-                        <g:link controller="unit" action='list'>
+ %{--                       <g:link controller="unit" action='list'>
                             <li><img
                                     src="${createLinkTo(dir:'images', file:'unit.jpg')}" alt="" /><br />
                                 <p class="dsbord_con_txt">Unit</p></li>
                         </g:link>
-
+--}%
                         <g:link controller="dateSetting" action='list'>
                             <li><img
                                     src="${createLinkTo(dir:'images', file:'date-setting.jpg')}"
@@ -251,11 +253,11 @@
                                     alt="" /><br />
                                 <p class="dsbord_con_txt">Audit Log</p></li>
                         </g:link>
-                        <g:link controller="hrmSubStoreSetting" action='list'>
+    %{--                    <g:link controller="hrmSubStoreSetting" action='list'>
                             <li><img 	src="${createLinkTo(dir:'images', file:'manage-stores_sources.jpg')}"
                                 <p class="dsbord_con_txt">Manage Stores Sources</p></li>
                         </g:link>
-
+--}%
                         <g:link controller="earnedLeaveSetting" action='list'>
                             <li><img
                                     src="${createLinkTo(dir:'images', file:'leave-icon-h.jpg')}"
