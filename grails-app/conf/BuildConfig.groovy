@@ -52,6 +52,8 @@ grails.project.dependency.resolution = {
         runtime 'mysql:mysql-connector-java:5.1.29'
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
         test "org.grails:grails-datastore-test-support:1.0.2-grails-2.4"
+        //for export
+        compile 'commons-beanutils:commons-beanutils:1.8.3'
     }
 
     plugins {
@@ -73,9 +75,7 @@ grails.project.dependency.resolution = {
         //export
         compile ":export:1.6"
 
-        //for export
-        compile 'commons-beanutils:commons-beanutils:1.8.3'
-
+        runtime ":resources:1.2.13"
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.5.5" // or ":hibernate:3.6.10.18"
         runtime ":database-migration:1.4.0"

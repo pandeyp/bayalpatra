@@ -12,7 +12,7 @@
       <title><g:message code="default.list.label" args="[entityName]" /></title>
     <g:javascript library="jquery" plugin="jquery" />
     <jqui:resources />
-    <export:resource />
+    <r:require module="export"/>
     <script type="text/javascript">
 
 //    $(function () {
