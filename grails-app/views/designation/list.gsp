@@ -12,7 +12,7 @@
       <title><g:message code="default.list.label" args="[entityName]" /></title>
     <g:javascript library="jquery" plugin="jquery" />
     <jqui:resources />
-    <r:require module="export"/>
+    <export:resource />
     <script type="text/javascript">
 
 //    $(function () {
@@ -41,7 +41,7 @@
 </div>--}%
 <div class="body">
       <div align="right" class="printthis">
-    <export:formats formats="['excel']" action="exportToExcel" params="" title="Export to Excel"/>
+    <export:formats formats="['excel']" action="exportToExcel" params="['exportFormat':'excel']" title="Export to Excel"/>
     
   <div class="print"><a href="#"title="print">
       <img src="${resource(dir: 'images', file: "print_icon.png")}" alt="Print Table" onclick="window.print()" >

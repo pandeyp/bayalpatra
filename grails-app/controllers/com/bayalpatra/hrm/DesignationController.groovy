@@ -3,6 +3,8 @@ package com.bayalpatra.hrm
 class DesignationController {
 
     def exportService
+    def grailsApplication
+
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index = {
@@ -58,7 +60,8 @@ class DesignationController {
     }
 
     def exportToExcel={
-        if(params?.format && params.format != "html"){
+
+        if(params?.exportFormat && params.exportFormat != "html"){
             params.jobs=session.jobs
             def designation
             def count
@@ -73,7 +76,7 @@ class DesignationController {
 
             }
 
-            response.contentType = ConfigurationHolder.config.grails.mime.types[params.format]
+            response.contentType = grailsApplication.config.grails.mime.types[params.format]
 
             response.setHeader("Content-disposition", "attachment; filename=Designation.${params.extension}")
             List fields=[
@@ -82,7 +85,7 @@ class DesignationController {
             ]
             Map labels=["jobTitleName":"Job Title Name","jobDescription":"Job Description"]
             Map parameters =["column.widths": [0.15, 0.15]]
-            exportService.export(params.format, response.outputStream,designation, fields, labels,[:],parameters)
+            exportService.export(params.exportFormat, response.outputStream,designation, fields, labels,[:],parameters)
         }
     }
 
