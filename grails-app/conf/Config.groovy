@@ -161,3 +161,6 @@ grails.plugin.springsecurity.ui.admin.email = 'psychovipers@gmail.com'
 
 grails.plugin.springsecurity.eventlog.eventLogger = commons.EventLogger
 
+grails.views.javascript.library="jquery"
+
+

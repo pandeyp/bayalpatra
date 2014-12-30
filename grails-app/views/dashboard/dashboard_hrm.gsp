@@ -192,7 +192,7 @@
                             <p class="dsbord_con_txt">Salary</p></li>
                     </g:link>
                     --}%
-                        <g:link controller="departments" action='list'>
+                        <g:link controller="department" action='list'>
                             <li><img
                                     src="${createLinkTo(dir:'images', file:'department-1.jpg')}"
                                     alt="" /><br />
