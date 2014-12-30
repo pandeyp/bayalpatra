@@ -106,7 +106,7 @@ class DepartmentController {
         def deptName1=session.deptName
         def parentName1=session.parentName
 
-        if(params?.format && params.format != "html"){
+        if(params?.exportFormat && params.exportFormat != "html"){
 
 
 
@@ -129,16 +129,14 @@ class DepartmentController {
 
             }
 
-            response.contentType = grailsApplication.config.grails.mime.types[params.format]
+            response.contentType = grailsApplication.config.grails.mime.types[params.exportFormat]
             response.setHeader("Content-disposition", "attachment; filename=Departments.${params.extension}")
             List fields=[
                     "name",
                     "parentId",
                     "idNumber",
-                    "isMainStore",
-                    "isSubStore"
             ]
-            Map labels=["name":"Name","parentId":"Parent Name","idNumber":"Department Code","isMainStore":"Main Store","isSubStore":"Sub Store"]
+            Map labels=["name":"Name","parentId":"Parent Name","idNumber":"Department Code"]
             Map parameters =["column.widths": [0.15, 0.15,0.20]]
             def booleanToYesNo= {
                 domain,value ->
@@ -155,8 +153,8 @@ class DepartmentController {
                     }
             }
 
-            Map formatter = [isMainStore:booleanToYesNo, isSubStore:booleanToYesNo,parentId:getParentName]
-            exportService.export(params.format, response.outputStream,departmentsInstanceList, fields, labels,formatter,parameters)
+            Map formatter = [parentId:getParentName]
+            exportService.export(params.exportFormat, response.outputStream,departmentsInstanceList, fields, labels,formatter,parameters)
         }
     }
 

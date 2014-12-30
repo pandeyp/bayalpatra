@@ -36,7 +36,7 @@ HttpSession session = request.getSession(true)
 <div class="body">
     <div align="right" class="printthis">
         %{--<span id="exportToExcelLink">--}%
-            <export:formats formats="['excel']" action="exportToExcel" params="" title="Export to Excel"/>
+            <export:formats formats="['excel']" action="exportToExcel" params="['exportFormat':'excel']" title="Export to Excel"/>
         %{--</span>--}%
         <div class="print"><a href="#"title="print">
             <img src="${resource(dir: 'images', file: "print_icon.png")}" alt="Print Table" onclick="window.print()" >
