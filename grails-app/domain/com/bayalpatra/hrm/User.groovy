@@ -14,6 +14,8 @@ class User {
 	Date createdDate
 	Date lastUpdatedDate
 
+	Employee employee
+
 	static transients = ['springSecurityService']
 
 	static constraints = {
@@ -21,6 +23,7 @@ class User {
 		lastUpdatedDate(nullable:true)
 		username blank: true, nullable: true, matches: "[a-zA-Z0-9]+", unique: true
 		password blank: false
+		employee nullable:true
 	}
 
 	static mapping = {

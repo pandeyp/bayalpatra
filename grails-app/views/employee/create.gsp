@@ -397,7 +397,7 @@
     <td valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'rewardGrade', 'errors')}">
         <g:textField id="gradeReward" name="gradeReward" value="${employeeInstance?.gradeReward}"/>
     </td>
-</tr>--}%
+</tr>
 
 <tr class="prop">
     <td valign="top" class="name">
@@ -406,7 +406,7 @@
     <td valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'salaryclass', 'errors')}">
         <g:select name="salaryclass.id" from="${com.bayalpatra.hrm.SalaryClass.list()}" optionKey="id" value="${employeeInstance?.salaryclass?.id}" noSelection="['':'--Choose Salary Group--']" />
     </td>
-</tr>
+</tr>--}%
 
 %{--
 <tr class="prop">

@@ -600,14 +600,6 @@ class EmployeeService {
     }
 
     /**
-     * @return {@link Company} <code>name</code> in {@link String} format
-     */
-    public String getCompanyName(){
-        def companyName = Company.executeQuery("SELECT name from Company")
-        return companyName[0]
-    }
-
-    /**
      * @return list of {@link Employee}(s) whose probation period is completed
      */
     def getProbationCompletedEmployees(){

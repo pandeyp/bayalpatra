@@ -146,4 +146,7 @@ class BayalpatraConstants {
 
     static final String DEPARTMENT_ADMIN = "Administration"
 
+    static final String ADMIN_EMAIL = "psychovipers@gmail.com"
+    static final String ACCOUNT_EMAIL = "abc@gmail.com"
+
 }

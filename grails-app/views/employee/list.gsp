@@ -1,4 +1,4 @@
-
+<%@page defaultCodec="none" %>
 <%@ page import="com.bayalpatra.hrm.Employee"%>
 <html>
 <head>
@@ -11,7 +11,8 @@
 
     <g:javascript library="jquery" plugin="jquery" />
     <jqui:resources />
-    %{--<jsTree:resources />--}%
+    % <link rel="stylesheet" href="${resource(dir: '/dist/themes/default',file: 'style.min.css')}"/>
+    <script type="text/javascript" src="${resource(dir:'/dist/',file:'jstree.js')}"></script>
     <export:resource />
 
 
@@ -308,16 +309,9 @@
                             ${fieldValue(bean: employeeInstance, field: "designation")}
                         </td>
 
-                        <g:if test="${employeeInstance?.unit?.id}">
-                            <td>
-                                ${fieldValue(bean: employeeInstance, field: "unit")}
-                            </td>
-                        </g:if>
-                        <g:else>
                             <td>
                                 ${fieldValue(bean: employeeInstance, field: "department")}
                             </td>
-                        </g:else>
 
                         <td><g:formatDate format="yyyy-MM-dd"
                                           date="${employeeInstance?.joinDate}" /></td>

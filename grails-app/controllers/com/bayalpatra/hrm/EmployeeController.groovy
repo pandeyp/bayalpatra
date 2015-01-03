@@ -347,6 +347,158 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
 
     }
 
+    def save = {
+        println('params in save'+params)
+        Boolean handleIsDocChecked
+        def deptId
+
+        departmentService.departmentTree = ""
+        def deptTree =  departmentService.generateNavigation(0)
+        def unitList
+        def supervisorList
+        def user = new User(params)
+
+        def empId = employeeService.getEmployeeId()
+
+        def imageFile = request.getFile('emp_image')
+
+        def employeeInstance = new Employee(params)
+        def sortingParam = request.getParameter("sort") ?: 'employee.firstName';
+        def sortingOrder = request.getParameter("order") ?: 'asc';
+
+        def department = Department.findById(params.departments.id)
+        def employeeList = employeeService.getEmpByStatus()
+        def execDirectorEmail = new ArrayList<String>()
+
+
+        if(employeeList){
+            supervisorList = supervisorService.getSupervisorList(employeeList,params,0,0,sortingParam,sortingOrder)
+        }
+
+        if(department){
+            deptId = department.idNumber
+//            unitList = departmentService.getUnitList(department)
+        }
+
+/*        if(!imageFile.empty) {
+            employeeInstance.filename =  employeeService.getFileName(params.firstName, params.lastName, imageFile)
+        }*/
+
+        employeeInstance.employeeId = employeeService.createEmployeeId(deptId, empId)
+        employeeInstance.updatedJoinDate = employeeInstance.joinDate
+        employeeInstance.department = department
+
+        if(params.password){
+            String salt = saltSource instanceof NullSaltSource ? null : params.userName
+            def password = springSecurityService.encodePassword(params.password, salt)
+
+            user.password=password
+        }
+        user.enabled=true
+        user.employee= employeeInstance
+
+        if (params.isDoc == 'on'){
+            handleIsDocChecked = true
+        }
+
+        def empSaved = employeeInstance.save(flush: true)
+
+        if(empSaved){
+            if(!user.save()){
+                def oldEmployeeInstance = employeeInstance
+                employeeInstance.delete()
+                render(view: "create", model: [employeeInstance: oldEmployeeInstance,userInstance: user,deptTree : deptTree,supervisorList:supervisorList])
+            }else{
+                roleService.insertRole(user.id,Role.findByAuthority(BayalpatraConstants.ROLE_EMPLOYEE).id)
+                employeeInstance.employeeId = employeeService.createEmployeeId(deptId, employeeInstance.id)
+                flash.message="New employee has been created successfully."
+
+                //get required to_addresses for concerned department HOD, concerned Unit_Incharge,admin department HOD, account department HOD and
+                // executive director.
+
+                def toAddressArray = new ArrayList<String>();
+
+                toAddressArray = employeeService.getToAddresses(employeeInstance);           //gets all the associated department heads
+
+/*                if (employeeInstance.unit){
+                    def unitIncharge = employeeService.getUnitInchargeEmail(employeeInstance.unit)      //gets all the associated unit incharges
+
+                    unitIncharge.eachWithIndex { val, i ->
+                        toAddressArray.add(val)
+                    }
+
+                }*/
+
+                if (Designation.findByJobTitleName(BayalpatraConstants.DESIGNATION_EXECUTIVE_DIRECTOR)){
+                    execDirectorEmail = Employee.findAllByDesignation(Designation.findByJobTitleName(BayalpatraConstants.DESIGNATION_EXECUTIVE_DIRECTOR))
+
+                    if (execDirectorEmail){
+                        execDirectorEmail.eachWithIndex { vox, idx ->
+                            toAddressArray.add(vox.email)
+                        }
+                    }
+                }
+
+
+
+                //create a email object and save to send the email notification to the Employee
+                def deptHeads = employeeService.getToAddresses(employeeInstance);
+                def deptHeadEmails
+                def ccAdd=BayalpatraConstants.ADMIN_EMAIL+", "+BayalpatraConstants.ACCOUNT_EMAIL
+
+                for (def i = 0; i < deptHeads.size(); i++){
+                    deptHeadEmails = ", " + deptHeads[i].toString()
+
+                }
+                if(deptHeadEmails){
+                    ccAdd=ccAdd + deptHeadEmails
+
+                }
+                if(empSaved.supervisor){
+                    ccAdd=ccAdd +", "+ empSaved.supervisor.employee.email
+
+                }
+                BayalpatraEmail bayalpatraEmail = new BayalpatraEmail()
+/*                def volunteerDays=empSaved.volunteerDays
+                if(empSaved.volunteerDays==null || empSaved.volunteerDays==""){
+                    volunteerDays=""
+                }*/
+                bayalpatraEmail.toAddress = empSaved.email
+                bayalpatraEmail.ccAddress = ccAdd
+                bayalpatraEmail.subject = "Notification of New Staff Appointment"
+                bayalpatraEmail.messageBody = "Congratulations being appointed as "+empSaved.designation+" with effect from "+empSaved?.joinDate +"<br><br> Welcome to " +"/"+empSaved.department+""" as one of the important member of this institution.<br>
+                                                    <br>Username: """+params.username+"<br>Password: "+params.password+"""<br>
+                                                    <br><b>Appointment Details:</b><br>
+                                                    Name: """+employeeInstance?.firstName+" "+employeeInstance?.middleName+" "+employeeInstance?.lastName+"""<br>
+                                                    Id  : """+empSaved.employeeId+"""<br>
+                                                    Designation: """+empSaved.designation+" <br>Department: "+empSaved.department
+
+                bayalpatraEmail.messageBody+="<br>Appointment Date: "+empSaved.joinDate+"""<br>Thanking You,<br>The Manager<br>Human Resources<br>Bayalpatra-NEPAL"""
+                bayalpatraEmail.save(flush:true, failOnError: true)
+
+                //create a leave balance for this user by user's join date
+                if(BayalpatraConstants.CLIENT_NAME.equals("DW")){
+                    leaveService.updateLeaveBalanceReportOfEachEmployeeAfterRegistration(empSaved,BayalpatraConstants.CREATE,0)
+                }
+                /*               if(employeeInstance.status==BayalpatraConstants.SUSPENDED){
+
+              def suspendedDetail = new SuspendedEmployeeDetails()
+                    suspendedDetail.employee=employeeInstance
+                    suspendedDetail.startDate=new Date()
+                    suspendedDetail.startDate.clearTime()
+                    suspendedDetail.save(failOnError:true)
+
+                }*/
+                redirect(action: "list", id: employeeInstance.id)
+            }
+        }else{
+
+            render(view: "create", model: [employeeInstance: employeeInstance,userInstance: user,deptTree : deptTree,handleIsDocChecked:handleIsDocChecked,supervisorList:supervisorList])
+        }
+
+    }
+
+
 /*
     def ajaxEmployeeList = {
 
