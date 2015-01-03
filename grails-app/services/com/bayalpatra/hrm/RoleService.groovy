@@ -13,7 +13,7 @@ class RoleService {
 
     def getRole(){
 
-        def role = springSecurityService.getAuthentication().authorities.toString()
+        def role = springSecurityService.getAuthentication().authorities
         return role
 
     }

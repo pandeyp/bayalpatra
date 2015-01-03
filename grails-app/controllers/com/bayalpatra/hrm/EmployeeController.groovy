@@ -17,11 +17,12 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
     DepartmentService departmentService
     RoleService roleService
     EmployeeService employeeService
+    SupervisorService supervisorService
 
 /*    SalaryService salaryService
     EmployeeService employeeService
     EmployeeHistoryService employeeHistoryService
-    SupervisorService supervisorService
+
     DutyRosterReportService abc
     def leaveService*/
 
@@ -64,7 +65,8 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
         //Note for developer: params argument passed for the function call is only for offset.
         // In future, use request.getParameter to capture offset so that the function will only take 7 arguments as compared to eight now.
 
-        if(role==BayalpatraConstants.ROLE_ADMIN){
+        if(role[0].toString()==BayalpatraConstants.ROLE_ADMIN){
+            println 'inside where params'+params
             if (params.emp){
                 def ar=ajxReq()
                 employeeInstanceList=ar.employeeInstanceList
@@ -142,7 +144,7 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
 
         }
 
-        else if(role==BayalpatraConstants.ROLE_DEPARTMENT_HEAD){
+        else if(role[0].toString()==BayalpatraConstants.ROLE_DEPARTMENT_HEAD){
 
             finalDept = departmentService.getDepartmentList(session["department"])
             employeeInstanceList = employeeService.getEmpForFilter(finalDept,startDate,endDate,params,max,offset,sortingParam,sortingOrder)
@@ -204,7 +206,7 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
 
 
         }
-        else if(role==BayalpatraConstants.ROLE_SUPERVISOR){
+        else if(role[0].toString()==BayalpatraConstants.ROLE_SUPERVISOR){
 
             def supervisor = Supervisor.findByEmployee(user?.employee)
             if(supervisor){
@@ -267,9 +269,64 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
             }
         }
 
-        println("---->"+count)
         [employeeInstanceList: employeeInstanceList, employeeInstanceTotal:count,deptTree: deptTree,department:params.department, startDate:params.startDate, endDate:params.endDate,offset:params.offset,employee: params.emp]
     }
+
+    def ajxReq={
+        def employeeInstanceList
+        def max = 30
+        def count
+        def offset
+        def user = User.findById(springSecurityService.principal.id)
+        def role = roleService.getRole()
+        // params.each {println(it)}
+        // println(params.employee.toString())
+
+        params.max = max//Math.min(params.max ? params.int('max') : 20, 100)
+        if(params.offset){
+            offset=params.offset
+        }else{
+            offset=0
+        }
+
+        if (role[0]==BayalpatraConstants.ROLE_ADMIN){
+            if(params.emp){
+                count = employeeService.getEmpListCount(params.emp.toString())
+                if (params.format=='excel'){
+                    max = count
+                }
+                employeeInstanceList = employeeService.getEmpList(params.emp.toString(),offset,max)
+
+            }else{
+                count = employeeService.getEmpCountForFilter(null,null,null)
+
+                employeeInstanceList = employeeService.getEmpForFilter(null,null,null,params,max,offset,'firstName','asc')
+
+            }
+        }else if (role[0]==BayalpatraConstants.ROLE_DEPARTMENT_HEAD){
+            def finalDept = departmentService.getDepartmentList(session["department"])
+            if(params.emp){
+                employeeInstanceList = employeeService.getEmpForSelective(params.emp.toString(),finalDept,null,null,null)
+                count = employeeInstanceList.size()
+            }else{
+                employeeInstanceList = employeeService.getEmpForFilter(finalDept,null,null,params,max,offset,'firstName','asc')
+                count = employeeService.getEmpCountForFilter(finalDept,null,null)
+            }
+        }else if (role[0]==BayalpatraConstants.ROLE_SUPERVISOR){
+            def supervisor = Supervisor.findByEmployee(user?.employee)
+            if(params.emp){
+                employeeInstanceList = employeeService.getEmpForSelective(params.emp.toString(),null,supervisor,user,null)
+                count = employeeInstanceList.size()
+            }else{
+                employeeInstanceList = employeeService.getEmployeeBySupervisor(supervisor,user,params)
+                count = employeeService.getCountBySupervisor(supervisor,user)
+            }
+        }
+
+        [employeeInstanceList: employeeInstanceList,employeeInstanceTotal:count,employee:params.emp,offset:params.offset]
+
+    }
+
 
     def create = {
         def supervisorList
@@ -290,7 +347,7 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
 
     }
 
-
+/*
     def ajaxEmployeeList = {
 
         def max = 30
@@ -335,7 +392,8 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
         if(params?.format && params.format != "html"){
             excelImport(employeeInstanceList)
         }
-        /*if(params?.format && params.format != "html"){
+        */
+/*if(params?.format && params.format != "html"){
 
             response.contentType = ConfigurationHolder.config.grails.mime.types[params.format]
             response.setHeader("Content-disposition", "attachment; filename=Employee_List1.${params.extension}")
@@ -397,7 +455,8 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
             ]]
 
             exportService.export(params.format, response.outputStream,employeeService.getEmpForFilter(finalDept,startDate,endDate,params,0,0,'firstName','asc'), fields, labels,formatter,parameters)
-        }*/
+        }*//*
+
         if (employeeInstanceList)
         {
             render(template:'ajaxEmployeeList', model:[employeeInstanceList: employeeInstanceList,employeeInstanceTotal:count,department:params.department, startDate:params.startDate, endDate:params.endDate])
@@ -578,11 +637,13 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
                     leaveService.updateLeaveBalanceReportOfEachEmployeeAfterRegistration(empSaved,BayalpatraConstants.CREATE,0)
                 }
                 if(employeeInstance.status==BayalpatraConstants.SUSPENDED){
-     /*               def suspendedDetail = new SuspendedEmployeeDetails()
+     */
+/*               def suspendedDetail = new SuspendedEmployeeDetails()
                     suspendedDetail.employee=employeeInstance
                     suspendedDetail.startDate=new Date()
                     suspendedDetail.startDate.clearTime()
-                    suspendedDetail.save(failOnError:true)*/
+                    suspendedDetail.save(failOnError:true)*//*
+
                 }
                 redirect(action: "list", id: employeeInstance.id)
             }
@@ -621,9 +682,11 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
 
         if(params.statusFlag) {
             statusFlag = params.statusFlag
+*/
 /*      if(employeeInstance.getStatus()==BayalpatraConstants.TERMINATED ||employeeInstance.getStatus()==BayalpatraConstants.CLEARED ){
         statusFlag=false
-      }*/
+      }*//*
+
         }
 
         if (!employeeInstance) {
@@ -770,7 +833,9 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
                 employeeInstance.properties = params
                 employeeInstance.updatedJoinDate = updatedJoinDate
                 employeeInstance.employeeId = employeeId
-                /*  def unitList = departmentService.getUnitList(employeeInstance.departments)*/
+                */
+/*  def unitList = departmentService.getUnitList(employeeInstance.departments)*//*
+
 
                 if(probationUpdated){
                     noOfProbationDays = employeeInstance.volunteerDays
@@ -802,7 +867,9 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
                                 suspensionDetail = unClosedSuspension
                                 suspensionDetail.endDate=new Date()
                                 suspensionDetail.endDate.clearTime()
-                                /* suspensionDetail.save(failOnError: true)*/
+                                */
+/* suspensionDetail.save(failOnError: true)*//*
+
                             }
                         }
                         EmployeeHistory employeeHistoryList = EmployeeHistory.findByFieldTypeAndEmployee(BayalpatraConstants.FIELD_SERVICE_TYPE,employee)
@@ -824,12 +891,16 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
                         if (todayDate==effectiveDate){
                             if (employee.statusChangedTo==BayalpatraConstants.SUSPENDED)
                             {
+*/
 /*                                suspendedDetail = new SuspendedEmployeeDetails()
                                 suspendedDetail.employee=employeeInstance
                                 suspendedDetail.startDate=new Date()
-                                suspendedDetail.startDate.clearTime()*/
+                                suspendedDetail.startDate.clearTime()*//*
 
-                                /*suspendedDetail.save(failOnError:true)*/
+
+                                */
+/*suspendedDetail.save(failOnError:true)*//*
+
                             }
                             else{
                                 if (employee.statusChangedTo==BayalpatraConstants.TERMINATED){
@@ -846,7 +917,9 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
                                     suspensionDetail = unClosedSuspension
                                     suspensionDetail.endDate=new Date()
                                     suspensionDetail.endDate.clearTime()
-                                    /* suspensionDetail.save(failOnError: true)*/
+                                    */
+/* suspensionDetail.save(failOnError: true)*//*
+
                                 }
                             }
 
@@ -1131,7 +1204,8 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
 
                     //     <<-------------------------------------Send email EOF ------------------------------->>
 
-                    /* def unClosedSuspension = SuspendedEmployeeDetails.findAllWhere(endDate: null,employee: employeeInstance)
+                    */
+/* def unClosedSuspension = SuspendedEmployeeDetails.findAllWhere(endDate: null,employee: employeeInstance)
                                         if(unClosedSuspension){
                                             def suspensionDetail = unClosedSuspension[0]
                                             suspensionDetail.endDate=new Date()
@@ -1142,7 +1216,8 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
                                             suspensionDetail.employee=employeeInstance
                                             suspensionDetail.save(failOnError: true)
                                         }
-                    */
+                    *//*
+
 
                     if(role==BayalpatraConstants.ROLE_EMPLOYEE){
                         render(view: "edit", model: [employeeInstance: employeeInstance,parentName: parentName,designationEdited:false,unitEdited:false,statusEdited:false,departmentEdited:false,deptTree: deptTree,statusFlag:true,supervisorList:supervisorList])
@@ -1181,12 +1256,14 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
         }
     }
 
-    /* *
+    */
+/* *
     * sends Employee object as params to checkBoundPeiod() method in EmployeeService,
     * checks, whether there is bound period or not in EmployeeService,
     * returns true if yes, false if no back to this method
     * finally this method sends text string to the calling js function in edit page
-    */
+    *//*
+
     def checkBoundPeriod = {
         Employee employeeInstance = Employee.get(params.employee)
         def checkBoundPeriod = employeeService.checkBoundPeriod(employeeInstance)
@@ -1198,10 +1275,12 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
     }
 
 
-    /**
+    */
+/**
      * Disables user who are terminated or cleared
      * @params employee
-     */
+     *//*
+
     def calculateSalaryForTermed = {
         def emp=Employee.get(params.employee)
         def salClass=SalaryClass.get(params.salaryClass)
@@ -1214,10 +1293,12 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
         User.executeUpdate("UPDATE User u SET u.enabled=0 where u.employee="+emp.id);
     }
 
-    /**
+    */
+/**
      * Generates employeeList based on entered firstName in the search field of list.
      * @return employeeList
-     */
+     *//*
+
 
     def ajxReq={
         def employeeInstanceList
@@ -1268,7 +1349,8 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
                 employeeInstanceList = employeeService.getEmployeeBySupervisor(supervisor,user,params)
                 count = employeeService.getCountBySupervisor(supervisor,user)
             }
-        }/*else if (role==BayalpatraConstants.ROLE_UNIT_INCHARGE){
+        }*/
+/*else if (role==BayalpatraConstants.ROLE_UNIT_INCHARGE){
             def unit = Unit.find(session["unit"])
             if(params.emp){
                 employeeInstanceList = employeeService.getEmpForSelective(params.emp.toString(),null,null,null,unit)
@@ -1277,7 +1359,8 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
                 employeeInstanceList = employeeService.getEmpByUnit(unit,params,max,offset,'firstName','asc')
                 count = employeeService.getCountByUnit(unit)
             }
-        }*/
+        }*//*
+
         [employeeInstanceList: employeeInstanceList,employeeInstanceTotal:count,employee:params.emp,offset:params.offset]
 
     }
@@ -1571,6 +1654,7 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
     }
 
 
+*/
 
 
 }

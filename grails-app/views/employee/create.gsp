@@ -1,6 +1,6 @@
 
-
-<%@ page import="commons.BayalpatraConstants com.bayalpatra.hrm.Employee" %>
+<%@page defaultCodec="none" %>
+<%@ page import="commons.BayalpatraConstants; com.bayalpatra.hrm.Employee" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -10,7 +10,10 @@
 
     <g:javascript library="jquery" plugin="jquery"/>
     <jqui:resources/>
-    <jsTree:resources />
+
+    <link rel="stylesheet" href="${resource(dir: '/dist/themes/default',file: 'style.min.css')}"/>
+    <script type="text/javascript" src="${resource(dir:'/dist/',file:'jstree.js')}"></script>
+
 
     <script type="text/javascript">
 
@@ -142,7 +145,7 @@
     </div>
 </g:hasErrors>
 <g:hiddenField id = "service" name="service"  value ="${employeeInstance.status}" />
-<g:hiddenField id = "v_days" name="service"  value ="${employeeInstance.volunteerDays}" />
+%{--<g:hiddenField id = "v_days" name="service"  value ="${employeeInstance.volunteerDays}" />--}%
 <g:hiddenField id = "isDocChecked" name="isDocChecked"  value ="${handleIsDocChecked}" />
 <g:form id="form1" action="save" enctype="multipart/form-data" onSubmit="return restrictSelfSupervision();">
 <div class="dialog">
@@ -287,12 +290,12 @@
     <td valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'homePhone', 'errors')}">
         <g:textField name="homePhone" value="${employeeInstance?.homePhone}" />
     </td>
-    <td valign="top" class="name">
+%{--    <td valign="top" class="name">
         <label for="workPhone"><g:message code="employee.workPhone.label" default="Work Phone " /></label>
     </td>
     <td valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'workPhone', 'errors')}">
         <g:textField name="workPhone" value="${employeeInstance?.workPhone}" />
-    </td>
+    </td>--}%
 </tr>
 
 <tr class="prop">
@@ -326,22 +329,22 @@
         <label for="departments.id"><g:message code="employee.departments.label" default="Department *" /></label>
     </td>
     <td valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'departments', 'errors')}">
-        <g:textField id = "depart_name" name="depart_name" readonly = "true" value="${employeeInstance.departments}"/>
-        <g:hiddenField id="department" name="departments.id" value="${employeeInstance.departments?.id}"/>
+        <g:textField id = "depart_name" name="depart_name" readonly = "true" value="${employeeInstance.department}"/>
+        <g:hiddenField id="department" name="departments.id" value="${employeeInstance.department?.id}"/>
         %{--<g:hiddenField id = "service" name="service"  value ="${fieldValue(bean: employeeInstance, field: 'status')}" />--}%
 
 
     </td>
 
 
-    <td valign="top" class="name">
+%{--    <td valign="top" class="name">
         <label for="unit.id"><g:message code="employee.designation.label" default="Unit" /></label>
     </td>
     <td id="td_unit" valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'unit', 'errors')}">
 
         <g:select name="unit.id" from="${hrm.Unit.list()}" optionKey="id" value="${employeeInstance?.unit?.id}" noSelection="${['null':'--Choose Unit--']}"  />
-        %{--<g:select name="unit.id" from="${unitList}" optionKey="id" value="${employeeInstance?.unit?.id}" noSelection="${['null':'--Choose Unit--']}"  />--}%
-    </td>
+        --}%%{--<g:select name="unit.id" from="${unitList}" optionKey="id" value="${employeeInstance?.unit?.id}" noSelection="${['null':'--Choose Unit--']}"  />--}%%{--
+    </td>--}%
 
 
 </tr>
@@ -358,7 +361,7 @@
         <label for="designation.id"><g:message code="employee.designation.label" default="Designation *" /></label>
     </td>
     <td valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'designation', 'errors')}">
-        <g:select name="designation.id" from="${hrm.Designation.list()}" optionKey="id" value="${employeeInstance?.designation?.id}" noSelection="['':'--Choose Designation--']" onchange="enableGradeTextbox();"  />
+        <g:select name="designation.id" from="${com.bayalpatra.hrm.Designation.list()}" optionKey="id" value="${employeeInstance?.designation?.id}" noSelection="['':'--Choose Designation--']" onchange="enableGradeTextbox();"  />
     </td>
     <td valign="top" class="name">
         <label for="promotionDate"><g:message code="employee.promotionDate.label" default="Promotion Date" /></label>
@@ -372,39 +375,40 @@
 
 </tr>
 
-<g:if test="${AnnapurnaConstants.CLIENT_NAME==AnnapurnaConstants.CLIENT_PHECT}">
+<g:if test="${BayalpatraConstants.CLIENT_NAME==BayalpatraConstants.CLIENT_BAYALPATRA}">
     <td valign="top" class="value">
         <label for="status"><g:message code="employee.isDoc.label" default="Is Doctor" /></label>
     </td>
     <td valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'isDoc', 'errors')}">
         <g:checkBox id="isDoc" name="isDoc" value="${employeeInstance?.isDoc}" checked=""/>&nbsp;&nbsp;&nbsp;Yes (✔)
     </td>
-    <td valign="top" class="name">
+%{--    <td valign="top" class="name">
         <label for="councilNumber"><g:message code="employee.councilNumber.label" default="NMC/NNC #" /></label>
     </td>
     <td valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'councilNumber', 'errors')}">
         <g:textField name="councilNumber" value="${employeeInstance?.councilNumber}"/>
-    </td>
+    </td>--}%
 </g:if>
 
-<tr class="prop">
+%{--<tr class="prop">
     <td valign="top" class="name">
         <label for="gradeReward.id"><g:message code="employee.gradeReward.label" default="Reward Grade" /></label>
     </td>
     <td valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'rewardGrade', 'errors')}">
         <g:textField id="gradeReward" name="gradeReward" value="${employeeInstance?.gradeReward}"/>
     </td>
-</tr>
+</tr>--}%
 
 <tr class="prop">
     <td valign="top" class="name">
         <label for="salaryclass.id"><g:message code="employee.salaryclass.label" default="Pay Date Class *" /></label>
     </td>
     <td valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'salaryclass', 'errors')}">
-        <g:select name="salaryclass.id" from="${hrm.SalaryClass.list()}" optionKey="id" value="${employeeInstance?.salaryclass?.id}" noSelection="['':'--Choose Salary Group--']" />
+        <g:select name="salaryclass.id" from="${com.bayalpatra.hrm.SalaryClass.list()}" optionKey="id" value="${employeeInstance?.salaryclass?.id}" noSelection="['':'--Choose Salary Group--']" />
     </td>
 </tr>
 
+%{--
 <tr class="prop">
     <td valign="top" class="name">
         Upload Image:
@@ -413,6 +417,7 @@
         <input type="file" name="emp_image" />
     </td>
 </tr>
+--}%
 
 </tbody>
 </table>
