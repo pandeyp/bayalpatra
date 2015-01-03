@@ -191,7 +191,7 @@
     <div id="content-wrap">
 
         <div id="filters">
-            <sec:ifAnyGranted roles="ROLE_HR_Admin,ROLE_HR_Secondary,ROLE_HR_Primary">
+            <sec:ifAnyGranted roles="ROLE_ADMIN">
                 <table width="100%" cellspacing="0" cellpadding="0" border="0">
                     <td width="40%">
                         <table width="100%" border="0">
@@ -205,11 +205,11 @@
                             </tr>
                         </table></td>
                 </table></sec:ifAnyGranted>
-            <sec:ifAnyGranted roles="ROLE_HR_Admin,ROLE_HR_Secondary,ROLE_HR_Primary,ROLE_Supervisor,ROLE_DepartmentHead,ROLE_UnitIncharge">
+            <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_SUPERVISOR,ROLE_DEPARTMENTHEAD">
                 <table width="100%" cellspacing="0" cellpadding="0" border="0"
                        class="employee_table">
                     <thead>
-                    <sec:ifAnyGranted roles="ROLE_HR_Admin,ROLE_HR_Secondary,ROLE_HR_Primary">
+                    <sec:ifAnyGranted roles="ROLE_ADMIN">
                         <tr>
                             <th class="thead1" colspan="2">Total Employee :</th>
                             <th colspan="30" class="thead1"><g:textField
@@ -230,7 +230,7 @@
 
                         <th class="thead2"><g:textField name="employee"
                                                         id="employee" value="${employee}" onKeyUp="filterList()" /></th>
-                        <sec:ifAnyGranted roles="ROLE_HR_Admin,ROLE_HR_Secondary,ROLE_HR_Primary">
+                        <sec:ifAnyGranted roles="ROLE_ADMIN">
                             <th class="thead2">Join Date :</th>
                             <th colspan="12" class="thead2">
                                 <input id="datepick1" type="text" name="startDate" class="employee_txt"  value="${startDate}" />&nbsp;
