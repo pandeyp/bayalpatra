@@ -1,6 +1,5 @@
-
-
-<%@ page import="commons.BayalpatraConstants; com.bayalpatra.hrm.Employee" %>
+<%@page defaultCodec="none" %>
+<%@ page import="com.bayalpatra.hrm.SalaryClass; com.bayalpatra.hrm.Designation; commons.BayalpatraConstants; com.bayalpatra.hrm.Employee" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -10,7 +9,8 @@
 
     <g:javascript library="jquery" plugin="jquery"/>
     <jqui:resources/>
-    <jsTree:resources />
+    <link rel="stylesheet" href="${resource(dir: '/dist/themes/default',file: 'style.min.css')}"/>
+    <script type="text/javascript" src="${resource(dir:'/dist/',file:'jstree.js')}"></script>
 
     <script type="text/javascript">
 
@@ -265,10 +265,10 @@
         <label for="supervisor.id"><g:message code="employee.supervisor.label" default="Supervisor" /></label>
     </td>
     <td valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'supervisor', 'errors')}">
-        <sec:ifAnyGranted roles="ROLE_HR_Admin,ROLE_HR_Secondary,ROLE_HR_Primary">
+        <sec:ifAnyGranted roles="ROLE_ADMIN">
             <g:select name="supervisor.id" id="supervisor" from="${supervisorList}" optionKey="id" value="${employeeInstance?.supervisor?.id}" noSelection="['null':'-Choose One-']"  />
         </sec:ifAnyGranted>
-        <sec:ifAnyGranted roles="ROLE_DepartmentHead,ROLE_UnitIncharge,ROLE_Employee,ROLE_Supervisor">
+        <sec:ifAnyGranted roles="ROLE_DEPARTMENTHEAD,ROLE_EMPLOYEE,ROLE_SUPERVISOR">
             <g:select name="supervisor.id" id="supervisor" from="${supervisorList}" optionKey="id" value="${employeeInstance?.supervisor?.id}" noSelection="['null':'-Choose One-']"  disabled="true"/>
         </sec:ifAnyGranted>
     </td>
@@ -291,10 +291,10 @@
     <td valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'joinDate', 'errors')}">
         <g:set var="startYr" value="${new GregorianCalendar().get(Calendar.YEAR)-50}"/>
         <g:set var="endYr" value="${new GregorianCalendar().get(Calendar.YEAR)}"/>
-        <sec:ifAnyGranted roles="ROLE_HR_Admin,ROLE_HR_Secondary,ROLE_HR_Primary">
+        <sec:ifAnyGranted roles="ROLE_ADMIN">
             <g:datePicker name="joinDate" precision="day" value="${employeeInstance?.joinDate}" years="${startYr..endYr}" />
         </sec:ifAnyGranted>
-        <sec:ifAnyGranted roles="ROLE_DepartmentHead,ROLE_UnitIncharge,ROLE_Employee,ROLE_Supervisor">
+        <sec:ifAnyGranted roles="ROLE_DEPARTMENTHEAD,ROLE_EMPLOYEE,ROLE_SUPERVISOR">
             <label><g:formatDate format="yyyy-MM-dd" date="${employeeInstance?.joinDate}" /></label>
         </sec:ifAnyGranted>
     </td>
@@ -309,14 +309,14 @@
     </td>
 
 
-    <g:if test="${employeeInstance?.status == 'Volunteer' ||  employeeInstance?.status == 'Probation'}" >
+%{--    <g:if test="${employeeInstance?.status == 'Volunteer' ||  employeeInstance?.status == 'Probation'}" >
         <td class ="remVol"> Days</td>
         <td class ="remVol"><g:textField name="volunteerDays" value="${employeeInstance?.volunteerDays}" class="days_no" /></td>
     </g:if>
     <g:elseif test="${employeeInstance?.status == 'Suspended'}">
         <td class ="remVol"> Days</td>
         <td class ="remVol"><g:textField  name="suspensionDays" value="${employeeInstance?.suspensionDays}" class="days_no" /></td>
-    </g:elseif>
+    </g:elseif>--}%
 
 
 </tr>
@@ -326,11 +326,11 @@
     </td>
     <td id = "x" valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'status', 'errors')}">
 
-        <sec:ifAnyGranted roles="ROLE_HR_Admin,ROLE_HR_Secondary,ROLE_HR_Primary">
+        <sec:ifAnyGranted roles="ROLE_ADMIN">
 
             <g:select id="statusChangedTo" name="statusChangedTo" from="${employeeInstance.constraints.status.inList}" value="${employeeInstance?.statusChangedTo}" valueMessagePrefix="employee.statusChangedTo" noSelection="['':'Choose One']" onchange="checkEdited(this.id,${employeeInstance?.id});" />
         </sec:ifAnyGranted>
-        <sec:ifAnyGranted roles="ROLE_DepartmentHead,ROLE_UnitIncharge,ROLE_Employee,ROLE_Supervisor">
+        <sec:ifAnyGranted roles="ROLE_DEPARTMENTHEAD,ROLE_EMPLOYEE,ROLE_SUPERVISOR">
             <g:select id="statusChangedTo" name="statusChangedTo" from="${employeeInstance.constraints.status.inList}" value="${employeeInstance?.statusChangedTo}" valueMessagePrefix="employee.statusChangedTo" noSelection="['':'Choose One']" onchange="checkEdited(this.id,${employeeInstance?.id});" disabled="true"/>
         </sec:ifAnyGranted>
         <g:if test="${employeeInstance?.statusChangedTo == 'Suspended'}">
@@ -359,10 +359,10 @@
         <label for="maritalStatus"><g:message code="employee.maritalStatus.label" default="Marital Status *" /></label>
     </td>
     <td valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'maritalStatus', 'errors')}">
-        <sec:ifAnyGranted roles="ROLE_HR_Admin,ROLE_HR_Secondary,ROLE_HR_Primary">
+        <sec:ifAnyGranted roles="ROLE_ADMIN">
             <g:select name="maritalStatus" from="['Single','Married','Divorced']" noSelection="['':'--Choose One--']" value="${employeeInstance?.maritalStatus}"/>
         </sec:ifAnyGranted>
-        <sec:ifAnyGranted roles="ROLE_DepartmentHead,ROLE_UnitIncharge,ROLE_Employee,ROLE_Supervisor">
+        <sec:ifAnyGranted roles="ROLE_DEPARTMENTHEAD,ROLE_EMPLOYEE,ROLE_SUPERVISOR">
             <g:select name="maritalStatus" from="['Single','Married','Divorced']" noSelection="['':'--Choose One--']" value="${employeeInstance?.maritalStatus}" disabled="true"/>
         </sec:ifAnyGranted>
         <%--<g:textField name="maritalStatus" value="${employeeInstance?.maritalStatus}" /> --%>
@@ -372,12 +372,12 @@
         <label for="gender"><g:message code="employee.gender.label" default="Gender *" /></label>
     </td>
     <td valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'gender', 'errors')}">
-        <sec:ifAnyGranted roles="ROLE_HR_Admin,ROLE_HR_Secondary,ROLE_HR_Primary">
+        <sec:ifAnyGranted roles="ROLE_ADMIN">
             <g:radioGroup name="gender" labels="['Male','Female']" values="['Male','Female']" value="${employeeInstance?.gender}" >
                 <g:message code="${it.label}" />: ${it.radio}
             </g:radioGroup>
         </sec:ifAnyGranted>
-        <sec:ifAnyGranted roles="ROLE_DepartmentHead,ROLE_UnitIncharge,ROLE_Employee,ROLE_Supervisor">
+        <sec:ifAnyGranted roles="ROLE_DEPARTMENTHEAD,ROLE_EMPLOYEE,ROLE_SUPERVISOR">
             <g:textField name="gender" value="${employeeInstance?.gender}" readonly="true" disabled="true"/>
         </sec:ifAnyGranted>
     </td>
@@ -426,12 +426,12 @@
     <td valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'homePhone', 'errors')}">
         <g:textField name="homePhone" value="${employeeInstance?.homePhone}" />
     </td>
-    <td valign="top" class="name">
+%{--    <td valign="top" class="name">
         <label for="workPhone"><g:message code="employee.workPhone.label" default="Work Phone" /></label>
     </td>
     <td valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'homePhone', 'errors')}">
         <g:textField name="workPhone" value="${employeeInstance?.workPhone}" />
-    </td>
+    </td>--}%
 </tr>
 
 <tr class="prop">
@@ -448,10 +448,10 @@
         <label for="email"><g:message code="employee.email.label" default="Email *" /></label>
     </td>
     <td valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'email', 'errors')}">
-        <sec:ifAnyGranted roles="ROLE_HR_Admin,ROLE_HR_Secondary,ROLE_HR_Primary">
+        <sec:ifAnyGranted roles="ROLE_ADMIN">
             <g:textField name="email" value="${employeeInstance?.email}" />
         </sec:ifAnyGranted>
-        <sec:ifAnyGranted roles="ROLE_DepartmentHead,ROLE_UnitIncharge,ROLE_Employee,ROLE_Supervisor">
+        <sec:ifAnyGranted roles="ROLE_DEPARTMENTHEAD,ROLE_EMPLOYEE,ROLE_SUPERVISOR">
             <g:textField name="email" value="${employeeInstance?.email}" readonly="true" disabled="true"/>
         </sec:ifAnyGranted>
     </td>
@@ -469,23 +469,12 @@
         <label for="departments.id"><g:message code="employee.departments.label" default="Department" /></label>
     </td>
     <td valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'departments', 'errors')}">
-        <sec:ifAnyGranted roles="ROLE_HR_Admin,ROLE_HR_Secondary,ROLE_HR_Primary">
-            <g:textField id = "depart_name" name="depart_name" readonly = "true" value="${employeeInstance.departments}"/>
+        <sec:ifAnyGranted roles="ROLE_ADMIN">
+            <g:textField id = "depart_name" name="depart_name" readonly = "true" value="${employeeInstance.department}"/>
             %{--<g:hiddenField id="department" name="departments.id" value="${employeeInstance.departments.id}"/>--}%
         </sec:ifAnyGranted>
-        <sec:ifAnyGranted roles="ROLE_DepartmentHead,ROLE_UnitIncharge,ROLE_Employee,ROLE_Supervisor">
-            <g:textField id = "depart_name" name="depart_name" readonly = "true" value="${employeeInstance.departments}" disabled="true"/>
-        </sec:ifAnyGranted>
-    </td>
-    <td valign="top" class="name">
-        <label for="unit.id"><g:message code="employee.unit.label" default="Unit" /></label>
-    </td>
-    <td id="td_unit" valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'unit', 'errors')}">
-        <sec:ifAnyGranted roles="ROLE_HR_Admin,ROLE_HR_Secondary,ROLE_HR_Primary">
-            <g:select name="unit.id" from="${hrm.Unit.list()}" optionKey="id" value="${employeeInstance?.unit?.id}" onchange="checkEdited(this.id,${employeeInstance?.id});" noSelection="${['null':'--Choose Unit--']}" />
-        </sec:ifAnyGranted>
-        <sec:ifAnyGranted roles="ROLE_DepartmentHead,ROLE_UnitIncharge,ROLE_Employee,ROLE_Supervisor">
-            <g:select name="unit.id" from="${hrm.Unit.list()}" optionKey="id" value="${employeeInstance?.unit?.id}" onchange="checkEdited(this.id,${employeeInstance?.id});" noSelection="${['null':'--Choose Unit--']}" disabled="true"/>
+        <sec:ifAnyGranted roles="ROLE_DEPARTMENTHEAD,ROLE_EMPLOYEE,ROLE_SUPERVISOR">
+            <g:textField id = "depart_name" name="depart_name" readonly = "true" value="${employeeInstance.department}" disabled="true"/>
         </sec:ifAnyGranted>
     </td>
 
@@ -497,13 +486,13 @@
         <label for="changeDepartments.id"><g:message code="employee.changeDepartments.label" default="Department Change" /></label>
     </td>
     <td valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'changeDepartment', 'errors')}">
-        <sec:ifAnyGranted roles="ROLE_HR_Admin,ROLE_HR_Secondary,ROLE_HR_Primary">
+        <sec:ifAnyGranted roles="ROLE_ADMIN">
             <g:textField id = "change_department" name="change_department" readonly = "true" value="${employeeInstance.changeDepartment}"/>
 
            <g:hiddenField id="department" name="changeDepartment" value="${employeeInstance.changeDepartment}" />
 
         </sec:ifAnyGranted>
-        <sec:ifAnyGranted roles="ROLE_DepartmentHead,ROLE_UnitIncharge,ROLE_Employee,ROLE_Supervisor">
+        <sec:ifAnyGranted roles="ROLE_DEPARTMENTHEAD,ROLE_EMPLOYEE,ROLE_SUPERVISOR">
             <g:textField id = "change_department" name="change_department" readonly = "true" value="${employeeInstance.changeDepartment}" disabled="true"/>
         </sec:ifAnyGranted>
     </td>
@@ -519,7 +508,7 @@
 <tr>
     <td></td>
     <td>
-        <sec:ifAnyGranted roles="ROLE_HR_Admin,ROLE_HR_Secondary,ROLE_HR_Primary">
+        <sec:ifAnyGranted roles="ROLE_ADMIN">
             <div id="popup">${deptTree}</div>
         </sec:ifAnyGranted>
     </td>
@@ -530,15 +519,15 @@
         <label for="designation.id"><g:message code="employee.designation.label" default="Designation" /></label>
     </td>
     <td valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'designation', 'errors')}">
-        <sec:ifAnyGranted roles="ROLE_HR_Admin,ROLE_HR_Secondary,ROLE_HR_Primary">
-            <g:select name="designation.id" from="${hrm.Designation.list()}" optionKey="id" value="${employeeInstance?.designation?.id}" onchange="checkEdited(this.id,${employeeInstance?.id});"  />
+        <sec:ifAnyGranted roles="ROLE_ADMIN">
+            <g:select name="designation.id" from="${com.bayalpatra.hrm.Designation.list()}" optionKey="id" value="${employeeInstance?.designation?.id}" onchange="checkEdited(this.id,${employeeInstance?.id});"  />
         </sec:ifAnyGranted>
-        <sec:ifAnyGranted roles="ROLE_DepartmentHead,ROLE_UnitIncharge,ROLE_Employee,ROLE_Supervisor">
-            <g:select name="designation.id" from="${hrm.Designation.list()}" optionKey="id" value="${employeeInstance?.designation?.id}" onchange="checkEdited(this.id,${employeeInstance?.id});" disabled="true"/>
+        <sec:ifAnyGranted roles="ROLE_DEPARTMENTHEAD,ROLE_EMPLOYEE,ROLE_SUPERVISOR">
+            <g:select name="designation.id" from="${Designation.list()}" optionKey="id" value="${employeeInstance?.designation?.id}" onchange="checkEdited(this.id,${employeeInstance?.id});" disabled="true"/>
         </sec:ifAnyGranted>
     </td>
 
-    <sec:ifAnyGranted roles="ROLE_HR_Admin,ROLE_HR_Secondary,ROLE_HR_Primary">
+    <sec:ifAnyGranted roles="ROLE_ADMIN">
         <td valign="top" class="name">
             <label for="promotionDate"><g:message code="employee.promotionDate.label" default="Promotion Date" /></label>
         </td>
@@ -550,29 +539,17 @@
     </sec:ifAnyGranted>
 </tr>
 
-<g:if test="${AnnapurnaConstants.CLIENT_NAME==AnnapurnaConstants.CLIENT_PHECT}">
+<g:if test="${BayalpatraConstants.CLIENT_NAME==BayalpatraConstants.CLIENT_BAYALPATRA}">
     <td valign="top" class="value">
         <label for="status"><g:message code="employee.isDoc.label" default="Is Doctor" /></label>
     </td>
     <td valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'isDoc', 'errors')}">
         <g:checkBox id="isDoc" name="isDoc" value="${employeeInstance?.isDoc}"/>&nbsp;&nbsp;&nbsp;Yes (✔)
     </td>
-    <td valign="top" class="name">
-        <label for="councilNumber"><g:message code="employee.councilNumber.label" default="NMC/NNC #" /></label>
-    </td>
-    <td valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'councilNumber', 'errors')}">
-        <g:textField name="councilNumber" value="${employeeInstance?.councilNumber}"/>
-    </td>
-</g:if>
 
-<tr class="prop">
-    <td valign="top" class="name">
-        <label for="gradeReward.id"><g:message code="employee.gradeReward.label" default="Reward Grade" /></label>
-    </td>
-    <td valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'rewardGrade', 'errors')}">
-        <g:textField id="gradeReward" name="gradeReward" value="${employeeInstance?.gradeReward}"/>
-    </td>
-</tr>
+</g:if>
+%{--
+
 
 
 
@@ -581,11 +558,11 @@
         <label for="salaryclass.id"><g:message code="employee.salaryclass.label" default="Pay Date Class *" /></label>
     </td>
     <td valign="top" class="value ${hasErrors(bean: employeeInstance, field: 'salaryclass', 'errors')}">
-        <sec:ifAnyGranted roles="ROLE_HR_Admin,ROLE_HR_Secondary,ROLE_HR_Primary">
-            <g:select name="salaryclass.id" from="${hrm.SalaryClass.list()}" optionKey="id" value="${employeeInstance?.salaryclass?.id}"  />
+        <sec:ifAnyGranted roles="ROLE_ADMIN">
+            <g:select name="salaryclass.id" from="${SalaryClass.list()}" optionKey="id" value="${employeeInstance?.salaryclass?.id}"  />
         </sec:ifAnyGranted>
-        <sec:ifAnyGranted roles="ROLE_DepartmentHead,ROLE_UnitIncharge,ROLE_Employee,ROLE_Supervisor">
-            <g:select name="salaryclass.id" from="${hrm.SalaryClass.list()}" optionKey="id" value="${employeeInstance?.salaryclass?.id}"  disabled="true"/>
+        <sec:ifAnyGranted roles="ROLE_DEPARTMENTHEAD,ROLE_EMPLOYEE,ROLE_SUPERVISOR">
+            <g:select name="salaryclass.id" from="${com.bayalpatra.hrm.SalaryClass.list()}" optionKey="id" value="${employeeInstance?.salaryclass?.id}"  disabled="true"/>
         </sec:ifAnyGranted>
     </td>
 </tr>
@@ -599,6 +576,7 @@
         <input type="file" name="emp_image" />
     </td>
 </tr>
+--}%
 
 </tbody>
 </table>

@@ -18,6 +18,7 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
     RoleService roleService
     EmployeeService employeeService
     SupervisorService supervisorService
+    EmployeeHistoryService employeeHistoryService
 
 /*    SalaryService salaryService
     EmployeeService employeeService
@@ -289,7 +290,7 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
             offset=0
         }
 
-        if (role[0]==BayalpatraConstants.ROLE_ADMIN){
+        if (role[0].toString()==BayalpatraConstants.ROLE_ADMIN){
             if(params.emp){
                 count = employeeService.getEmpListCount(params.emp.toString())
                 if (params.format=='excel'){
@@ -303,7 +304,7 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
                 employeeInstanceList = employeeService.getEmpForFilter(null,null,null,params,max,offset,'firstName','asc')
 
             }
-        }else if (role[0]==BayalpatraConstants.ROLE_DEPARTMENT_HEAD){
+        }else if (role[0].toString()==BayalpatraConstants.ROLE_DEPARTMENT_HEAD){
             def finalDept = departmentService.getDepartmentList(session["department"])
             if(params.emp){
                 employeeInstanceList = employeeService.getEmpForSelective(params.emp.toString(),finalDept,null,null,null)
@@ -312,7 +313,7 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
                 employeeInstanceList = employeeService.getEmpForFilter(finalDept,null,null,params,max,offset,'firstName','asc')
                 count = employeeService.getEmpCountForFilter(finalDept,null,null)
             }
-        }else if (role[0]==BayalpatraConstants.ROLE_SUPERVISOR){
+        }else if (role[0].toString()==BayalpatraConstants.ROLE_SUPERVISOR){
             def supervisor = Supervisor.findByEmployee(user?.employee)
             if(params.emp){
                 employeeInstanceList = employeeService.getEmpForSelective(params.emp.toString(),null,supervisor,user,null)
@@ -480,7 +481,7 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
                 if(BayalpatraConstants.CLIENT_NAME.equals("DW")){
                     leaveService.updateLeaveBalanceReportOfEachEmployeeAfterRegistration(empSaved,BayalpatraConstants.CREATE,0)
                 }
-                /*               if(employeeInstance.status==BayalpatraConstants.SUSPENDED){
+              if(employeeInstance.status==BayalpatraConstants.SUSPENDED){
 
               def suspendedDetail = new SuspendedEmployeeDetails()
                     suspendedDetail.employee=employeeInstance
@@ -488,7 +489,7 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
                     suspendedDetail.startDate.clearTime()
                     suspendedDetail.save(failOnError:true)
 
-                }*/
+                }
                 redirect(action: "list", id: employeeInstance.id)
             }
         }else{
@@ -509,7 +510,7 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
         def employeeInstance = Employee.get(params.employeeIs)
         def employeeList = employeeService.getEmpByStatus()
         def supervisorList = supervisorService.getSupervisorList(employeeList,params,0,0,sortingParam,sortingOrder)
-        def unitList = departmentService.getUnitList(employeeInstance.departments)
+//        def unitList = departmentService.getUnitList(employeeInstance.departments)
 
 //        def userName=User.findById(springSecurityService.getPrincipal()?.id)?.employee?.id
 
@@ -521,7 +522,7 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
             redirect(action: "list")
         }
         else {
-            return [employeeInstance: employeeInstance,designationEdited:false,unitEdited:false,statusEdited:false,departmentEdited:false,deptTree : deptTree,offset:params.offset, statusFlag:statusFlag,supervisorList:supervisorList,unitList:unitList]
+            return [employeeInstance: employeeInstance,designationEdited:false,unitEdited:false,statusEdited:false,departmentEdited:false,deptTree : deptTree,offset:params.offset, statusFlag:statusFlag,supervisorList:supervisorList]
         }
     }
 
@@ -529,9 +530,9 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
 
         def parentName
         def oldEmployeeInstance=Employee.get(params.id)
-        def oldDepartment=oldEmployeeInstance?.departments
+        def oldDepartment=oldEmployeeInstance?.department
         def oldSupervisor=oldEmployeeInstance?.supervisor
-        def role = roleService.getModuleWiseRole(User.findById(springSecurityService.principal.id),session['module'])
+        def role = roleService.getRole()
         departmentService.departmentTree = ""
         def deptTree =  departmentService.generateNavigation(0)
         def  joinDateUpdated= true
@@ -543,11 +544,11 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
         def supervisorList = supervisorService.getSupervisorList(employeeList,params,0,0,sortingParam,sortingOrder)
 
 
-        def imageFile = request.getFile('emp_image')
+/*        def imageFile = request.getFile('emp_image')
         def String fileName = '';
         if(!imageFile.empty) {
             fileName =  employeeService.getFileName(params.firstName, params.lastName, imageFile)
-        }
+        }*/
 
         def employeeInstance = Employee.get(params.id)
         def deptHeads = employeeService.getToAddresses(employeeInstance);
@@ -568,9 +569,6 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
 
         }
 
-
-
-
         def employeeId = employeeInstance.employeeId
         def empId = employeeInstance.employeeId.substring(2,7)
         def depId = employeeInstance.employeeId.substring(0,2)
@@ -578,7 +576,7 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
         def execDirectorEmail = new ArrayList<String>()
         def toAddressArray = new ArrayList<String>();
 
-        Integer gradeInDb = employeeInstance.gradeReward.toInteger()
+/*        Integer gradeInDb = employeeInstance.gradeReward.toInteger()
         Boolean gradeEdited = false;
 
         //checks if grade rewarded.
@@ -586,19 +584,19 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
             if (Integer.parseInt(params.gradeReward) != gradeInDb){
                 gradeEdited = true
             }
-        }
+        }*/
 
-        if(employeeInstance.departments.parentId==1){
+        if(employeeInstance.department.parentId==1){
             parentName = Department.findById(employeeInstance.department.id)
         }
-        else if(employeeInstance.departments.parentId!=1){
+        else if(employeeInstance.department.parentId!=1){
             parentName = Department.findById(employeeInstance.department.parentId)
         }
         if (employeeInstance) {
 
             def updatedJoinDate = employeeInstance.updatedJoinDate
             Employee employee = Employee.get(params.id)
-            if(role!=BayalpatraConstants.ROLE_EMPLOYEE){
+            if(role[0].toString()!=BayalpatraConstants.ROLE_EMPLOYEE){
                 if(params.joinDate){
                     if(employee.joinDate.compareTo(params.joinDate)!=0){
                         if(employee.joinDate.compareTo(employee.updatedJoinDate)==0 && employee.joinDate.compareTo(employee.promotionDate)==0){
@@ -631,13 +629,6 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
                     }
                     employeeHistoryService.createEmployeeHistory(employee,employee.unit,BayalpatraConstants.FIELD_UNIT,fromDate,toDate)
                 }
-                if(params.statusEdited=='true'){
-
-                }
-
-                if(params.departmentEdited=='true'){
-
-                }
             }
 
             if (params.version) {
@@ -652,7 +643,7 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
                 }
             }
 
-            if (fileName!='') employeeInstance.filename = fileName;
+//            if (fileName!='') employeeInstance.filename = fileName;
 
             if(!joinDateUpdated){
                 flash.message="Cannot update Join Date."
@@ -663,6 +654,7 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
                 employeeInstance.employeeId = employeeId
 
 
+/*
                 if(probationUpdated){
                     noOfProbationDays = employeeInstance.volunteerDays
                     leaveService.updateLeaveBalanceReportOfEachEmployeeAfterRegistration(employeeInstance,BayalpatraConstants.EDIT,noOfProbationDays)
@@ -673,6 +665,7 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
                         employeeInstance.volunteerDays=Integer.valueOf(params.volunteerDays);
                     }
                 }
+*/
 
                 employeeInstance.effectiveDate=DateUtils.stringToDate(params.dateEffective)
                 def suspensionDetail
@@ -714,13 +707,11 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
                         if (todayDate==effectiveDate){
                             if (employee.statusChangedTo==BayalpatraConstants.SUSPENDED)
                             {
-                                /* suspendedDetail = new SuspendedEmployeeDetails()
+                                 suspendedDetail = new SuspendedEmployeeDetails()
                                  suspendedDetail.employee=employeeInstance
                                  suspendedDetail.startDate=new Date()
                                  suspendedDetail.startDate.clearTime()
-
- suspendedDetail.save(failOnError:true)*/
-
+                                suspendedDetail.save(failOnError:true)
                             }
                             else{
                                 if (employee.statusChangedTo==BayalpatraConstants.TERMINATED){
@@ -757,7 +748,7 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
                 if(params.change_department){
                     employeeInstance.updatedDepartmentBy=User.findById(springSecurityService.getPrincipal().id).employee
                     def todayDate=DateUtils.formatDateToYYYYMMDD(DateUtils.getCurrentDate())
-                    def department = Departments.findByName(params.change_department)
+                    def department = Department.findByName(params.change_department)
 
 
                     def effectiveDateDept=DateUtils.stringToDate(params.dateForDepartment)
@@ -776,7 +767,7 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
                         }
                         employeeHistoryService.createEmployeeHistory(employee,employee.departments.name,BayalpatraConstants.FIELD_DEPARTMENT,fromDate,todayDate)
 
-                        employeeInstance.departments=department
+                        employeeInstance.department=department
                         employeeInstance.changeDepartment=null
                         employeeInstance.effectiveDateForDepartment=null
                     }
@@ -785,267 +776,83 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
                         employeeInstance.changeDepartment=department
                     }
                 }
+
                 if (!employeeInstance.hasErrors() && employeeInstance.save(flush: true)) {
-                    if (suspensionDetail)
-                    {
+                    if (suspensionDetail) {
                         suspensionDetail.save(failOnError: true)
-                    }
-                    else if (suspendedDetail)
-                    {
+                    } else if (suspendedDetail) {
                         suspendedDetail.save(failOnError: true)
                     }
+
                     def status = employeeInstance.status
                     // calculates salary for terminated and disables user priviledge for both terminated and cleared employees
-                    if(status.equals(BayalpatraConstants.TERMINATED) || status.equals(BayalpatraConstants.CLEARED)){
-                        if(status.equals(BayalpatraConstants.TERMINATED)){
+                    if (status.equals(BayalpatraConstants.TERMINATED) || status.equals(BayalpatraConstants.CLEARED)) {
+                        if (status.equals(BayalpatraConstants.TERMINATED)) {
                             def salClass = employeeInstance.salaryclass
-                            salaryService.generateSalaryForTermedEmployees(employeeInstance,salClass)
+                            salaryService.generateSalaryForTermedEmployees(employeeInstance, salClass)
                             employeeService.updateSupervisor(employeeInstance)
                         }
-                        User.executeUpdate("UPDATE User u SET u.enabled=0 where u.employee="+employeeInstance.id);
+                        User.executeUpdate("UPDATE User u SET u.enabled=0 where u.employee=" + employeeInstance.id);
                     }
 
-                    //send email based on several scenarios
 
-                    //     <<-------------------------------------Send email when promotion of employee------------------------------->>
+                    if (params.departmentEdited == 'true') {
 
-                    if(BayalpatraConstants.CLIENT_NAME.equals("KMH")){
+                        //get required to_addresses for concerned department HOD, concerned Unit_Incharge,admin department HOD, account department HOD and
+                        // executive director.
 
-                        if (params.designationEdited=='true'){
+                        toAddressArray = employeeService.getToAddresses(employeeInstance);
+                        //gets all the associated department heads
 
-                            //get required to_addresses for concerned department HOD, concerned Unit_Incharge,admin department HOD, account department HOD and
-                            // executive director.
 
-                            toAddressArray = employeeService.getToAddresses(employeeInstance);           //gets all the associated department heads
+                        execDirectorEmail = Employee.findAllByDesignation(Designation.findByJobTitleName(BayalpatraConstants.DESIGNATION_EXECUTIVE_DIRECTOR))
 
-                            if (employeeInstance.unit){
-                                def unitIncharge = employeeService.getUnitInchargeEmail(employeeInstance.unit)      //gets all the associated unit incharges
-
-                                unitIncharge.eachWithIndex { val, i ->
-                                    toAddressArray.add(val)
-                                }
+                        if (execDirectorEmail) {
+                            execDirectorEmail.eachWithIndex { vox, idx ->
+                                toAddressArray.add(vox.email)
                             }
-
-                            execDirectorEmail = Employee.findAllByDesignation(Designation.findByJobTitleName(BayalpatraConstants.DESIGNATION_EXECUTIVE_DIRECTOR))
-
-                            if (execDirectorEmail){
-                                execDirectorEmail.eachWithIndex { vox, idx ->
-                                    toAddressArray.add(vox.email)
-                                }
-                            }
-
-                            //create a email object and save to send the email notification to the Employee on promotion
-                            BayalpatraEmail bayalpatraEmail = new BayalpatraEmail()
-                            bayalpatraEmail.toAddress = employeeInstance.email
-
-                            def newDeptHeads = employeeService.getToAddresses(employeeInstance);
-                            def newDeptHeadEmails
-
-                            for (def i = 0; i < newDeptHeads.size(); i++){
-                                newDeptHeadEmails = ", " + newDeptHeads[i].toString()
-
-
-                            }
-                            if(newDeptHeadEmails && newDeptHeadEmails!=deptHeadEmails){
-                                ccAdd=ccAdd + newDeptHeadEmails
-
-
-                            }
-                            if(employeeInstance?.supervisor && employeeInstance?.supervisor!=oldSupervisor){
-                                ccAdd=ccAdd +", "+ employeeInstance.supervisor.employee.email
-
-                            }
-                            bayalpatraEmail.ccAddress=ccAdd
-
-                            bayalpatraEmail.subject = "Notification of Promotion of " +employeeInstance?.firstName+" "+employeeInstance?.middleName+" "+employeeInstance?.lastName
-                            bayalpatraEmail.messageBody = "It is our pleasure to inform you that you have been promoted to the post of "+Designation.findById(Long.parseLong(params.designation.id)).jobTitleName +" effective from<br>"+employeeInstance.promotionDate+".<br><br><b>Promotion Details:</b><br>Name: "+employeeInstance?.firstName+" "+employeeInstance?.middleName+" "+employeeInstance?.lastName+"<br>ID: "+employeeInstance?.employeeId+"<br>Designation: "+employeeInstance?.designation+"<br>Department: "+employeeInstance?.departments+"<br>Promoted to: "+Designation.findById(Long.parseLong(params.designation.id)).jobTitleName
-
-                            if (employeeInstance?.supervisor!=oldSupervisor){
-                                bayalpatraEmail.messageBody+="<br>New Supervisor: "+employeeInstance?.supervisor
-                            }
-
-                            bayalpatraEmail.messageBody+="<br>Staff Status: "+employeeInstance?.status+"<br>Allowance: <br><br>Your efforts in the previous department have always been commendable and we look forward seeing more<br>excellent performance from you in new place. Good luck and hope  you will do much better.<br><br>Thanking You,<br>The Manager<br>Human Resources<br>phect-NEPAL"
-
-                            bayalpatraEmail.save(flush:true, failOnError: true)
                         }
 
-                        //     <<-------------------------------------Send email when grade is rewarded------------------------------->>
-
-                        if (gradeEdited){
-                            //get required to_addresses for concerned department HOD, concerned Unit_Incharge,admin department HOD, account department HOD and
-                            // executive director.
-
-                            toAddressArray = employeeService.getToAddresses(employeeInstance);           //gets all the associated department heads
-
-                            if (employeeInstance.unit){
-                                def unitIncharge = employeeService.getUnitInchargeEmail(employeeInstance.unit)      //gets all the associated unit incharges
-
-                                unitIncharge.eachWithIndex { val, i ->
-                                    toAddressArray.add(val)
-                                }
-                            }
-
-                            execDirectorEmail = Employee.findAllByDesignation(Designation.findByJobTitleName(BayalpatraConstants.DESIGNATION_EXECUTIVE_DIRECTOR))
-
-                            if (execDirectorEmail){
-                                execDirectorEmail.eachWithIndex { vox, idx ->
-                                    toAddressArray.add(vox.email)
-                                }
-                            }
-                            BayalpatraEmail bayalpatraEmail = new BayalpatraEmail()
-                            bayalpatraEmail.toAddress = employeeInstance.email
-                            bayalpatraEmail.ccAddress=ccAdd
-                            bayalpatraEmail.subject = "Grade Reward for " + employeeInstance.fullName
-
-                            bayalpatraEmail.messageBody = "Dear "+ employeeInstance.fullName +",<br><br> A Grade of "+ Integer.parseInt(params.gradeReward) +" has been awarded to you.<br> Congratulations!<br><br>Please check your profile.<br><br> Thank You!<br>Annapurna Support."
-
-
-                            bayalpatraEmail.save(flush:true, failOnError: true)
-                        }
-
-                        //     <<---------------------Send email when department is shifted/transfer from program or branch-------------------->>
-
-                        if (params.departmentEdited == 'true'){
-
-                            //get required to_addresses for concerned department HOD, concerned Unit_Incharge,admin department HOD, account department HOD and
-                            // executive director.
-
-                            toAddressArray = employeeService.getToAddresses(employeeInstance);           //gets all the associated department heads
-
-                            if (employeeInstance.unit){
-                                def unitIncharge = employeeService.getUnitInchargeEmail(employeeInstance.unit)      //gets all the associated unit incharges
-
-                                unitIncharge.eachWithIndex { val, i ->
-                                    toAddressArray.add(val)
-                                }
-                            }
-
-                            execDirectorEmail = Employee.findAllByDesignation(Designation.findByJobTitleName(BayalpatraConstants.DESIGNATION_EXECUTIVE_DIRECTOR))
-
-                            if (execDirectorEmail){
-                                execDirectorEmail.eachWithIndex { vox, idx ->
-                                    toAddressArray.add(vox.email)
-                                }
-                            }
-
-                            //statically add group email to toAddressArray for account and admin dept head.
+                        //statically add group email to toAddressArray for account and admin dept head.
 
 //                            toAddressArray.add('a@b.com')
-                            BayalpatraEmail bayalpatraEmail = new BayalpatraEmail()
-                            bayalpatraEmail.toAddress = employeeInstance.email
-                            def newDeptHeads = employeeService.getToAddresses(employeeInstance);
-                            def newDeptHeadEmails
+                        BayalpatraEmail bayalpatraEmail = new BayalpatraEmail()
+                        bayalpatraEmail.toAddress = employeeInstance.email
+                        def newDeptHeads = employeeService.getToAddresses(employeeInstance);
+                        def newDeptHeadEmails
 
 
-                            for (def i = 0; i < newDeptHeads.size(); i++){
-                                newDeptHeadEmails = ", " + newDeptHeads[i].toString()
+                        for (def i = 0; i < newDeptHeads.size(); i++) {
+                            newDeptHeadEmails = ", " + newDeptHeads[i].toString()
 
-                            }
-                            if(newDeptHeadEmails && newDeptHeadEmails!=deptHeadEmails){
-                                ccAdd=ccAdd + newDeptHeadEmails
-
-                            }
-                            if(employeeInstance?.supervisor && employeeInstance?.supervisor!=oldSupervisor){
-                                ccAdd=ccAdd +", "+ employeeInstance.supervisor.employee.email
-
-                            }
-                            bayalpatraEmail.ccAddress=ccAdd
-                            bayalpatraEmail.subject = "Notification of Transfer of " +employeeInstance?.firstName+" "+employeeInstance?.middleName+" "+employeeInstance?.lastName
-                            bayalpatraEmail.messageBody =" We would like to inform you that you have been transferred from "+oldDepartment+" Department to "+employeeInstance.departments+" effective from "+new Date()+"<br><br><b>Transfer Details:</b><br>Name: "+employeeInstance?.firstName+" "+employeeInstance?.middleName+" "+employeeInstance?.lastName+"<br>ID: "+employeeInstance?.employeeId+"<br>Designation: "+employeeInstance?.designation+"<br>Department: "+oldDepartment+"<br>Transferred to: "+employeeInstance?.departments
-                            if (employeeInstance?.supervisor!=oldSupervisor){
-                                bayalpatraEmail.messageBody+="<br>New Supervisor: "+employeeInstance?.supervisor
-                            }
-                            bayalpatraEmail.messageBody+="<br>Staff Status: "+employeeInstance?.status+"<br>Allowance: <br><br> Your efforts in the previous department have always been commendable and we look forward seeing more excellent performance from you in new place. Good luck and hope  you will do much better.<br><br>Thanking You,<br>The Manager<br>Human Resources<br>phect-NEPAL"
-                            bayalpatraEmail.save(flush:true, failOnError: true)
                         }
+                        if (newDeptHeadEmails && newDeptHeadEmails != deptHeadEmails) {
+                            ccAdd = ccAdd + newDeptHeadEmails
 
-                        //     <<---------------------Send email when employee is terminated-------------------->>
-                        if (params.status==BayalpatraConstants.TERMINATED){
-                            BayalpatraEmail bayalpatraEmail = new BayalpatraEmail()
-                            bayalpatraEmail.toAddress = employeeInstance.email
-                            bayalpatraEmail.ccAddress=ccAdd
-                            bayalpatraEmail.subject = "Termination of " + employeeInstance?.firstName+" "+employeeInstance?.middleName+" "+employeeInstance?.lastName
-
-                            bayalpatraEmail.messageBody = "Dear "+ employeeInstance?.firstName+" "+employeeInstance?.middleName+" "+employeeInstance?.lastName +",<br><br> You have been terminated today.<br>For further information, please visit Annapurna.<br> Thank You!<br> Annapurna Support."
-
-                            bayalpatraEmail.save(flush:true, failOnError: true)
                         }
+                        if (employeeInstance?.supervisor && employeeInstance?.supervisor != oldSupervisor) {
+                            ccAdd = ccAdd + ", " + employeeInstance.supervisor.employee.email
 
-                        //     <<---------------------Send email when employee is suspended (disciplinary action)-------------------->>
-
-                        if (params.status==BayalpatraConstants.SUSPENDED){
-
-                            toAddressArray = employeeService.getToAddresses(employeeInstance);           //gets all the associated department heads
-
-                            if (employeeInstance.unit){
-                                def unitIncharge = employeeService.getUnitInchargeEmail(employeeInstance.unit)      //gets all the associated unit incharges
-
-                                unitIncharge.eachWithIndex { val, i ->
-                                    toAddressArray.add(val)
-                                }
-                            }
-
-                            if (Designation.findByJobTitleName(BayalpatraConstants.DESIGNATION_EXECUTIVE_DIRECTOR)){
-                                execDirectorEmail = Employee.findAllByDesignation(Designation.findByJobTitleName(BayalpatraConstants.DESIGNATION_EXECUTIVE_DIRECTOR))
-
-                                if (execDirectorEmail){
-                                    execDirectorEmail.eachWithIndex { vox, idx ->
-                                        toAddressArray.add(vox.email)
-                                    }
-                                }
-                            }
-
-
-
-                            //send email to concerned person on his/her suspension.
-
-                            //create a email object and save to send the email notification to the Employee on suspension
-                            BayalpatraEmail bayalpatraEmail = new BayalpatraEmail()
-                            bayalpatraEmail.toAddress = employeeInstance.email
-                            bayalpatraEmail.ccAddress=ccAdd
-                            bayalpatraEmail.subject = "Notification of Suspension of " + employeeInstance?.firstName+" "+employeeInstance?.middleName+" "+employeeInstance?.lastName
-                            Date toDate = new Date().plus(employeeInstance?.suspensionDays)
-
-                            bayalpatraEmail.messageBody ="As a result of your misconduct and breach of by law dated "+new Date()+" you are suspended from your<br>position in the department/unit for "+employeeInstance?.suspensionDays+" days effective from "+new Date()+" to "+ toDate +".<br><br><b>Suspension Details:</b><br>Name: "+employeeInstance?.firstName+" "+employeeInstance?.middleName+" "+employeeInstance?.lastName+"<br>ID: "+employeeInstance?.employeeId+"<br>Designation: "+employeeInstance?.designation+"<br>Department: "+employeeInstance?.departments
-                            if(employeeInstance.unit){annapurnaEmail.messageBody+="<br>Unit: "+employeeInstance.unit}
-
-                            bayalpatraEmail.messageBody+="<br>Suspend Period: "+employeeInstance?.suspensionDays+" days<br><br>You are hereby warned to refrain form such activities again in future. Otherwise, serious action shall be taken<br>against you as per regulation of the institution.<br><br><b>Note:</b> Submit all your belongings related to this institution to admin for the suspended period.<br><br>Thanking you,<br>The Manager<br>Human Resources<br>phect-NEPAL"
-//                                "Dear "+ employeeInstance.fullName +",<br><br> You have been suspended today.<br>For further information, please visit Annapurna.<br> Thank You!<br> Annapurna Support."
-//                        }
-
-
-                            bayalpatraEmail.save(flush:true, failOnError: true)
                         }
-
+                        bayalpatraEmail.ccAddress = ccAdd
+                        bayalpatraEmail.subject = "Notification of Transfer of " + employeeInstance?.firstName + " " + employeeInstance?.middleName + " " + employeeInstance?.lastName
+                        bayalpatraEmail.messageBody = " We would like to inform you that you have been transferred from " + oldDepartment + " Department to " + employeeInstance.department + " effective from " + new Date() + "<br><br><b>Transfer Details:</b><br>Name: " + employeeInstance?.firstName + " " + employeeInstance?.middleName + " " + employeeInstance?.lastName + "<br>ID: " + employeeInstance?.employeeId + "<br>Designation: " + employeeInstance?.designation + "<br>Department: " + oldDepartment + "<br>Transferred to: " + employeeInstance?.department
+                        if (employeeInstance?.supervisor != oldSupervisor) {
+                            bayalpatraEmail.messageBody += "<br>New Supervisor: " + employeeInstance?.supervisor
+                        }
+                        bayalpatraEmail.messageBody += "<br>Staff Status: " + employeeInstance?.status + "<br>Allowance: <br><br> Your efforts in the previous department have always been commendable and we look forward seeing more excellent performance from you in new place. Good luck and hope  you will do much better.<br><br>Thanking You,<br>The Manager<br>Human Resources<br>phect-NEPAL"
+                        bayalpatraEmail.save(flush: true, failOnError: true)
                     }
 
-                    //     <<-------------------------------------Send email EOF ------------------------------->>
-
-                    /* def unClosedSuspension = SuspendedEmployeeDetails.findAllWhere(endDate: null,employee: employeeInstance)
-                                        if(unClosedSuspension){
-                                            def suspensionDetail = unClosedSuspension[0]
-                                            suspensionDetail.endDate=new Date()
-                                            suspensionDetail.save(failOnError: true)
-                                        }else{
-                                            def suspensionDetail = new SuspendedEmployeeDetails()
-                                            suspensionDetail.startDate=new Date()
-                                            suspensionDetail.employee=employeeInstance
-                                            suspensionDetail.save(failOnError: true)
-                                        }
-                    */
-
-                    if(role==BayalpatraConstants.ROLE_EMPLOYEE){
-                        render(view: "edit", model: [employeeInstance: employeeInstance,parentName: parentName,designationEdited:false,unitEdited:false,statusEdited:false,departmentEdited:false,deptTree: deptTree,statusFlag:true,supervisorList:supervisorList])
+                    if (role[0].toString() == BayalpatraConstants.ROLE_EMPLOYEE) {
+                        render(view: "edit", model: [employeeInstance: employeeInstance, parentName: parentName, designationEdited: false, unitEdited: false, statusEdited: false, departmentEdited: false, deptTree: deptTree, statusFlag: true, supervisorList: supervisorList])
+                    } else {
+                        redirect(action: "list", params: [offset: params.offset])
                     }
-                    else{
-                        redirect(action: "list",params:[offset:params.offset])
-                    }
-                }
-                else {
+                }else {
                     render(view: "edit", model: [employeeInstance: employeeInstance,parentName: parentName,designationEdited:false,unitEdited:false,statusEdited:false,departmentEdited:false,deptTree: deptTree,statusFlag:true,supervisorList:supervisorList])
                 }
             }
-
         }
         else {
             redirect(action: "list")

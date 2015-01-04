@@ -30,7 +30,7 @@ class Employee {
 //    Integer suspensionDays
     Date effectiveDate
     Employee updatedBy
-//    String statusChangedTo
+    String statusChangedTo
 //    Integer gradeReward = 0
 //    Integer councilNumber
     Department department
@@ -40,9 +40,9 @@ class Employee {
     Supervisor supervisor
     Boolean isDoc
     Date terminatedDate
-//    String changeDepartment
-//    Date effectiveDateForDepartment
-//    Employee updatedDepartmentBy
+    String changeDepartment
+    Date effectiveDateForDepartment
+    Employee updatedDepartmentBy
 
     static searchable = true
 
@@ -77,13 +77,13 @@ class Employee {
         alterEmail(blank:true,email:true,nullable:true)
         isDoc(blank: true,nullable: true)
         effectiveDate(blank:true, nullable: true)
-//        statusChangedTo(blank: true, nullable: true )
+        statusChangedTo(blank: true, nullable: true )
         updatedBy(blank: true, nullable: true)
         terminatedDate(blank: true, nullable: true)
         salaryclass(blank:true,nullable:true)
-//        changeDepartment(blank: true, nullable: true)
-//        effectiveDateForDepartment(blank: true, nullable: true)
-//        updatedDepartmentBy(blank: true, nullable: true)
+        changeDepartment(blank: true, nullable: true)
+        effectiveDateForDepartment(blank: true, nullable: true)
+        updatedDepartmentBy(blank: true, nullable: true)
 
 
             status(blank:false,inList:[

@@ -1,6 +1,6 @@
 
 <div class="detail">
-  <div id="photodiv">
+%{--  <div id="photodiv">
 
   <p>
     <g:if test="${employeeInstance?.filename}">
@@ -12,7 +12,7 @@
       <p><a title="Click to edit photo" onclick="showPhotoHandler()" href="#"> <span id="empname2">${employeeInstance?.firstName} ${employeeInstance?.lastName}</span> </a></p>
     </g:else>
 
-  </div>
+  </div>--}%
 
   <div class="employee_detail_menu">
     <ul>
