@@ -500,7 +500,7 @@ class UserController extends AbstractS2UiController {
 
 			for (int i = 0; i < userList.size(); i++) {
 				if (i >= start && i <= end - 1) {
-					if(userList.get(i).user.employee || userList.get(i).user.visitingDoctor) requiredList.add(userList.get(i))
+					if(userList.get(i).user.employee) requiredList.add(userList.get(i))
 				}
 			}
 			count = userList.size()

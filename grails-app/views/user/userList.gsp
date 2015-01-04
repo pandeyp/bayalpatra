@@ -126,10 +126,10 @@
 							value="${employee}" onKeyUp="filterList()"/>
 					</th>
                     <th class="thead2">Department</th>
-                    <th class="thead2" onclick="$('#employee').val('') && $('#role').val('') && $('#unit').val('')"><g:select from="${hrm.Departments.list()}" name="departments" id="departments" value="${department}" optionKey="id" noSelection="['':'--Select--']" onchange="filterList()"></g:select> </th>
-                    <th class="thead2">Unit</th>
+                    <th class="thead2" onclick="$('#employee').val('') && $('#role').val('') && $('#unit').val('')"><g:select from="${com.bayalpatra.hrm.Department.list()}" name="departments" id="departments" value="${department}" optionKey="id" noSelection="['':'--Select--']" onchange="filterList()"></g:select> </th>
+                    %{--<th class="thead2">Unit</th>
                     <th class="thead2" onclick="$('#departments').val('') && $('#role').val('') && $('#employee').val('')"><g:select from="${hrm.Unit.list()}" name="unit" id="unit" value="${unit}" optionKey="id" noSelection="['':'--Select--']" onchange="filterList()"></g:select> </th>
-
+--}%
                     <th class="thead2">Role</th>
                     <th class="thead2" onclick="$('#departments').val('') && $('#employee').val('') && $('#unit').val('')"><g:select from="${authority}" name="role" id="role" value="${role}" onchange="filterList()" noSelection="['':'--Select--']"></g:select></th>
                 </tr>
