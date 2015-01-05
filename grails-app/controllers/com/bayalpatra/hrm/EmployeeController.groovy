@@ -390,10 +390,9 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
         employeeInstance.department = department
 
         if(params.password){
-            String salt = saltSource instanceof NullSaltSource ? null : params.userName
-            def password = springSecurityService.encodePassword(params.password, salt)
-
-            user.password=password
+/*            String salt = saltSource instanceof NullSaltSource ? null : params.userName
+            def password = springSecurityService.encodePassword(params.password, salt)*/
+            user.password=params.password
         }
         user.enabled=true
         user.employee= employeeInstance

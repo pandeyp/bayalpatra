@@ -16,7 +16,7 @@ class BootStrap {
 
 //       def taxSetting = TaxSetting.findAll()?:new TaxSetting(singleMinLimit: 160000,singleMedLimit: 260000,marriedMinLimit: 200000,marriedMedLimit: 300000,taxAmountLimitForMedium: 100000,minTaxPercentage: 1,midTaxPercentage: 15,maxTaxPercentage: 25,dashainBonusCutOff: 30000,femaleRebatePercentage:10).save(failOnError: true)
 
-        def department = Department.findByName('BAYALPATRA')?:new Department(name: 'BAYALPATRA',location: 'Accham',parentId: 0,rootId:1,idNumber:"01").save(failOnError: true)
+        def department = Department.findByName('BAYALPATRA')?:new Department(name: 'BAYALPATRA',parentId: 0,rootId:1,idNumber:"01").save(failOnError: true)
         def dayOffLeave = LeaveType.findByLeaveType(BayalpatraConstants.DAY_OFF_LEAVE)?:new LeaveType(leaveType: BayalpatraConstants.DAY_OFF_LEAVE,paidUnpaid: BayalpatraConstants.PAID_LEAVE,status: BayalpatraConstants.STATUS_ACTIVE,days: 0).save(failOnError: true)
         def nightOffLeave = LeaveType.findByLeaveType(BayalpatraConstants.NIGHT_OFF_LEAVE)?:new LeaveType(leaveType: BayalpatraConstants.NIGHT_OFF_LEAVE,paidUnpaid: BayalpatraConstants.PAID_LEAVE,status: BayalpatraConstants.STATUS_ACTIVE,days: 0).save(failOnError: true)
         def substituteLeave = LeaveType.findByLeaveType(BayalpatraConstants.SUBSTITUTE_LEAVE)?:new LeaveType(leaveType: BayalpatraConstants.SUBSTITUTE_LEAVE,paidUnpaid: BayalpatraConstants.PAID_LEAVE,status: BayalpatraConstants.STATUS_ACTIVE,days: 0).save(failOnError: true)

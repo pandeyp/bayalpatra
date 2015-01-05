@@ -1,5 +1,7 @@
 package com.bayalpatra.hrm
 
+import commons.BayalpatraConstants
+
 class DashboardController {
 
     def springSecurityService
@@ -7,33 +9,23 @@ class DashboardController {
     def index = {
 
         if (springSecurityService.isLoggedIn()) {
-/*
-            def role = springSecurityService.getAuthentication().authorities.toString()
+
+            def role = springSecurityService.getAuthentication().authorities
             def currentUser = User.findById(springSecurityService.principal.id)
             if(currentUser.employee){
-
                 session["employeeName"] = currentUser.employee.firstName + " " + currentUser.employee.middleName+ " " + currentUser.employee.lastName
-                session["department"] = currentUser.employee.departments.id
-
-                if(currentUser.employee.unit){
-                    session["unit"] = currentUser.employee.unit
-                }
+                session["department"] = currentUser.employee.department.id
             }
             else{
                 session["employeeName"] = currentUser.username
             }
-*/
 
-            render (view: "../dashboard/dashboard_hrm")
-
-/* Logic for employee role.
-
-if(role==AnnapurnaConstants.ROLE_EMPLOYEE){
+            if(role[0].toString()==BayalpatraConstants.ROLE_EMPLOYEE){
                 forward (controller :'employee',action:'edit',params:[employeeIs:currentUser.employee.id, statusFlag: true])
             }
             else {
                 render view: '../dashboard/dashboard_hrm'
-            }*/
+            }
         }
         else {
             redirect(controller:'login', action:'auth')
