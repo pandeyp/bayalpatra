@@ -30,6 +30,7 @@ class UserController extends AbstractS2UiController {
 	def saltSource
 	def userCache
 	def roleService
+	def employeeService
 
 	def create() {
 		def user = lookupUserClass().newInstance(params)
@@ -199,8 +200,7 @@ class UserController extends AbstractS2UiController {
 		}
 
 		if (params.password && !params.password.equals(oldPassword)) {
-			String salt = saltSource instanceof NullSaltSource ? null : params.username
-			user.password = springSecurityService.encodePassword(params.password, salt)
+			user.password = params.password
 		}
 
 /*
@@ -403,13 +403,15 @@ class UserController extends AbstractS2UiController {
 	}
 
 	def userList = {
+		println("params"+params					)
+
+
 		def userInstanceList
 		def count
 //        params.max = Math.min(params.max ? params.int('max') : 30, 100)
 		if (!params.offset){
 			session.emp=null
-			session.departments=null
-			session.unit=null
+			session.department=null
 			session.role=null
 		}
 
@@ -435,7 +437,7 @@ class UserController extends AbstractS2UiController {
 				userInstanceList = finalList
 			}
 		}else if (params.departments){
-			def deptEmployee=Employee.findAllByDepartments(Departments.findById(params.departments))
+			def deptEmployee=Employee.findAllByDepartment(Department.findById(params.departments))
 			if(deptEmployee){
 				userInstanceList=employeeService.getDepartmentList(deptEmployee)
 
@@ -467,7 +469,7 @@ class UserController extends AbstractS2UiController {
 				def finalList = userInstanceList[Integer.parseInt(params.offset)..maxLength]
 				userInstanceList = finalList
 			}
-		}else if (params.unit){
+		}/*else if (params.unit){
 			def deptEmployee=Employee.findAllByUnit(Unit.findById(params.unit))
 			if(deptEmployee){
 				userInstanceList=employeeService.getDepartmentList(deptEmployee)
@@ -486,8 +488,11 @@ class UserController extends AbstractS2UiController {
 				def finalList = userInstanceList[Integer.parseInt(params.offset)..maxLength]
 				userInstanceList = finalList
 			}
-		}
+		}*/
 		else{
+
+			println('no relevant params')
+
 			params.max = params.max ?: '30'
 			params.offset = params.offset ?: '0'
 
@@ -495,7 +500,7 @@ class UserController extends AbstractS2UiController {
 			Integer end = Integer.parseInt(params.max) + start
 
 			def userList = UserRole.findAll("FROM UserRole ur WHERE ur.user.enabled=1 and ur.role.authority!='"+BayalpatraConstants.ROLE_NONE+"'").sort {it.user.employee?.firstName}
-
+			println("size--->"+userList.size())
 			List<UserRole> requiredList = new ArrayList<UserRole>()
 
 			for (int i = 0; i < userList.size(); i++) {
@@ -503,12 +508,13 @@ class UserController extends AbstractS2UiController {
 					if(userList.get(i).user.employee) requiredList.add(userList.get(i))
 				}
 			}
+			println("size--->"+requiredList.size())
 			count = userList.size()
 			userInstanceList = requiredList
 
 		}
 //        def authority=hrm.Role.findAll("from Role r where r.authority !='"+AnnapurnaConstants.ROLE_NONE+"'")?.authority
-		def authority=Role.list()?.authority
+		def authority = Role.list()?.authority
 		if (authority.contains(BayalpatraConstants?.ROLE_NONE)){authority.remove(authority.indexOf(BayalpatraConstants?.ROLE_NONE))}
 
 

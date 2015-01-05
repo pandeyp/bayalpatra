@@ -147,48 +147,34 @@
 
                         <th>Employee</th>
 						<th>Username</th>
-						<th>Department/Unit</th>
+						<th>Department</th>
 						<th>Role</th>
-						<th>Module</th>
 						<th colspan="2">Action</th>
 					</tr>
 				</thead>
 				<tbody>
-					<g:each in="${userList}" status="i" var="userList">
+					<g:each in="${userList}" status="i" var="usrList">
 						<tr>
                             %{--<td><input type="checkbox"  class='delCheck'id="${fieldValue(bean: userList, field: "id")}"/></td>--}%
 							<td>
-                                <g:if test="${userList.user.employee}">
-								    ${userList.user.employee?.fullName}
-                                </g:if>
-                                <g:else>
-                                    ${userList.user.visitingDoctor.toString()}
-                                </g:else>
+	 							${usrList.user.employee?.fullName}
 							</td>
 
 							<td>
-								${userList.user.username}
+								${usrList.user.username}
 							</td>
-							<g:if test="${userList?.user?.employee?.unit}">
+
 								<td>
-									${userList?.user?.employee?.unit}
+									${usrList?.user?.employee?.department}
 								</td>
-							</g:if>
-							<g:else>
-								<td>
-									${userList?.user?.employee?.departments}
-								</td>
-							</g:else>
 
 							<td>
-								${userList.role.authority}
+								${usrList.role.authority}
 							</td>
-							<td>
-								${userList.module}
-							</td>
+
 							<td id="linked"><g:link controller="user" action="edit"
-									id='${userList.user.username}'
-									params="[offset:params.offset,module:userList.module]">
+									id='${usrList.user.username}'
+									params="[offset:params.offset]">
 									<em>Edit</em>
 								</g:link></td>
                             %{--<td>--}%
