@@ -24,3 +24,6 @@ Future Scope:-
 - Salary to be 'cron' based.
 - Timecard and salary to be tied up.
 -
+
+----------------------------
+Bug:- even if same username is supplied, the page shows error but the record is being saved.

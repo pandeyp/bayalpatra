@@ -390,8 +390,6 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
         employeeInstance.department = department
 
         if(params.password){
-/*            String salt = saltSource instanceof NullSaltSource ? null : params.userName
-            def password = springSecurityService.encodePassword(params.password, salt)*/
             user.password=params.password
         }
         user.enabled=true
@@ -419,15 +417,6 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
                 def toAddressArray = new ArrayList<String>();
 
                 toAddressArray = employeeService.getToAddresses(employeeInstance);           //gets all the associated department heads
-
-/*                if (employeeInstance.unit){
-                    def unitIncharge = employeeService.getUnitInchargeEmail(employeeInstance.unit)      //gets all the associated unit incharges
-
-                    unitIncharge.eachWithIndex { val, i ->
-                        toAddressArray.add(val)
-                    }
-
-                }*/
 
                 if (Designation.findByJobTitleName(BayalpatraConstants.DESIGNATION_EXECUTIVE_DIRECTOR)){
                     execDirectorEmail = Employee.findAllByDesignation(Designation.findByJobTitleName(BayalpatraConstants.DESIGNATION_EXECUTIVE_DIRECTOR))
@@ -475,11 +464,11 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
 
                 bayalpatraEmail.messageBody+="<br>Appointment Date: "+empSaved.joinDate+"""<br>Thanking You,<br>The Manager<br>Human Resources<br>Bayalpatra-NEPAL"""
                 bayalpatraEmail.save(flush:true, failOnError: true)
-
+/*
                 //create a leave balance for this user by user's join date
                 if(BayalpatraConstants.CLIENT_NAME.equals("DW")){
                     leaveService.updateLeaveBalanceReportOfEachEmployeeAfterRegistration(empSaved,BayalpatraConstants.CREATE,0)
-                }
+                }*/
               if(employeeInstance.status==BayalpatraConstants.SUSPENDED){
 
               def suspendedDetail = new SuspendedEmployeeDetails()
