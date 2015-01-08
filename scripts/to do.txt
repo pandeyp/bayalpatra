@@ -27,3 +27,8 @@ Future Scope:-
 
 ----------------------------
 Bug:- even if same username is supplied, the page shows error but the record is being saved.
+
+Enlist in super visor setting first then only can add role as supervisor.
+Filter in employee.
+
+Landing pages for supervisor and dept. Does dept only see employees under that particular dept.

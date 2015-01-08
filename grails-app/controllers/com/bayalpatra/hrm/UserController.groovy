@@ -500,7 +500,6 @@ class UserController extends AbstractS2UiController {
 			Integer end = Integer.parseInt(params.max) + start
 
 			def userList = UserRole.findAll("FROM UserRole ur WHERE ur.user.enabled=1 and ur.role.authority!='"+BayalpatraConstants.ROLE_NONE+"'").sort {it.user.employee?.firstName}
-			println("size--->"+userList.size())
 			List<UserRole> requiredList = new ArrayList<UserRole>()
 
 			for (int i = 0; i < userList.size(); i++) {
@@ -508,7 +507,6 @@ class UserController extends AbstractS2UiController {
 					if(userList.get(i).user.employee) requiredList.add(userList.get(i))
 				}
 			}
-			println("size--->"+requiredList.size())
 			count = userList.size()
 			userInstanceList = requiredList
 
