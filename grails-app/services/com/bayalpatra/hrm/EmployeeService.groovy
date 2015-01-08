@@ -966,7 +966,7 @@ class EmployeeService {
             map.put("name",fullName)
             map.put("designation",it.designation)
             map.put("departments",it.department)
-            map.put('unit', it.unit )
+//            map.put('unit', it.unit )
             map.put("joinDate",it.joinDate)
             map.put("supervisor",it.supervisor)
             map.put("status",it.status)

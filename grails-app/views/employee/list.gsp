@@ -11,7 +11,7 @@
 
     <g:javascript library="jquery" plugin="jquery" />
     <jqui:resources />
-    % <link rel="stylesheet" href="${resource(dir: '/dist/themes/default',file: 'style.min.css')}"/>
+    <link rel="stylesheet" href="${resource(dir: '/dist/themes/default',file: 'style.min.css')}"/>
     <script type="text/javascript" src="${resource(dir:'/dist/',file:'jstree.js')}"></script>
     <export:resource />
 
@@ -105,11 +105,13 @@
         });
 
         function showValueTextbox(val,name){
+
+
             $("#msg").hide();
             $("#employee").val(null);
             $("#department").val(val);
-            var startDate = $("#datepick1").val()
-            var endDate = $("#datepick2").val()
+            var startDate = $("#datepick1").val();
+            var endDate = $("#datepick2").val();
             var department = val;
             var parameter = "startDate="+startDate+"&endDate="+endDate+"&department="+department;
 

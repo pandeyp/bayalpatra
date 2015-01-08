@@ -31,4 +31,7 @@ Bug:- even if same username is supplied, the page shows error but the record is 
 Enlist in super visor setting first then only can add role as supervisor.
 Filter in employee.
 
-Landing pages for supervisor and dept. Does dept only see employees under that particular dept.
+Landing pages for supervisor and dept. Does dept only see employees under that particular dept. Check?
+Does supervisor only see employees under whom he is supervising? yes?
+check bug in employee edit ie can't switch dept
+filter in userlist,employeeList (check join date filter and cause for exception)

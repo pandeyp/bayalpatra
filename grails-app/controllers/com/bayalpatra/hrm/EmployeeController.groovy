@@ -67,7 +67,6 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
         // In future, use request.getParameter to capture offset so that the function will only take 7 arguments as compared to eight now.
 
         if(role[0].toString()==BayalpatraConstants.ROLE_ADMIN){
-            println 'inside where params'+params
             if (params.emp){
                 def ar=ajxReq()
                 employeeInstanceList=ar.employeeInstanceList
@@ -845,6 +844,132 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
         else {
             redirect(action: "list")
         }
+    }
+
+    def ajaxCall= {
+        println("ajx call called"+params)
+        def aR = ajxReq()
+        if (params?.format && params.format != "html") {
+            excelImport(aR.employeeInstanceList)
+        }
+        //params.frompagination?:params.emp
+
+        if (aR.employeeInstanceList) {
+
+            render(template: "ajaxEmployeeList", model: [employeeInstanceList: aR.employeeInstanceList, employeeInstanceTotal: aR.employeeInstanceTotal, employee: params.emp, offset: aR.offset])
+        } else {
+            render "noValue"
+
+        }
+    }
+
+    def ajaxEmployeeList = {
+
+        def max = 30
+        //    params.max = Math.min(params.max ? params.int('max') : 30, 100)
+        params.sort = params.sort?:'firstName'
+        params.order = params.order?:'asc'
+        def employeeInstanceList
+        def startDate
+        def endDate
+        def count
+        def finalDept
+        def offset
+
+        if(params.offset){
+            offset=params.offset
+        }else{
+            offset=0
+        }
+
+        def sortingParam = request.getParameter("sort") ?: 'firstName';
+        def sortingOrder = request.getParameter("order") ?: 'asc';
+
+        if(params.startDate){
+            startDate = DateUtils.stringToDate(params.startDate)
+        }
+
+        if(params.endDate){
+            endDate = DateUtils.stringToDate(params.endDate)
+        }
+
+        if(params.department){
+            finalDept = departmentService.getDepartmentList(Long.parseLong(params.department))
+        }
+        count = employeeService.getEmpCountForFilter(finalDept,startDate,endDate)
+
+        if (params.exportFormat=='excel'){
+            max=count
+        }
+
+        employeeInstanceList = employeeService.getEmpForFilter(finalDept,startDate,endDate,params,max,offset,sortingParam,sortingOrder)
+
+        if(params?.exportFormat && params.exportFormat != "html"){
+            excelImport(employeeInstanceList)
+        }
+
+        if (employeeInstanceList)
+        {
+            render(template:'ajaxEmployeeList', model:[employeeInstanceList: employeeInstanceList,employeeInstanceTotal:count,department:params.department, startDate:params.startDate, endDate:params.endDate])
+        }
+        else    {
+            render "noValue"
+        }
+    }
+
+    def excelImport={ employeeList->
+
+
+
+        //validation. if(!params
+        response.contentType = grailsApplication.config.grails.mime.types[params.format]
+        response.setHeader("Content-disposition", "attachment; filename=Employee_List1.${params.extension}")
+
+        List fields = [
+                "employeeId",
+                "salutation",
+                "name",
+                "designation",
+                "departments",
+                "unit",
+                "joinDate",
+                "supervisor",
+                "status",
+                "permanentAddress",
+                "email",
+                "dateOfBirth",
+                "maritalStatus",
+                "gender",
+                "mobile"
+        ]
+        Map labels = ["employeeId":"Employee Id","salutation":"Mr./Ms./Dr.","name":"Name","designation":"Designation", "departments":"Department","unit":"Unit" ,"joinDate":"Join Date", "supervisor": "Supervisor","status":"Status","permanentAddress":"Permanent Address","email":"E-mail","dateOfBirth":"Date Of Birth","maritalStatus":"Marital Status","gender":"Gender", "mobile" :"Cell#"]
+        //Formatter Clouser
+        def fDate = {domain, value ->
+            return value.format("yyyy-MM-dd")
+        }
+        Map formatter = [dateOfBirth:fDate,joinDate:fDate]
+        Map parameters =["column.widths": [
+                0.15,
+                0.15,
+                0.15 ,
+                0.15 ,
+                0.15,
+                0.15,
+                0.15,
+                0.15,
+                0.15,
+                0.15,
+                0.15,
+                0.15,
+                0.15,
+                0.15,
+                0.15
+
+        ]]
+
+        exportService.export(params.exportFormat, response.outputStream,employeeService.getValuesToExport(employeeList), fields, labels,formatter,parameters)
+
+
     }
 
 

@@ -1,20 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: prativa
-  Date: 24 Aug, 2011
-  Time: 5:11:45 PM
-  To change this template use File | Settings | File Templates.
---%>
-
 <%@ page contentType="text/html;charset=UTF-8" %>
 <div>
 
     <div id ="inner_1">
         <g:if test="${endDate||startDate||department||employee}">
-            <export:formats formats="['excel']" params="[department:params.department,startDate:params.startDate,endDate:params.endDate,emp:employee]" title="Export to Excel"/>
+            <export:formats formats="['excel']" params="[department:params.department,startDate:params.startDate,endDate:params.endDate,emp:employee,'exportFormat':'excel']" title="Export to Excel"/>
 
         </g:if><g:else>
-            <export:formats action="list" formats="['excel']" params="" title="Export to Excel"/>
+            <export:formats action="list" formats="['excel']" params="['exportFormat':'excel']" title="Export to Excel"/>
 
         </g:else>
              <div class="print">
@@ -57,17 +49,7 @@
                     <td id="linked"><g:link action="edit" params="[employeeIs:employeeInstance.id,offset:params.offset,statusFlag:true]">${fieldValue(bean: employeeInstance, field: "firstName")} ${fieldValue(bean: employeeInstance, field: "middleName")} ${fieldValue(bean: employeeInstance, field: "lastName")}</g:link></td>
                     %{--id="${employeeInstance.id}"--}%
                     <td>${fieldValue(bean: employeeInstance, field: "designation")}</td>
-
-                    <g:if test="${employeeInstance?.unit?.id}">
-                        <td>${fieldValue(bean: employeeInstance, field: "unit")}</td>
-
-                    </g:if>
-
-                    <g:else>
-                        <td>${fieldValue(bean: employeeInstance, field: "departments")}</td>
-                    </g:else>
-
-                %{--<td>${fieldValue(bean: employeeInstance, field: "joinDate")}</td>--}%
+                        <td>${fieldValue(bean: employeeInstance, field: "department")}</td>
                     <td> <g:formatDate format="yyyy-MM-dd" date="${employeeInstance?.joinDate}" /></td>
 
                     <td>${fieldValue(bean: employeeInstance, field: "supervisor")}</td>
