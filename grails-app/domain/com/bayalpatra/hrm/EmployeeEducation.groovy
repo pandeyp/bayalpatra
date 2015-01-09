@@ -4,6 +4,7 @@ class EmployeeEducation {
     String degree
     String college
     Date date
+    String remarks
 
     Employee employee
 

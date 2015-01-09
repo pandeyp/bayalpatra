@@ -515,8 +515,6 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
 
     def update = {
 
-        println("params in update---->"+params)
-
         def parentName
         def oldEmployeeInstance=Employee.get(params.id)
         def oldDepartment=oldEmployeeInstance?.department
@@ -973,6 +971,36 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
 
 
     }
+
+    def employeeReport = {
+
+        def employee = Employee.findById(params.employeeIs);
+        def empHistory = EmployeeHistory.findAllByEmployee(employee)
+
+        if(params?.exportFormat && params.exportFormat != "html"){
+
+            response.contentType = grailsApplication.config.grails.mime.types[params.exportFormat]
+            response.setHeader("Content-disposition", "attachment; filename=Employee_History_list.${params.extension}")
+            List fields = [
+                    "fieldType",
+                    "oldValue",
+                    "fromDate",
+                    "toDate"
+            ]
+            Map labels = ["fieldType":"Field Type","oldValue":"Old Value","fromDate":"From Date","toDate":"To Date" ]
+
+            def fDate = {domain, value ->
+                return value.format("yyyy-MM-dd")
+            }
+            Map formatter = [fromDate:fDate,toDate:fDate]
+            Map parameters =["column.widths": [0.15, 0.15, 0.15, 0.15]]
+            exportService.export(params.exportFormat, response.outputStream,empHistory, fields, labels,formatter,parameters)
+
+        }
+
+        render(view:"employeeReport",model:[empHistoryList:empHistory,employeeInstance: employee,empHistoryCount:empHistory.size()])
+    }
+
 
 
 

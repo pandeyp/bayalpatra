@@ -1,11 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: prativa
-  Date: 14 Sep, 2011
-  Time: 10:14:23 AM
-  To change this template use File | Settings | File Templates.
---%>
-
 
 <%@ page import="com.bayalpatra.hrm.Employee" %>
 <html>
@@ -36,7 +28,7 @@
       <div class="message">${flash.message}</div>
     </g:if>
     <div align="right" class="printthis">
-      <export:formats formats="['excel']" params="['employeeIs':employeeInstance?.id]" title="Export to Excel"/>
+      <export:formats formats="['excel']" params="['employeeIs':employeeInstance?.id,'exportFormat':'excel']" title="Export to Excel"/>
 
       <div class="print"><a href="#"title="print">
         <img src="${resource(dir: 'images', file: "print_icon.png")}" alt="Print Table" onclick="window.print()" >

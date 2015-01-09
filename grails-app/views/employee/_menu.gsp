@@ -23,9 +23,7 @@
       </li>
 
       <li><g:link controller="salaryReport" action="list" params="['employeeIs': employeeInstance?.id]">Salary</g:link></li>
-		<sec:ifAnyGranted roles="ROLE_ADMIN">
-      		<li><g:link controller="blockAllowance" action="create" params="['employeeIs': employeeInstance?.id]">Restrict Allowance</g:link></li>
-		</sec:ifAnyGranted>
+
       <li><g:link controller="employee" action="employeeReport" params="['employeeIs': employeeInstance?.id]">Employee History</g:link></li>
 
 
