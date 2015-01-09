@@ -1,5 +1,6 @@
 package com.bayalpatra.hrm
 
+import commons.BayalpatraConstants
 import commons.DateUtils
 import grails.transaction.Transactional
 import groovy.sql.Sql
@@ -8,7 +9,33 @@ import org.codehaus.groovy.runtime.DateGroovyMethods
 
 @Transactional
 class LeaveService {
+    public void updateLeaveBalanceReportOfEachEmployeeAfterLeaveApproved(EmployeeLeaveDetail employeeLeaveDetail){
+        def currentYear = DateUtils.getYearFromDate(DateUtils.getCurrentDate())
+        def hrmLeaveBalanceReport = LeaveBalanceReport.findByEmployeeAndYear(employeeLeaveDetail.employee,currentYear)
+        if(hrmLeaveBalanceReport){
+            if(employeeLeaveDetail.leaveType.leaveType.equals(BayalpatraConstants.SICK_LEAVE)){
+                hrmLeaveBalanceReport.sickLeave = hrmLeaveBalanceReport?.sickLeave - employeeLeaveDetail?.leaveDifference
+            } else if(employeeLeaveDetail.leaveType.leaveType.equals(BayalpatraConstants.FLOATING_LEAVE)){
+                hrmLeaveBalanceReport.floatingLeave = hrmLeaveBalanceReport?.floatingLeave - employeeLeaveDetail?.leaveDifference
+            } else if(employeeLeaveDetail.leaveType.leaveType.equals(BayalpatraConstants.PERSONAL_LEAVE)){
+                hrmLeaveBalanceReport.personalLeave = hrmLeaveBalanceReport?.personalLeave - employeeLeaveDetail?.leaveDifference
+            }
+        }
+    }
 
+    public void updateLeaveBalanceReportOfEachEmployeeAfterLeaveCancelled(EmployeeLeaveDetail employeeLeaveDetail){
+        def currentYear = DateUtils.getYearFromDate(DateUtils.getCurrentDate())
+        def hrmLeaveBalanceReport = LeaveBalanceReport.findByEmployeeAndYear(employeeLeaveDetail.employee,currentYear)
+        if(hrmLeaveBalanceReport){
+            if(employeeLeaveDetail.leaveType.leaveType.equals(BayalpatraConstants.SICK_LEAVE)){
+                hrmLeaveBalanceReport.sickLeave = hrmLeaveBalanceReport?.sickLeave + employeeLeaveDetail?.leaveDifference
+            } else if(employeeLeaveDetail.leaveType.leaveType.equals(BayalpatraConstants.FLOATING_LEAVE)){
+                hrmLeaveBalanceReport.floatingLeave = hrmLeaveBalanceReport?.floatingLeave + employeeLeaveDetail?.leaveDifference
+            } else if(employeeLeaveDetail.leaveType.leaveType.equals(BayalpatraConstants.PERSONAL_LEAVE)){
+                hrmLeaveBalanceReport.personalLeave = hrmLeaveBalanceReport?.personalLeave + employeeLeaveDetail?.leaveDifference
+            }
+        }
+    }
 /*
 
     */

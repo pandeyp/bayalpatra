@@ -28,10 +28,9 @@ Future Scope:-
 ----------------------------
 Bug:- even if same username is supplied, the page shows error but the record is being saved.
 
-Killed....filter in userlist,employeeList
-
 
 1. Complete CRUD for dependents, add placeholder for photo. Complete employee history.
+
 2. Start wrk on leave. After leave done wrk on sending email. (if time user forgot password)
 3. After email sent work on audit log.
 4. Work on salary.

@@ -83,6 +83,7 @@ class BayalpatraConstants {
     static final String SUBSTITUTE_LEAVE = "Substitute Leave"
     static final String FESTIVAL_OFF_LEAVE = "Festival Off"
     static final String LEAVE_TYPE_ALL = "%"
+    static final String FLOATING_LEAVE = "Floating"
 
     //FieldType Constants
     static final String FIELD_DESIGNATION = "Designation"
