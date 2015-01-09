@@ -515,6 +515,8 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
 
     def update = {
 
+        println("params in update---->"+params)
+
         def parentName
         def oldEmployeeInstance=Employee.get(params.id)
         def oldDepartment=oldEmployeeInstance?.department
@@ -752,7 +754,7 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
                         if(employeeHistoryList){
                             fromDate = employeeHistoryService.getFromDate(BayalpatraConstants.FIELD_DEPARTMENT,employee)
                         }
-                        employeeHistoryService.createEmployeeHistory(employee,employee.departments.name,BayalpatraConstants.FIELD_DEPARTMENT,fromDate,todayDate)
+                        employeeHistoryService.createEmployeeHistory(employee,employee.department.name,BayalpatraConstants.FIELD_DEPARTMENT,fromDate,todayDate)
 
                         employeeInstance.department=department
                         employeeInstance.changeDepartment=null

@@ -97,7 +97,9 @@
 
         }
         function restrictSelfSupervision(){
-            var content = document.getElementById("noDays").value;
+
+            var content = $("#noDays").val();
+
             var emp=$('#firstName').val()+'  '+$('#lastName').val()+'-'+$('#employeeId').val()
             var sup=$('#supervisor').find('option:selected').text();
             if(emp == sup){
@@ -110,6 +112,12 @@
                 }
                 if(isNaN(content)){
                     alert('Please enter numeric values for days in Service Type')
+                    return false;
+                }
+            }else if($("#change_department").val()){
+                console.log('dept being changed');
+                if(($("#change_department").val() != $("#depart_name").val()) && (!$("#effectiveDateForDepartment").val())){
+                    alert('Please enter effective date of department change');
                     return false;
                 }
             }
