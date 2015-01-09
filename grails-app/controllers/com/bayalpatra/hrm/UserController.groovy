@@ -31,6 +31,7 @@ class UserController extends AbstractS2UiController {
 	def userCache
 	def roleService
 	def employeeService
+	def exportService
 
 	def create() {
 		def user = lookupUserClass().newInstance(params)
@@ -518,5 +519,125 @@ class UserController extends AbstractS2UiController {
 
 		render(view: 'userList', model: [userList: userInstanceList, userCount: count,emp:params.emp,department:params.departments,unit:params.unit,role: params.role,authority: authority])
 	}
+
+	def searchUser = {
+		println("----->"+params)
+
+		def userInstanceList
+		def count
+		session.emp=params.emp
+		session.department=params.departments
+		session.unit=params.unit
+		session.role=params.role
+		params.max = Math.min(params.max ? params.int('max') : 30, 100)
+		if(params.emp){
+			userInstanceList = employeeService.getUser(params.emp.trim())
+			count = userInstanceList.size()
+		//	println("cnt----->"+userInstanceList.size())
+
+		}else if (params.departments){
+			def deptEmployee=Employee.findAllByDepartment(Department.findById(params.departments))
+			if(deptEmployee){
+				userInstanceList=employeeService.getDepartmentList(deptEmployee)
+
+			}else{
+				userInstanceList=[]
+			}
+			count = userInstanceList.size()
+		}else if (params.role){
+			def role=Role.findByAuthority(params.role)
+			userInstanceList=UserRole.findAllByRole(role)
+			count = userInstanceList.size()
+		}
+		else{
+			params.max = params.max ?: '30'
+			params.offset = params.offset ?: '0'
+
+			Integer start = Integer.parseInt(params.offset)
+			Integer end = params.max+ start
+
+			def userList = UserRole.findAll("FROM UserRole ur WHERE ur.user.enabled=1 and ur.role.authority!='"+BayalpatraConstants.ROLE_NONE+"'").sort {it.user.employee?.firstName}
+
+			List<UserRole> requiredList = new ArrayList<UserRole>()
+
+			for (int i = 0; i < userList.size(); i++) {
+				if (i >= start && i <= end - 1) {
+					if(userList.get(i).user.employee) requiredList.add(userList.get(i))
+				}
+			}
+			count = userList.size()
+			userInstanceList = requiredList
+
+		}
+
+		println('user--->'+userInstanceList.size())
+
+		render(template:"ajaxUserList", model:[userList: userInstanceList,userCount:count,emp:params.emp,department:params.departments,role: params.role])
+	}
+
+	def exportToExcel={
+		def userInstanceList
+		if(session.emp){
+			userInstanceList = employeeService.getUser(session.emp.trim())
+
+		}else if (session.department){
+			def deptEmployee=Employee.findAllByDepartment(Department.findById(session.department))
+			if(deptEmployee){
+				userInstanceList=employeeService.getDepartmentList(deptEmployee)
+
+			}else{
+				userInstanceList=[]
+			}
+
+		}else if (session.role){
+			def role=Role.findByAuthority(session.role)
+			userInstanceList=UserRole.findAllByRole(role)
+
+		}
+		else{
+			def userList = UserRole.findAll("FROM UserRole ur WHERE ur.user.enabled=1").sort {it.user.employee?.firstName}
+			List<UserRole> requiredList = new ArrayList<UserRole>()
+
+			for (int i = 0; i < userList.size(); i++) {
+				if(userList.get(i).user.employee) requiredList.add(userList.get(i))
+			}
+			userInstanceList = requiredList
+		}
+		def exportList = []
+		userInstanceList.each{
+			def name = it.user.employee
+			def unitDept
+			if (name){
+/*				if (name?.unit){
+					unitDept=name?.unit
+				}else if(name?.department){
+					unitDept=name?.departments
+				}*/
+				unitDept=name?.department
+			}else{
+				unitDept=""
+			}
+
+
+			exportList << [employee:name,username:it.user.username,unitname:unitDept,role:it.role?.authority]
+
+
+		}
+		if(params?.exportFormat && params.exportFormat != "html"){
+			response.contentType = grailsApplication.config.grails.mime.types[params.exportFormat]
+			response.setHeader("Content-disposition", "attachment; filename=User.${params.extension}")
+			List fields=[
+					"employee",
+					"username",
+					"unitname",
+					"role",
+
+			]
+			Map labels=["employee":"Employee","username":"Username","unitname":"Department/Unit","role":"Role"]
+			Map parameters =["column.widths": [0.15, 0.15,0.15, 0.15, 0.15]]
+			exportService.export(params.exportFormat, response.outputStream,exportList, fields, labels,[:],parameters)
+		}
+	}
+
 
 }

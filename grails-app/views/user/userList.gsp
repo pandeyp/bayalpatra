@@ -14,90 +14,12 @@
         var departments=$("#departments").val()
         var role=$("#role").val()
         var unit=$("#unit").val()
-	    var parameter = "emp="+employee+"&departments="+departments+"&role="+role+"&unit="+unit;
+	    var parameter = "emp="+employee+"&departments="+departments+"&role="+role;
 		${remoteFunction(controller:'user',action:'searchUser',update:'userGrid', params: "parameter")}
 	}
 
-//    $(function () {
-//        $('.editHref').click(
-//
-//                function () {
-//                    var getList = new Array();
-//                    var id = $(this).attr('atr');
-//                    getList.push(id);
-//                    callAjax(getList);
-//
-//                }
-//        );
-//        $('.chkSelectAll').click(function () {
-//            //  $('input[name=foo]').is(':checked')
-//
-//            if ($(this).is(':checked')) {
-//                $('table tbody input:checkbox').attr('checked', true);
-//
-//            }
-//            else {
-//
-//                $('table tbody input:checkbox').attr('checked', false);
-//
-//            }
-//        });
-//        $('.delCheck').click(function(){
-//            $('table tbody input:checkbox').each(function () {
-//                if ($(this).is(':checked')) {
-//
-//
-//                    return false;
-//                }
-//                else
-//                {}
-//            });
-//        });
-//        $('.btnDelete').click(function () {
-//            var getList = new Array();
-//            var i = 0;
-//            $('table tbody input:checkbox').each(function () {
-//                if ($(this).is(':checked')) {
-//
-//                    getList.push($(this).attr('id'));
-//
-//                }
-//            });
-//            if (getList.length > 0) {
-//                var str = $.param(getList);
-//
-//                callAjax(getList);
-//            }
-//            else{
-//
-//                alert('Choose Atleast One!!');
-//
-//            }});
-//
-//
-//    });
-//    function callAjax(getList) {
-//        if (!confirm('Delete These Entries!!!'))
-//            return;
-//
-//
-//        $.ajax({
-//            url: 'deleteEntry',
-//            data: {'ids': JSON.stringify(getList)},
-//            async: true,
-//            success: function (data) {
-//                location.reload();
-//            },
-//            error: function (data) {
-//                alert('error');
-//            },
-//            complete: function (data) {
-//            }
-//        });
-//    }
     $(document).ready(function() {
         $('#username').focus();
-        <s2ui:initCheckboxes/>
     });
 </script>
 
@@ -106,7 +28,7 @@
 
 	<div class="body">
 		<div align="right" class="printthis">
-			<export:formats formats="['excel']" action="exportToExcel" params="" title="Export to Excel" />
+			<export:formats formats="['excel']" action="exportToExcel" params="['exportFormat':'excel']" title="Export to Excel" />
 			<div class="print">
 				<a href="#" title="print"> <img
 					src="${resource(dir: 'images', file: "print_icon.png")}"
@@ -135,16 +57,12 @@
                 </tr>
 			</table>
 		</div>
-        %{--<g:if test="${userList}">--}%
-            %{--<input type="checkbox" class="chkSelectAll"  >Select All<input type="button"  class="btnDelete" value="Delete">--}%
-        %{--</g:if>--}%
+
         <div  id="userGrid">
 		<div class="list">
 			<table>
 				<thead>
 					<tr>
-                        %{--<th>Select</th>--}%
-
                         <th>Employee</th>
 						<th>Username</th>
 						<th>Department</th>
@@ -155,7 +73,6 @@
 				<tbody>
 					<g:each in="${userList}" status="i" var="usrList">
 						<tr>
-                            %{--<td><input type="checkbox"  class='delCheck'id="${fieldValue(bean: userList, field: "id")}"/></td>--}%
 							<td>
 	 							${usrList.user.employee?.fullName}
 							</td>
@@ -177,10 +94,6 @@
 									params="[offset:params.offset]">
 									<em>Edit</em>
 								</g:link></td>
-                            %{--<td>--}%
-                                %{--<a href="#" atr="${fieldValue(bean: userList, field: "id")}"--}%
-                                   %{--class="editHref" style="color:red">delete</a>--}%
-                            %{--</td>--}%
 						</tr>
 					</g:each>
 				</tbody>
@@ -188,7 +101,7 @@
 			</table>
             </div>
 			<div class="paginateButtons">
-				<g:paginate total="${userCount}" params="[emp:emp,department:department,unit:unit,role:role]"/>
+				<g:paginate total="${userCount}" params="[emp:emp,department:department,role:role]"/>
 			</div>
 		</div>
 	</div>
