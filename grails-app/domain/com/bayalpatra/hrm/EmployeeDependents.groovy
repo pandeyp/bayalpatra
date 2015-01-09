@@ -3,46 +3,37 @@ package com.bayalpatra.hrm
 class EmployeeDependents {
 
 
-    String fatherName // or fatherInLawName, fatherInLawAge, fatherInLawAddress
+    String fatherName
     Date fatherDob
-    //    String fatherAge
     String fatherAddress
-    String motherName //or motherInLawName, motherInLawAge
+    String motherName
     Date motherDob
-    //      String motherAge
     String spouseName
     Date spouseDob
-    //    String spouseAge
     String spouseAddress
     String childName1
     Date child1Dob
-    //    String childAge1
     String childName2
     Date child2Dob
-    //    String childAge2
     Employee employee
 
     static searchable = true
 
     static constraints = {
 
-        fatherName(blank:false)
-        fatherDob()
-        //      fatherAge()
-        fatherAddress()
-        motherName(blank:false)
-        motherDob()
-        //      motherAge()
-        spouseName()
-        spouseDob()
-        //      spouseAge()
-        spouseAddress()
-        childName1()
-        child1Dob()
-        //      childAge1()
-        childName2()
-        child2Dob()
-        //      childAge2()
+        fatherName(blank:true,nullable:true)
+        fatherDob(blank:true,nullable:true)
+        fatherAddress(blank:true,nullable:true)
+        motherName(blank:true,nullable:true)
+        motherDob(blank:true,nullable:true)
+        spouseName(blank:true,nullable:true)
+        spouseDob(blank:true,nullable:true)
+        spouseAddress(blank:true,nullable:true)
+        childName1(blank:true,nullable:true)
+        child1Dob(blank:true,nullable:true)
+        childName2(blank:true,nullable:true)
+        child2Dob(blank:true,nullable:true)
+
     }
     static auditable = true
 

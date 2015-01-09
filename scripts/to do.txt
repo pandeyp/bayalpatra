@@ -30,12 +30,10 @@ Bug:- even if same username is supplied, the page shows error but the record is 
 
 Killed....filter in userlist,employeeList
 
-check bug in employee edit ie can't switch dept. Need to add validation for change dept date.
-
-
 
 1. Complete CRUD for dependents, add placeholder for photo. Complete employee history.
 2. Start wrk on leave. After leave done wrk on sending email. (if time user forgot password)
 3. After email sent work on audit log.
 4. Work on salary.
 5. Create Attendance.
+6. Verify RequestMap.

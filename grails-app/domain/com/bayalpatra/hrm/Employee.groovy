@@ -27,7 +27,7 @@ class Employee {
     String status
 
 //    Integer volunteerDays
-//    Integer suspensionDays
+    Integer suspensionDays
     Date effectiveDate
     Employee updatedBy
     String statusChangedTo
