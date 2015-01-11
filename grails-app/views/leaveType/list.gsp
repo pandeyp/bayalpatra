@@ -16,7 +16,7 @@
 <div class="body">
 
     <div align="right" class="printthis">
-        <export:formats formats="['excel']" params="" title="Export to Excel"/>
+        <export:formats formats="['excel']" params="['exportFormat':'excel']" title="Export to Excel"/>
 
         <div class="print"><a href="#"title="print">
             <img src="${resource(dir: 'images', file: "print_icon.png")}" alt="Print Table" onclick="window.print()" >

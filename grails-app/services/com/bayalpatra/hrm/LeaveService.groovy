@@ -68,7 +68,7 @@ class LeaveService {
          * 4.generate unpaidLeaveDays = studyLeave + scholarshipLeave + minusLeave (earnedLeave after it completes)
          * 5. add the paidLeaveDays while calculating Salary in SalaryService
          * 6. deduct the unpaidLeaveDays while calculating SalaryService, ServiceDays, Allowance acquisition (??)
-         * 7.display report with fields employeeName,leaveMonth,earnedLeave,extraDays,extraHour,paidLeaveDays,unpaidLeaveDays,balanceDays
+          * 7.display report with fields employeeName,leaveMonth,earnedLeave,extraDays,extraHour,paidLeaveDays,unpaidLeaveDays,balanceDays
          * 8.calculate balanceDays as earnedDays for year and deduct the leaveDays taken if its a PersonalLeave, SickLeave,etc.
          * *//*
 

@@ -838,7 +838,7 @@ class EmployeeLeaveDetailController {
                 if (!empLeaveType.contains('Leave'))
                     empLeaveType+=" Leave"
 
-                if (BayalpatraConstants.CLIENT_NAME.equals(BayalpatraConstants.CLIENT_PHECT)){
+                if (BayalpatraConstants.CLIENT_NAME.equals(BayalpatraConstants.CLIENT_BAYALPATRA)){
 
                     if (employeeLeaveDetailInstance.leaveType.paidUnpaid  == BayalpatraConstants.UNPAID_LEAVE){
 
@@ -875,9 +875,9 @@ class EmployeeLeaveDetailController {
                             BayalpatraEmail BayalpatraEmail = new BayalpatraEmail()
                             BayalpatraEmail.toAddress = val
                             BayalpatraEmail.subject = "Leave Application for " + employeeLeaveDetailInstance.employee.fullName
-                            BayalpatraEmail.messageBody = "Dear All,<br><br>" +  employeeLeaveDetailInstance.employee.fullName + " has requested for "+empLeaveType+""".<br/><br/> Please log into Annapurna to take any action.<br/><br/>
+                            BayalpatraEmail.messageBody = "Dear All,<br><br>" +  employeeLeaveDetailInstance.employee.fullName + " has requested for "+empLeaveType+""".<br/><br/> Please log into Bayalpatra to take any action.<br/><br/>
                             Thank You.<br>
-                            Annapurna Support."""
+                            Bayalpatra Support."""
                             BayalpatraEmail.save(flush:true, failOnError: true)
                         }
 
@@ -885,9 +885,9 @@ class EmployeeLeaveDetailController {
                         BayalpatraEmail BayalpatraEmail = new BayalpatraEmail()
                         BayalpatraEmail.toAddress = employeeLeaveDetailInstance.employee.email
                         BayalpatraEmail.subject = "Leave Application for " + employeeLeaveDetailInstance.employee.fullName
-                        BayalpatraEmail.messageBody = "Dear "+ employeeLeaveDetailInstance.employee.fullName + ",<br><br> You have requested for "+empLeaveType+""".<br/><br/> Please log into Annapurna to see the status of leave.<br/><br/>
+                        BayalpatraEmail.messageBody = "Dear "+ employeeLeaveDetailInstance.employee.fullName + ",<br><br> You have requested for "+empLeaveType+""".<br/><br/> Please log into Bayalpatra to see the status of leave.<br/><br/>
                             Thank You.<br>
-                            Annapurna Support."""
+                            Bayalpatra Support."""
 
                         BayalpatraEmail.save(flush:true, failOnError: true)
                     }
@@ -905,16 +905,16 @@ class EmployeeLeaveDetailController {
                                 BayalpatraEmail.toAddress = supervisor.email
                                 BayalpatraEmail.ccAddress = BayalpatraConstants.ADMIN_CONTACT_PERSON
                                 BayalpatraEmail.subject = "Leave Application " + emp.fullName
-                                BayalpatraEmail.messageBody = "Dear " + employeeService.getSalutation(supervisor.gender) + ",<br/><br/>" + emp.fullName + " has requested for "+empLeaveType+""".<br/><br/> Please take action by logging into Annapurna.<br/><br/>
+                                BayalpatraEmail.messageBody = "Dear " + employeeService.getSalutation(supervisor.gender) + ",<br/><br/>" + emp.fullName + " has requested for "+empLeaveType+""".<br/><br/> Please take action by logging into Bayalpatra.<br/><br/>
                             Thank You.<br>
-                            Annapurna Support."""
+                            Bayalpatra Support."""
                             }
                             else{
                                 BayalpatraEmail.toAddress = BayalpatraConstants.ADMIN_CONTACT_PERSON
                                 BayalpatraEmail.subject = "Leave Application " + emp.fullName
-                                BayalpatraEmail.messageBody = "Dear All,<br><br>" + emp.fullName + " has requested for "+empLeaveType+""".<br/><br/> Please take action by logging into Annapurna.<br/><br/>
+                                BayalpatraEmail.messageBody = "Dear All,<br><br>" + emp.fullName + " has requested for "+empLeaveType+""".<br/><br/> Please take action by logging into Bayalpatra.<br/><br/>
                             Thank You.<br>
-                            Annapurna Support."""
+                            Bayalpatra Support."""
                             }
 
                             BayalpatraEmail.save(flush:true, failOnError: true)
@@ -923,9 +923,9 @@ class EmployeeLeaveDetailController {
                             BayalpatraEmail aEmail = new BayalpatraEmail()
                             aEmail.toAddress = employeeLeaveDetailInstance.employee.email
                             aEmail.subject = "Leave Application for " + employeeLeaveDetailInstance.employee.fullName
-                            aEmail.messageBody = "Dear "+ employeeLeaveDetailInstance.employee.fullName + ",<br><br> You have requested for "+empLeaveType+""".<br/><br/> Please log into Annapurna to see the status of leave.<br/><br/>
+                            aEmail.messageBody = "Dear "+ employeeLeaveDetailInstance.employee.fullName + ",<br><br> You have requested for "+empLeaveType+""".<br/><br/> Please log into Bayalpatra to see the status of leave.<br/><br/>
                             Thank You.<br>
-                            Annapurna Support."""
+                            Bayalpatra Support."""
 
                             aEmail.save(flush:true, failOnError: true)
                         }else if (daysDifference>=7){
@@ -937,15 +937,15 @@ class EmployeeLeaveDetailController {
                                 BayalpatraEmail.toAddress = supervisor.email
                                 BayalpatraEmail.ccAddress = BayalpatraConstants.ADMIN_CONTACT_PERSON
                                 BayalpatraEmail.subject = "Leave Application " + emp.fullName
-                                BayalpatraEmail.messageBody = "Dear " + employeeService.getSalutation(supervisor.gender) + ",<br/><br/>" + emp.fullName + " has requested for "+empLeaveType+" for "+daysDifference+""" days.<br/><br/> Please take action by logging into Annapurna.<br/><br/>
+                                BayalpatraEmail.messageBody = "Dear " + employeeService.getSalutation(supervisor.gender) + ",<br/><br/>" + emp.fullName + " has requested for "+empLeaveType+" for "+daysDifference+""" days.<br/><br/> Please take action by logging into Bayalpatra.<br/><br/>
                             Thank You.<br>
-                            Annapurna Support."""
+                            Bayalpatra Support."""
                             }else{
                                 BayalpatraEmail.toAddress = BayalpatraConstants.ADMIN_CONTACT_PERSON
                                 BayalpatraEmail.subject = "Leave Application " + emp.fullName
-                                BayalpatraEmail.messageBody = "Dear All,<br><br>" + emp.fullName + " has requested for "+empLeaveType+" for "+daysDifference+""" days.<br/><br/> Please take action by logging into Annapurna.<br/><br/>
+                                BayalpatraEmail.messageBody = "Dear All,<br><br>" + emp.fullName + " has requested for "+empLeaveType+" for "+daysDifference+""" days.<br/><br/> Please take action by logging into Bayalpatra.<br/><br/>
                             Thank You.<br>
-                            Annapurna Support."""
+                            Bayalpatra Support."""
                             }
 
                             BayalpatraEmail.save(flush:true, failOnError: true)
@@ -954,9 +954,9 @@ class EmployeeLeaveDetailController {
                             BayalpatraEmail aEmail = new BayalpatraEmail()
                             aEmail.toAddress = employeeLeaveDetailInstance.employee.email
                             aEmail.subject = "Leave Application for " + employeeLeaveDetailInstance.employee.fullName
-                            aEmail.messageBody = "Dear "+ employeeLeaveDetailInstance.employee.fullName + ",<br><br> You have requested for "+empLeaveType+""".<br/><br/> Please log into Annapurna to see the status of leave.<br/><br/>
+                            aEmail.messageBody = "Dear "+ employeeLeaveDetailInstance.employee.fullName + ",<br><br> You have requested for "+empLeaveType+""".<br/><br/> Please log into Bayalpatra to see the status of leave.<br/><br/>
                             Thank You.<br>
-                            Annapurna Support."""
+                            Bayalpatra Support."""
 
                             aEmail.save(flush:true, failOnError: true)
 
@@ -969,9 +969,9 @@ class EmployeeLeaveDetailController {
                             BayalpatraEmail annEmail = new BayalpatraEmail()
                             annEmail.toAddress = BayalpatraConstants.ADMIN_EMAIL
                             annEmail.subject = "Leave Application " + emp.fullName
-                            annEmail.messageBody = "Dear All,<br><br>" + emp.fullName + " has requested for "+empLeaveType+" for "+daysDifference+""" days.<br/><br/> Please take action by logging into Annapurna.<br/><br/>
+                            annEmail.messageBody = "Dear All,<br><br>" + emp.fullName + " has requested for "+empLeaveType+" for "+daysDifference+""" days.<br/><br/> Please take action by logging into Bayalpatra.<br/><br/>
                             Thank You.<br>
-                            Annapurna Support."""
+                            Bayalpatra Support."""
 
                             annEmail.save(flush:true, failOnError: true)
                         }
@@ -1207,10 +1207,9 @@ class EmployeeLeaveDetailController {
             <li>To : """+DateUtils.dateToString(employeeLeaveDetailInstance.toDate)+"""</li>
             <li>Leave Type : """+employeeLeaveDetailInstance.leaveType+"""</li>
             """+leaveReason+"""</ul><br/><br/>
-            Please check your profile below.<br/><br/>
-            http://annapurna.deerwalk.com/login/auth<br><br>
+            Please check your profile in Bayalpatra.<br/><br/>
             Thank You.<br>
-            Annapurna Support."""
+            Bayalpatra Support."""
         BayalpatraEmail.save(flush:true, failOnError: true)
 
 
@@ -1224,10 +1223,9 @@ class EmployeeLeaveDetailController {
                 <li>To : """+DateUtils.dateToString(employeeLeaveDetailInstance.toDate)+"""</li>
                 <li>Leave Type : """+employeeLeaveDetailInstance.leaveType+"""</li>
                 """+leaveReason+"""</ul><br/><br/>
-                For more information please visit<br/>
-                http://annapurna.deerwalk.com/login/auth<br><br>
+
                 Thank You.<br>
-                Annapurna Support."""
+                Bayalpatra Support."""
         aEmail.save(flush:true, failOnError: true)
 
 

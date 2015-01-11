@@ -64,7 +64,7 @@ class EmployeeLeaveService {
                     employeeLeaveList = EmployeeLeaveDetail.findAll("from EmployeeLeaveDetail eld where eld.status in(:status) and eld.employee in (:employee) and eld.leaveDifference <=:leaveDiff order by ${sort} ${order}",[status:status,employee:employee,leaveDiff:Double.valueOf(7)],params)
                 }else if(BayalpatraConstants.CLIENT_NAME==BayalpatraConstants.CLIENT_BAYALPATRA){
                     // people with role other than admin cannot approve leave greater than 7 days,unpaid leave and maternity and bereavement leave
-                    employeeLeaveList = EmployeeLeaveDetail.findAll("from EmployeeLeaveDetail eld where eld.status in(:status) and eld.employee in (:employee) and eld.leaveDifference <=:leaveDiff AND eld.leaveType.paidUnpaid = :paid AND eld.leaveType NOT IN (:type) order by ${sort} ${order}",[status:status,employee:employee,leaveDiff:Double.valueOf(7),paid:AnnapurnaConstants.PAID_LEAVE,type:[bereavementLeave,maternityLeave]],params)
+                    employeeLeaveList = EmployeeLeaveDetail.findAll("from EmployeeLeaveDetail eld where eld.status in(:status) and eld.employee in (:employee) and eld.leaveDifference <=:leaveDiff AND eld.leaveType.paidUnpaid = :paid AND eld.leaveType NOT IN (:type) order by ${sort} ${order}",[status:status,employee:employee,leaveDiff:Double.valueOf(7),paid:BayalpatraConstants.PAID_LEAVE,type:[bereavementLeave,maternityLeave]],params)
                 }
             }
         }
@@ -111,7 +111,7 @@ class EmployeeLeaveService {
     def getLeaveByEmployeeAndDate(Date date,Employee employee){
         def leave
         if(employee){
-            leave = EmployeeLeaveDetail.find("from EmployeeLeaveDetail eld where (:date between eld.fromDate and eld.toDate) and eld.employee=:emp and eld.status=:status",[date:date,emp:employee,status:AnnapurnaConstants.LEAVE_APPROVED])
+            leave = EmployeeLeaveDetail.find("from EmployeeLeaveDetail eld where (:date between eld.fromDate and eld.toDate) and eld.employee=:emp and eld.status=:status",[date:date,emp:employee,status:BayalpatraConstants.LEAVE_APPROVED])
         }
         return leave
     }
@@ -126,7 +126,7 @@ class EmployeeLeaveService {
         if(employeesInDepartment){
 
             def userList = User.findAll("from User as u where u.employee in (:employeeList)", [employeeList : employeesInDepartment])
-            def roleList = UserRole.executeQuery("select ur from UserRole ur where ur.user in (:userList) and ur.role = :usrRole",[userList: userList, usrRole: Role.findByAuthority(AnnapurnaConstants.ROLE_DEPARTMENT_HEAD)])
+            def roleList = UserRole.executeQuery("select ur from UserRole ur where ur.user in (:userList) and ur.role = :usrRole",[userList: userList, usrRole: Role.findByAuthority(BayalpatraConstants.ROLE_DEPARTMENT_HEAD)])
             roleList.eachWithIndex { val, i ->
                 reqEmail = roleList[i].user.employee.email
                 emailArray.add(reqEmail)

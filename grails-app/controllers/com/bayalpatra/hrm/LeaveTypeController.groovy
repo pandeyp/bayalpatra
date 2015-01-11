@@ -9,18 +9,17 @@ class LeaveTypeController {
     }
 
     def list = {
-        if(params?.format && params.format != "html"){
-            //validation. if(!params
-            response.contentType = ConfigurationHolder.config.grails.mime.types[params.format]
+        if(params?.exportFormat && params.exportFormat != "html"){
+            response.contentType = grailsApplication.config.grails.mime.types[params.exportFormat]
             response.setHeader("Content-disposition", "attachment; filename= LeaveType.${params.extension}")
 
             List fields = [
                     "leaveType",
                     "paidUnpaid",
-                    "Days",
+                    "days",
                     "status"
             ]
-            Map labels = ["leaveType":"Leave Type", "paidUnpaid":"Paid Unpaid", "Days":"Days", "status":"Status"]
+            Map labels = ["leaveType":"Leave Type", "paidUnpaid":"Paid Unpaid", "days":"Days", "status":"Status"]
             Map parameters =["column.widths": [
                     0.15,
                     0.15,
@@ -28,7 +27,7 @@ class LeaveTypeController {
                     0.15 ,
             ]]
 
-            exportService.export(params.format, response.outputStream, LeaveType.list(params), fields, labels,[:],parameters)
+            exportService.export(params.exportFormat, response.outputStream, LeaveType.list(params), fields, labels,[:],parameters)
         }
         params.max = Math.min(params.max ? params.int('max') : 30, 100)
         [leaveTypeInstanceList: LeaveType.list(params), leaveTypeInstanceTotal: LeaveType.count()]

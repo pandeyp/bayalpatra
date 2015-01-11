@@ -36,3 +36,6 @@ Bug:- even if same username is supplied, the page shows error but the record is 
 4. Work on salary.
 5. Create Attendance.
 6. Verify RequestMap.
+
+Why?:-
+Leave not appearing for supervisor of employees under him?
