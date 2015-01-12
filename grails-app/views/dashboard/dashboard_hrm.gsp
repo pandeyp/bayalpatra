@@ -203,7 +203,7 @@
                                 <p class="dsbord_con_txt">Shift Setting</p></li>
                         </g:link>
 --}%
-                        <g:link controller="departments" action="showTree">
+                        <g:link controller="department" action="showTree">
                             <li><img
                                     src="${createLinkTo(dir:'images', file:'structure.jpg')}" alt="" /><br />
                                 <p class="dsbord_con_txt">Structure</p></li>

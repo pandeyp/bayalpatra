@@ -1,3 +1,4 @@
+import com.bayalpatra.hrm.Company
 import com.bayalpatra.hrm.Department
 import com.bayalpatra.hrm.LeaveType
 import com.bayalpatra.hrm.Requestmap
@@ -14,8 +15,7 @@ class BootStrap {
         def supervisorRole = Role.findByAuthority(BayalpatraConstants.ROLE_SUPERVISOR) ?: new Role(authority: BayalpatraConstants.ROLE_SUPERVISOR).save(failOnError: true)
         def employeeRole = Role.findByAuthority(BayalpatraConstants.ROLE_EMPLOYEE) ?: new Role(authority: BayalpatraConstants.ROLE_EMPLOYEE).save(failOnError: true)
 
-//       def taxSetting = TaxSetting.findAll()?:new TaxSetting(singleMinLimit: 160000,singleMedLimit: 260000,marriedMinLimit: 200000,marriedMedLimit: 300000,taxAmountLimitForMedium: 100000,minTaxPercentage: 1,midTaxPercentage: 15,maxTaxPercentage: 25,dashainBonusCutOff: 30000,femaleRebatePercentage:10).save(failOnError: true)
-
+        def company = Company.findByName('Public Health Fund')?:new Company(name: 'Public Health Fund',taxId: '******').save(failOnError: true)
         def department = Department.findByName('BAYALPATRA')?:new Department(name: 'BAYALPATRA',parentId: 0,rootId:1,idNumber:"01").save(failOnError: true)
         def dayOffLeave = LeaveType.findByLeaveType(BayalpatraConstants.DAY_OFF_LEAVE)?:new LeaveType(leaveType: BayalpatraConstants.DAY_OFF_LEAVE,paidUnpaid: BayalpatraConstants.PAID_LEAVE,status: BayalpatraConstants.STATUS_ACTIVE,days: 0).save(failOnError: true)
         def nightOffLeave = LeaveType.findByLeaveType(BayalpatraConstants.NIGHT_OFF_LEAVE)?:new LeaveType(leaveType: BayalpatraConstants.NIGHT_OFF_LEAVE,paidUnpaid: BayalpatraConstants.PAID_LEAVE,status: BayalpatraConstants.STATUS_ACTIVE,days: 0).save(failOnError: true)

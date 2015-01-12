@@ -1001,6 +1001,40 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
         render(view:"employeeReport",model:[empHistoryList:empHistory,employeeInstance: employee,empHistoryCount:empHistory.size()])
     }
 
+    def termedEmployeeList = {
+
+        params.max = Math.min(params.max ? params.int('max') : 30, 100)
+        params.sort = params.sort?:'firstName'
+        params.order = params.order?:'asc'
+        def termedEmpList
+        def count
+        def startDate
+        def endDate
+        def type=params.type
+        def filter=false
+        if(params.startDate){
+            startDate = DateUtils.stringToDate(params.startDate)
+        }
+        if(params.endDate){
+            endDate = DateUtils.stringToDate(params.endDate)
+        }
+        if (params.startDate||params.endDate||params.type){
+            filter = true
+        }
+        if (!params.offset){
+            session.startDate=""
+            session.endDate=""
+            session.type=""
+            session.emp=""
+        }
+
+        termedEmpList = employeeService.getTerminatedEmpForFilter(type,startDate,endDate,params,params.max,params.offset,params.sort,params.order)
+        count = employeeService.getTerminatedEmpCountForFilter(type,startDate,endDate)
+
+
+        return [employeeInstanceList:termedEmpList,employeeInstanceTotal:count,startDate: params.startDate,endDate: params.endDate,type: type,filter:filter,sDate:startDate,eDate:endDate]
+    }
+
 
 
 

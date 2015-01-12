@@ -1,3 +1,4 @@
+<%@page defaultCodec="none" %>
 <%@ page import="com.bayalpatra.hrm.Department" %>
 <html>
 <head>
@@ -7,7 +8,8 @@
       <title><g:message code="default.create.label" args="[entityName]" /></title>
 
       <g:javascript library="jquery" plugin="jquery"/>
-      <jsTree:resources />
+      <link rel="stylesheet" href="${resource(dir: '/dist/themes/default',file: 'style.min.css')}"/>
+      <script type="text/javascript" src="${resource(dir:'/dist/',file:'jstree.js')}"></script>
       <script type="text/javascript" class="source below">
 
             $(document).ready(function(){
