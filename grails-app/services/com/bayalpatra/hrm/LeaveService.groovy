@@ -36,6 +36,55 @@ class LeaveService {
             }
         }
     }
+
+    def getEmployeeLeaveBalance(params) {
+        def max = params.max
+        def offset = Integer.valueOf(params.offset)
+        def leaveBalanceList = LeaveBalanceReport.findAll("from LeaveBalanceReport h order by h.year desc,h.employee.firstName asc",[max:max,offset:offset])
+        return leaveBalanceList
+    }
+
+    def getCountEmployeeLeaveBalance(){
+        def count = LeaveBalanceReport.executeQuery("SELECT COUNT(*) FROM LeaveBalanceReport h")
+        return count[0]
+
+
+    }
+
+
+    /**
+    * After each employee registration update his/her leave balance by employee join date. Get the leave days from the leave type settings table.
+    * @param emp
+    */
+
+    public void updateLeaveBalanceReportOfEachEmployeeAfterRegistration(Employee emp,String action,int probationDays){
+        Integer serviceDays = DateUtils.getDaysFromTwoDates(emp.updatedJoinDate, DateUtils.stringToDate((DateUtils.getYearFromDate(DateUtils.getCurrentDate())+1)+"-01-01"))-probationDays
+        LeaveBalanceReport hrmLeaveBalanceReport = new LeaveBalanceReport()
+
+            if(action==BayalpatraConstants.CREATE){
+                hrmLeaveBalanceReport.employee = emp
+                hrmLeaveBalanceReport.year = DateUtils.getYearFromDate(DateUtils.getCurrentDate())
+                hrmLeaveBalanceReport.floatingLeave = (getAnnualLeaveDaysByLeaveType(BayalpatraConstants.FLOATING_LEAVE)/BayalpatraConstants.ONEYEAR)*serviceDays
+                hrmLeaveBalanceReport.sickLeave = (getAnnualLeaveDaysByLeaveType(BayalpatraConstants.SICK_LEAVE)/BayalpatraConstants.ONEYEAR)*serviceDays
+                hrmLeaveBalanceReport.personalLeave = (getAnnualLeaveDaysByLeaveType(BayalpatraConstants.PERSONAL_LEAVE)/BayalpatraConstants.ONEYEAR)*serviceDays
+                hrmLeaveBalanceReport.save(failOnError:true)
+            }else{
+                LeaveBalanceReport empLeaveReport = LeaveBalanceReport.findByEmployee(emp)
+                empLeaveReport.year = DateUtils.getYearFromDate(DateUtils.getCurrentDate())
+                empLeaveReport.floatingLeave = (getAnnualLeaveDaysByLeaveType(BayalpatraConstants.FLOATING_LEAVE)/BayalpatraConstants.ONEYEAR)*serviceDays
+                empLeaveReport.sickLeave = (getAnnualLeaveDaysByLeaveType(BayalpatraConstants.SICK_LEAVE)/BayalpatraConstants.ONEYEAR)*serviceDays
+                empLeaveReport.personalLeave = (getAnnualLeaveDaysByLeaveType(BayalpatraConstants.PERSONAL_LEAVE)/BayalpatraConstants.ONEYEAR)*serviceDays
+            }
+
+
+
+    }
+
+    public Double getAnnualLeaveDaysByLeaveType(String leaveType){
+        def leaveDays = LeaveType.findByLeaveType(leaveType)
+        return leaveDays.days
+    }
+
 /*
 
     */

@@ -150,4 +150,8 @@ class BayalpatraConstants {
     static final String ADMIN_EMAIL = "psychovipers@gmail.com"
     static final String ACCOUNT_EMAIL = "abc@gmail.com"
 
+    //Action(create/edit) Constants
+    static final String CREATE = "Create"
+    static final String EDIT = "Edit"
+
 }

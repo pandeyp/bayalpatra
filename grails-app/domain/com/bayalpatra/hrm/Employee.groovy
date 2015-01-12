@@ -113,6 +113,7 @@ class Employee {
         unit(blank:true, nullable:true)
 */
         supervisor(blank:true, nullable:true)
+        suspensionDays(nullable: true)
 
     }
     static mapping = { sort "firstName":"asc" }
