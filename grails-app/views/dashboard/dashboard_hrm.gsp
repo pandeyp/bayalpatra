@@ -134,14 +134,6 @@
                             </g:link>
 
 
-                            <g:link controller="leaveReport" action='list'>
-                                <li><img
-                                        src="${createLinkTo(dir:'images', file:'leave-report.jpg')}"
-                                        alt="" /><br />
-                                    <p class="dsbord_con_txt">Leave Report</p></li>
-                            </g:link>
-
-
                             <sec:ifAnyGranted roles="ROLE_DEPARTMENTHEAD,ROLE_SUPERVISOR">
                                 <g:link controller="employeeLeaveDetail" action='create'>
                                     <li><img

@@ -119,12 +119,12 @@
                             <div id="popup" onclick="$('#unit').val(null)">${deptTree}</div>
                             <g:hiddenField name="deptSelected" value=""/>
                         </td>
-                        <td>
+%{--                        <td>
                             Unit
                         </td>
                         <td onclick="$('#deptSelected').val(null)">
                             <g:select id="unit"  name="unit" from="${unitList}" noSelection="['':'-Choose-']" optionKey="id" onchange="getFilteredList();" value="${unitName}"/>
-                        </td>
+                        </td>--}%
                         <td>
                             Month
                         </td>
@@ -173,6 +173,7 @@
             <th width="10%">From Date</th>
             <th width="10%">To Date</th>
             <th width="10%">Leave Days</th>
+            <th width="10%">Leave Balance</th>
             <th width="10%">Status</th>
             <g:if test="${commons.BayalpatraConstants.CLIENT_NAME==BayalpatraConstants.CLIENT_DEERWALK}">
                 <th width="20%">Leave Reason</th>
@@ -217,6 +218,10 @@
 
                 <td>
                     ${fieldValue(bean: employeeLeaveDetailInstance, field: "leaveDifference")}
+                </td>
+
+                <td>
+                    ${employeeLeaveDetailInstance.leaveType.days - employeeLeaveDetailInstance.leaveDifference}
                 </td>
 
                 <td>

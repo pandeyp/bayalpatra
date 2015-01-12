@@ -9,7 +9,7 @@ import org.codehaus.groovy.runtime.DateGroovyMethods
 
 @Transactional
 class LeaveService {
-    public void updateLeaveBalanceReportOfEachEmployeeAfterLeaveApproved(EmployeeLeaveDetail employeeLeaveDetail){
+/*    public void updateLeaveBalanceReportOfEachEmployeeAfterLeaveApproved(EmployeeLeaveDetail employeeLeaveDetail){
         def currentYear = DateUtils.getYearFromDate(DateUtils.getCurrentDate())
         def hrmLeaveBalanceReport = LeaveBalanceReport.findByEmployeeAndYear(employeeLeaveDetail.employee,currentYear)
         if(hrmLeaveBalanceReport){
@@ -52,10 +52,10 @@ class LeaveService {
     }
 
 
-    /**
+    *//**
     * After each employee registration update his/her leave balance by employee join date. Get the leave days from the leave type settings table.
     * @param emp
-    */
+    *//*
 
     public void updateLeaveBalanceReportOfEachEmployeeAfterRegistration(Employee emp,String action,int probationDays){
         Integer serviceDays = DateUtils.getDaysFromTwoDates(emp.updatedJoinDate, DateUtils.stringToDate((DateUtils.getYearFromDate(DateUtils.getCurrentDate())+1)+"-01-01"))-probationDays
@@ -83,7 +83,7 @@ class LeaveService {
     public Double getAnnualLeaveDaysByLeaveType(String leaveType){
         def leaveDays = LeaveType.findByLeaveType(leaveType)
         return leaveDays.days
-    }
+    }*/
 
 /*
 

@@ -1022,6 +1022,7 @@ class EmployeeLeaveDetailController {
 
     def updateStatus = {
 
+
         def employeeLeaveDetailInstance = EmployeeLeaveDetail.get(params.id)
         def leaveName=LeaveType.findById(employeeLeaveDetailInstance.leaveType.id)
         def leaveFor=leaveName.leaveType
@@ -1030,10 +1031,10 @@ class EmployeeLeaveDetailController {
         if(params.approve){
             employeeLeaveDetailInstance.status=BayalpatraConstants.LEAVE_APPROVED
             employeeLeaveDetailInstance.approvedBy = session["employeeName"]
-            if(BayalpatraConstants.CLIENT_NAME.equals(BayalpatraConstants.CLIENT_DEERWALK)){
+            /*if(BayalpatraConstants.CLIENT_NAME.equals(BayalpatraConstants.CLIENT_DEERWALK)){
                 leaveService.updateLeaveBalanceReportOfEachEmployeeAfterLeaveApproved(employeeLeaveDetailInstance)
             }
-            /*def sunday = dutyRosterService.getDateSunday()
+            def sunday = dutyRosterService.getDateSunday()
             def currentSunday = sunday.minus(7)
             def dutyRoster = dutyRosterService.getDutyByEmployee(employeeLeaveDetailInstance.employee)
 
