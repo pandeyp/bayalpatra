@@ -1,0 +1,17 @@
+DROP PROCEDURE IF EXISTS dynamic_table_structure1;
+CREATE PROCEDURE dynamic_table_structure1 ()
+BEGIN
+
+    insert into salary_report (version,employee_id,salary_date,tax,total)
+    select '0' as version,
+		a.id as employee_id,
+		sysdate() as salary_date,
+		b.basic_salary*5/100 as tax,
+		b.basic_salary - b.basic_salary*5/100 as total
+	from employee a
+	join salary b
+	on a.designation_id=b.designation_id;
+
+END
+
+call dynamic_table_structure1();
