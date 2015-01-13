@@ -9,7 +9,8 @@ class DispatchSalaryJob {
         //Fire after every 5 mins
         // cron name: 'sendEmailJob', cronExpression: "0 0/10 * * * ?"
         //"0 15 10 L * ?"	 	Fire at 10:15am on the last day of every month
-        cron name: 'dispatchSalary', cronExpression: "0 0/2 * * * ?"    //each 120 minutes
+        //cron name: 'dispatchSalary', cronExpression: "0 0/1 * * * ?"    //each 120 minutes
+        cron name: 'dispatchSalary', cronExpression: "0 0/120 * * * ?"    //each 120 minutes
     }
 
     def execute() {

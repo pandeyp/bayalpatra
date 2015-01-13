@@ -14,11 +14,8 @@ class DispatchSalaryService {
         Sql sql = new Sql(dataSource)
         try{
             sql.call("call sp_populate_salary_report()")
-        }catch (SQLException ex){
+        }catch (Exception ex){
             println("error: "+ex.printStackTrace())
         }
-
     }
-
-
 }
