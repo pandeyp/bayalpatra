@@ -11,13 +11,6 @@ crud. lists, email, role/leave, reports, history, user mgmt, design
 
 Put punch in in employee landing page. In admin dashboard, show report of employee punch in with filter.
 
-For salary:-
-
-1. Add startSalary/basicSalary field to Designation.
-2. Add designation as a field to salary report the other being salary date.
-3. Employee generates salary through btn and stored proc. Salary will be based on salary date which always has to be the
-   latest one ('precedes') constraint.
-4. Filter salary report by department having various designations monthly, yearly, date between(months).
 
 Future Scope:-
 
@@ -37,10 +30,17 @@ Bug:- even if same username is supplied, the page shows error but the record is 
 5. Create Attendance.
 6. Verify RequestMap.
 
-Why?:-
-Leave not appearing for supervisor of employees under him?
 
-Filter in employee leave detail.
+
+
 Fix CSS issue for salary containment while viewing from employee.
 Verify salary values...
 Forgot password, audit log, design if time attendance.
+
+verify employee history role nav pagination
+implement trigger
+RequestMap
+Change redirection to dashboard
+backup db.
+call roshan bro
+download dependencies win 32 and 64 bit
