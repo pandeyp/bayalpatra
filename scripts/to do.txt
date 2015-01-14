@@ -41,4 +41,4 @@ Why?:-
 Leave not appearing for supervisor of employees under him?
 
 Filter in employee leave detail.
-GUI for salary report
+Fix CSS issue for salary containment while viewing from employee.
