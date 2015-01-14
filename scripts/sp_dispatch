@@ -1,20 +1,22 @@
-DROP PROCEDURE IF EXISTS sp_populate_salary_report; 
+DROP PROCEDURE IF EXISTS sp_populate_salary_report;
 
 CREATE PROCEDURE sp_populate_salary_report()
-BEGIN
-    
-    insert into salary_report (version,employee_id,salary_date,salary_month,tax,total)
-    select '0' as version,
-		a.id as employee_id,
-		NOW() as salary_date,
-		DATE_FORMAT(NOW(),'%m-%Y'),
-		b.basic_salary*0.15 as tax, 
-		b.basic_salary - b.basic_salary*0.15 as total
-	from employee a
-	join salary b
-	on a.designation_id=b.designation_id;
-    
-END
+	BEGIN
+
+		insert into salary_report (version,employee_id,salary_date,salary_month,pf,cit,tax,total)
+			select '0' as version,
+						 a.id as employee_id,
+						 NOW() as salary_date,
+						 NOW() as salary_month,
+						 b.basic_salary*0.15 as tax,
+						 b.basic_salary*0.1 as pf,
+						 b.basic_salary*0.2 as cit,
+						 ((b.basic_salary + b.basic_salary*0.1) - (b.basic_salary*0.15 + b.basic_salary*0.2)) as total
+			from employee a
+				join salary b
+					on a.designation_id=b.designation_id;
+
+	END
 
 --call sp_populate_salary_report();
 
