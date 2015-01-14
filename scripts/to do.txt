@@ -37,7 +37,7 @@ Fix CSS issue for salary containment while viewing from employee.
 Verify salary values...
 Forgot password, audit log, design if time attendance.
 
-verify employee history role nav pagination
+verify employee history role nav pagination emp status change esp to terminated..
 implement trigger
 RequestMap
 Change redirection to dashboard
