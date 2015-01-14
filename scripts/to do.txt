@@ -43,4 +43,4 @@ Leave not appearing for supervisor of employees under him?
 Filter in employee leave detail.
 Fix CSS issue for salary containment while viewing from employee.
 
-Forgot password, audit log
+Forgot password, audit log, design if time attendance.
