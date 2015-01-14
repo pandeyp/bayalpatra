@@ -314,7 +314,7 @@
                                 <p class="dsbord_con_txt">Dearness Allowance</p></li>
                         </g:link>
 
-                        <g:link controller="salaryReport" action='salaryReports'>
+                        <g:link controller="salaryReport" action='list'>
                             <li><img
                                     src="${createLinkTo(dir:'images', file:'salary-report.jpg')}"
                                     alt="" /><br />
