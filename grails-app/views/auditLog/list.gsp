@@ -72,7 +72,7 @@
         <table width="100%" cellspacing="0" cellpadding="0" border="0">
             <tr>
                 <th class="thead2">Updated By:</th>
-                <th class="thead2"><g:select name="user" from="${hrm.Employee.list()}" optionKey="id" noSelection="['':'-Choose Employee-']" onchange="filterList()" value="${updatedByVal}"></g:select></th>
+                <th class="thead2"><g:select name="user" from="${com.bayalpatra.hrm.Employee.list()}" optionKey="id" noSelection="['':'-Choose Employee-']" onchange="filterList()" value="${updatedByVal}"></g:select></th>
                 <th class="thead2">Class Name</th>
                 <th class="thead2"><g:select name="className" from="${className}" noSelection="['':'-Choose Class-']" onchange="filterList()" value="${classNameVal}" /> </th>
                 <th class="thead2">Event Name</th>
