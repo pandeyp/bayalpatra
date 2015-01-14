@@ -294,7 +294,7 @@
                                         alt="" /><br />
                                     <p class="dsbord_con_txt">Payroll Management</p></li>
                             </g:link>
-                        </g:if>--}%
+                        </g:if>
 
                         <g:link controller="salaryClass" action='list'>
                             <li><img
@@ -312,7 +312,7 @@
                                     src="${createLinkTo(dir:'images', file:'dearness-allowance.jpg')}"
                                     alt="" /><br />
                                 <p class="dsbord_con_txt">Dearness Allowance</p></li>
-                        </g:link>
+                        </g:link>--}%
 
                         <g:link controller="salaryReport" action='list'>
                             <li><img
@@ -320,7 +320,7 @@
                                     alt="" /><br />
                                 <p class="dsbord_con_txt">Salary Report</p></li>
                         </g:link>
-                        <g:link controller="extraAllowance" action='list'>
+                        %{--<g:link controller="extraAllowance" action='list'>
                             <li><img
                                     src="${createLinkTo(dir:'images', file:'extra-allowance.png')}"
                                     alt="" /><br />
@@ -336,19 +336,19 @@
                                     src="${createLinkTo(dir:'images', file:'selective_salary.png')}"
                                     alt="" /><br />
                                 <p class="dsbord_con_txt">Tax Setting</p></li>
-                        </g:link>
+                        </g:link>--}%
                         <g:link controller="hrmEmployeeAccount" action='list'>
                             <li><img
                                     src="${createLinkTo(dir:'images', file:'employee-account.jpg')}"
                                     alt="" /><br />
                                 <p class="dsbord_con_txt">Employee Account</p></li>
                         </g:link>
-                        <g:link controller="employeeAdvance" action='list'>
+%{--                        <g:link controller="employeeAdvance" action='list'>
                             <li><img
                                     src="${createLinkTo(dir:'images', file:'employee-advance.jpg')}"
                                     alt="" /><br />
                                 <p class="dsbord_con_txt">Employee Advance</p></li>
-                        </g:link>
+                        </g:link>--}%
                     </ul>
                 </div>
             </div>

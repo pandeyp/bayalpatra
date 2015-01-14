@@ -4,7 +4,9 @@ class SalaryReport {
 
     Employee employee
     Date salaryDate
-    String salaryMonth
+    Date salaryMonth
+    Double pf
+    Double cit
     Double tax
     Double total
 
@@ -12,6 +14,8 @@ class SalaryReport {
     static constraints = {
         employee(blank:false, unique:'salaryMonth')
         tax(scale:2)
+        pf(scale:2)
+        cit(scale:2)
         salaryDate(blank:false)
         salaryMonth(blank:false)
         total(blank:false,scale:2)
