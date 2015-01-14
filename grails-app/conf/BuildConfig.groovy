@@ -78,6 +78,9 @@ grails.project.dependency.resolution = {
         //for job scheduling
         compile ":quartz:1.0.2"
 
+        //for audit-logging
+        compile ":audit-logging:1.0.3"
+
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.5.5" // or ":hibernate:3.6.10.18"
         runtime ":database-migration:1.4.0"

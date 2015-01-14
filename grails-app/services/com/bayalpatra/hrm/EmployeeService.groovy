@@ -5,6 +5,7 @@ import commons.BayalpatraConstants
 import commons.DateUtils
 import grails.transaction.Transactional
 import org.apache.log4j.Logger
+import org.codehaus.groovy.grails.plugins.orm.auditable.AuditLogEvent
 import org.codehaus.groovy.runtime.DateGroovyMethods
 
 @Transactional
@@ -982,7 +983,7 @@ class EmployeeService {
         return reportList
     }
 
-    def getListForAuditLog(module,sDate,eDate,uName,className,eventName,max,params){
+    def getListForAuditLog(sDate,eDate,uName,className,eventName,max,params){
         def auditLog
         def startDate
         def endDate
@@ -993,83 +994,83 @@ class EmployeeService {
         if (sDate && eDate && uName && className && eventName){
             startDate = DateUtils.stringToDate(sDate)
             endDate=DateUtils.stringToDate(eDate).plus(1)
-            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.actor in (:actor) and al.className in (:class) and al.eventName in (:event) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[actor: uName,module: module,class:className,sdate:startDate,edate:endDate,event: eventName],params)
+            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.actor in (:actor) and al.className in (:class) and al.eventName in (:event) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[actor: uName,class:className,sdate:startDate,edate:endDate,event: eventName],params)
 
         }else if (uName && className && eventName){
-            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.className in (:class) and al.eventName in (:event) and al.actor in (:actor) order by al.dateCreated desc ",[event: eventName,module: module,class:className,actor:uName],params)
+            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.className in (:class) and al.eventName in (:event) and al.actor in (:actor) order by al.dateCreated desc ",[event: eventName,class:className,actor:uName],params)
 
         }
 
         else if(sDate && eDate && uName && className){
             startDate = DateUtils.stringToDate(sDate)
             endDate=DateUtils.stringToDate(eDate).plus(1)
-            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.actor in (:actor) and al.className in (:class) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[actor: uName,module: module,class:className,sdate:startDate,edate:endDate],params)
+            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.actor in (:actor) and al.className in (:class) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[actor: uName,class:className,sdate:startDate,edate:endDate],params)
 
         }else if (sDate && eDate && uName && eventName){
             startDate = DateUtils.stringToDate(sDate)
             endDate=DateUtils.stringToDate(eDate).plus(1)
-            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.actor in (:actor) and al.eventName in (:event) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[actor: uName,module: module,event:eventName,sdate:startDate,edate:endDate],params)
+            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.actor in (:actor) and al.eventName in (:event) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[actor: uName,event:eventName,sdate:startDate,edate:endDate],params)
 
         }else if (sDate && eDate && className && eventName){
             startDate = DateUtils.stringToDate(sDate)
             endDate=DateUtils.stringToDate(eDate).plus(1)
-            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.className in (:class) and al.eventName in (:event) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[event: eventName,module: module,class:className,sdate:startDate,edate:endDate],params)
+            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.className in (:class) and al.eventName in (:event) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[event: eventName,class:className,sdate:startDate,edate:endDate],params)
 
         }
 
         else if (sDate && eDate && uName){
             startDate = DateUtils.stringToDate(sDate)
             endDate = DateUtils.stringToDate(eDate).plus(1)
-            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.actor in (:actor) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[actor: uName,module: module,sdate:startDate,edate:endDate],params)
+            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.actor in (:actor) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[actor: uName,sdate:startDate,edate:endDate],params)
 
         }else if (sDate && eDate && className){
             startDate = DateUtils.stringToDate(sDate)
             endDate=DateUtils.stringToDate(eDate).plus(1)
-            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.className in (:class) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[module: module,class:className,sdate:startDate,edate:endDate],params)
+            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.className in (:class) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[class:className,sdate:startDate,edate:endDate],params)
 
         }else if (sDate && eDate && eventName){
             startDate = DateUtils.stringToDate(sDate)
             endDate=DateUtils.stringToDate(eDate).plus(1)
-            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.eventName in (:event) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[module: module,event:eventName,sdate:startDate,edate:endDate],params)
+            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.eventName in (:event) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[event:eventName,sdate:startDate,edate:endDate],params)
 
         }
 
         else if (uName && className){
 
-            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.actor in (:actor) and al.className in (:class) order by al.dateCreated desc ",[actor: uName,module: module,class:className],params)
+            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.actor in (:actor) and al.className in (:class) order by al.dateCreated desc ",[actor: uName,class:className],params)
 
         }else if (uName && eventName){
 
-            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.actor in (:actor) and al.eventName in (:event) order by al.dateCreated desc ",[actor: uName,module: module,event:eventName],params)
+            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.actor in (:actor) and al.eventName in (:event) order by al.dateCreated desc ",[actor: uName,event:eventName],params)
 
         }else if (eventName && className){
 
-            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.eventName in (:event) and al.className in (:class) order by al.dateCreated desc ",[event:eventName,module: module,class:className],params)
+            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.eventName in (:event) and al.className in (:class) order by al.dateCreated desc ",[event:eventName,class:className],params)
 
         }
         else if (sDate && eDate) {
             startDate = DateUtils.stringToDate(sDate)
             endDate=DateUtils.stringToDate(eDate).plus(1)
 
-            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[module: module,sdate:startDate,edate:endDate],params)
+            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[sdate:startDate,edate:endDate],params)
 
         }
         else if (uName) {
-            auditLog = AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.actor in (:actor) order by al.dateCreated desc ", [actor: uName, module: module],params)
+            auditLog = AuditLogEvent.findAll("from AuditLogEvent al where al.actor in (:actor) order by al.dateCreated desc ", [actor: uName],params)
 
         }
         else if (className) {
-            auditLog = AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.className in (:class) order by al.dateCreated desc ", [module: module, class: className],params)
+            auditLog = AuditLogEvent.findAll("from AuditLogEvent al where al.className in (:class) order by al.dateCreated desc ", [class: className],params)
 
 
         }
         else if (eventName) {
-            auditLog = AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.eventName in (:event) order by al.dateCreated desc ", [module: module, event: eventName],params)
+            auditLog = AuditLogEvent.findAll("from AuditLogEvent al where al.eventName in (:event) order by al.dateCreated desc ", [event: eventName],params)
 
 
         }
         else{
-            auditLog = AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) order by al.dateCreated desc ", [module: module],params)
+            auditLog = AuditLogEvent.findAll("from AuditLogEvent al order by al.dateCreated desc ", params)
 
         }
         return auditLog
@@ -1077,7 +1078,7 @@ class EmployeeService {
 
 
 
-    def getCountForAuditLog(module,sDate,eDate,uName,className,eventName){
+    def getCountForAuditLog(sDate,eDate,uName,className,eventName){
         def auditLog
         def startDate
         def endDate
@@ -1085,77 +1086,77 @@ class EmployeeService {
         if (sDate && eDate && uName && className && eventName){
             startDate = DateUtils.stringToDate(sDate)
             endDate=DateUtils.stringToDate(eDate).plus(1)
-            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.actor in (:actor) and al.className in (:class) and al.eventName in (:event) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[actor: uName,module: module,class:className,sdate:startDate,edate:endDate,event: eventName])
+            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.actor in (:actor) and al.className in (:class) and al.eventName in (:event) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[actor: uName,class:className,sdate:startDate,edate:endDate,event: eventName])
 
         }else if(sDate && eDate && uName && className){
             startDate = DateUtils.stringToDate(sDate)
             endDate=DateUtils.stringToDate(eDate).plus(1)
-            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.actor in (:actor) and al.className in (:class) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[actor: uName,module: module,class:className,sdate:startDate,edate:endDate])
+            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.actor in (:actor) and al.className in (:class) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[actor: uName,class:className,sdate:startDate,edate:endDate])
 
         }else if (sDate && eDate && uName && eventName){
             startDate = DateUtils.stringToDate(sDate)
             endDate=DateUtils.stringToDate(eDate).plus(1)
-            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.actor in (:actor) and al.eventName in (:event) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[actor: uName,module: module,event:eventName,sdate:startDate,edate:endDate])
+            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.actor in (:actor) and al.eventName in (:event) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[actor: uName,event:eventName,sdate:startDate,edate:endDate])
 
         }else if (sDate && eDate && className && eventName){
             startDate = DateUtils.stringToDate(sDate)
             endDate=DateUtils.stringToDate(eDate).plus(1)
-            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.className in (:class) and al.eventName in (:event) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[event: eventName,module: module,class:className,sdate:startDate,edate:endDate])
+            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.className in (:class) and al.eventName in (:event) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[event: eventName,class:className,sdate:startDate,edate:endDate])
 
         }
         else if (sDate && eDate && uName){
             startDate = DateUtils.stringToDate(sDate)
             endDate = DateUtils.stringToDate(eDate).plus(1)
-            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.actor in (:actor) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[actor: uName,module: module,sdate:startDate,edate:endDate])
+            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.actor in (:actor) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[actor: uName,sdate:startDate,edate:endDate])
 
         }else if (sDate && eDate && className){
             startDate = DateUtils.stringToDate(sDate)
             endDate=DateUtils.stringToDate(eDate).plus(1)
-            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.className in (:class) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[module: module,class:className,sdate:startDate,edate:endDate])
+            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.className in (:class) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[class:className,sdate:startDate,edate:endDate])
 
         }else if (sDate && eDate && eventName){
             startDate = DateUtils.stringToDate(sDate)
             endDate=DateUtils.stringToDate(eDate).plus(1)
-            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.eventName in (:event) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[module: module,event:eventName,sdate:startDate,edate:endDate])
+            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.eventName in (:event) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[event:eventName,sdate:startDate,edate:endDate])
 
         }
 
         else if (uName && className){
 
-            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.actor in (:actor) and al.className in (:class) order by al.dateCreated desc ",[actor: uName,module: module,class:className])
+            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.actor in (:actor) and al.className in (:class) order by al.dateCreated desc ",[actor: uName,class:className])
 
         }else if (uName && eventName){
 
-            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.actor in (:actor) and al.eventName in (:event) order by al.dateCreated desc ",[actor: uName,module: module,event:eventName])
+            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.actor in (:actor) and al.eventName in (:event) order by al.dateCreated desc ",[actor: uName,event:eventName])
 
         }else if (eventName && className){
 
-            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.eventName in (:event) and al.className in (:class) order by al.dateCreated desc ",[event:eventName,module: module,class:className])
+            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.eventName in (:event) and al.className in (:class) order by al.dateCreated desc ",[event:eventName,class:className])
 
         }
         else if (sDate && eDate) {
             startDate = DateUtils.stringToDate(sDate)
             endDate=DateUtils.stringToDate(eDate).plus(1)
 
-            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[module: module,sdate:startDate,edate:endDate])
+            auditLog=AuditLogEvent.findAll("from AuditLogEvent al where al.dateCreated between :sdate and :edate order by al.dateCreated desc ",[sdate:startDate,edate:endDate])
 
         }
         else if (uName) {
-            auditLog = AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.actor in (:actor) order by al.dateCreated desc ", [actor: uName, module: module])
+            auditLog = AuditLogEvent.findAll("from AuditLogEvent al where al.actor in (:actor) order by al.dateCreated desc ", [actor: uName])
 
         }
         else if (className) {
-            auditLog = AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.className in (:class) order by al.dateCreated desc ", [module: module, class: className])
+            auditLog = AuditLogEvent.findAll("from AuditLogEvent al where al.className in (:class) order by al.dateCreated desc ", [class: className])
 
 
         }
         else if (eventName) {
-            auditLog = AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) and al.eventName in (:event) order by al.dateCreated desc ", [module: module, event: eventName])
+            auditLog = AuditLogEvent.findAll("from AuditLogEvent al where al.eventName in (:event) order by al.dateCreated desc ", [event: eventName])
 
 
         }
         else{
-            auditLog = AuditLogEvent.findAll("from AuditLogEvent al where al.module in (:module) order by al.dateCreated desc ", [module: module])
+            auditLog = AuditLogEvent.findAll("from AuditLogEvent al order by al.dateCreated desc ", [module: module])
 
         }
         return auditLog
