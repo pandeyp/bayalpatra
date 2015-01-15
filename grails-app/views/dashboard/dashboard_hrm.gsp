@@ -47,12 +47,12 @@
                         </g:link>
                     %{--</sec:ifAnyGranted>--}%
                         <sec:ifAnyGranted roles="ROLE_ADMIN">
-                            <g:link controller="employeeReview" action='list'>
+  %{--                          <g:link controller="employeeReview" action='list'>
                                 <li><img
                                         src="${createLinkTo(dir:'images', file:'employee-review.png')}"
                                         alt="" /><br />
                                     <p class="dsbord_con_txt">Employee Review</p></li>
-                            </g:link>
+                            </g:link>--}%
                             <g:link controller="employee" action='termedEmployeeList'>
                                 <li><img
                                         src="${createLinkTo(dir:'images', file:'terminatedemployee.jpg')}"

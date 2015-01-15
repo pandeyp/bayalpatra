@@ -11,6 +11,7 @@
 
 <p/>
 
+<div id="x">
 <s2ui:form width='475' height='250' elementId='resetPasswordFormContainer'
 		   titleCode='spring.security.ui.resetPassword.header' center='true'>
 
@@ -50,6 +51,7 @@
 	</g:form>
 
 </s2ui:form>
+</div>
 <div id="confirmationDialog" style="display: none">
 	<div class="container">
 		<fieldset>
