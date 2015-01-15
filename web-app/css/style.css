@@ -1446,11 +1446,11 @@ create-.list td {
 }
 .ui-widget-content{ border:none !important;}
 .sign-in{
-	border: 1px solid #CDE9EC ;
-	padding:0 20px;
+	border: 1px solid #CDE9EC !important; ;
+	padding:0 20px !important;;
 }
 .sign-in h5{
-	font: bold 13px arial; padding: 10px 0;
+	font: bold 13px arial; padding: 10px 0 !important;;
 }
 
 .forgotBtn {
