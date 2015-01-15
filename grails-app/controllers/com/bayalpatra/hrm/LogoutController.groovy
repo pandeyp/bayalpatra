@@ -27,7 +27,7 @@ class LogoutController {
 	 */
 	def index() {
 		// TODO put any pre-logout code here
-		println "in logout controller::" + SpringSecurityUtils.securityConfig.logout.filterProcessesUrl
+
 		flash.message = "Successfully logged out."
 		redirect uri: SpringSecurityUtils.securityConfig.logout.filterProcessesUrl // '/j_spring_security_logout'
 

@@ -42,3 +42,10 @@ backup db.
 Deploy !!!
 call roshan bro
 download dependencies win 32 and 64 bit
+
+call Ramesh to inquire on presentation
+attendance crud
+verify values, Leave calculation bug in leave report
+alter table eployee dependents patch
+
+Software needed:- tomcat, jdk, mysql, firefox

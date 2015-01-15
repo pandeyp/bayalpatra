@@ -13,6 +13,9 @@
         <div class="message">${flash.message}</div>
     </g:if>
 
+    <h4>Edit Profile</h4>
+    <br/>
+    <br/>
     <g:form action="update" name='userEditForm' class="button-style">
         <g:hiddenField name="offset" value="${offset}"/>
         <sec:ifAnyGranted roles="ROLE_ADMIN">
