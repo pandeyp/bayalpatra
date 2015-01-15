@@ -3,7 +3,7 @@ dataSource {
     jmxExport = true
     driverClassName = "com.mysql.jdbc.Driver"
     username = "root"
-    password = "root"
+    password = ""
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -31,7 +31,7 @@ environments {
     production {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:mysql://localhost/bayalpatra_dev;useUnicode=true&characterEncoding=utf-8"
+            url = "jdbc:mysql://localhost/bayalpatra_dev"
             properties {
                // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
                jmxEnabled = true
