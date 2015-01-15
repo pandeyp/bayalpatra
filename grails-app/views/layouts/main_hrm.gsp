@@ -4,13 +4,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>HRM Dashboard</title>
+    <title>Bayalpatra HRM</title>
     <script type="text/javascript" src="${resource(dir:'js',file:'jquery-1.js')}"></script>
     <script type="text/javascript" src="${resource(dir:'js',file:'menu-collapsed.js')}"></script>
     <script type="text/javascript" src="${resource(dir:'js',file:'jquery.min.js')}"></script>
     <script type="text/javascript" src="${resource(dir:'js',file:'example.js')}"></script>
 
-    <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.gif')}" type="image/x-icon"/>
+    <link rel="shortcut icon" href="${resource(dir: 'images', file: 'logo_bp.gif')}" type="image/x-icon"/>
     <link rel="stylesheet"  type="text/css"  href="${resource(dir:'css',file:'style.css')}"  media="screen" />
     <link rel="stylesheet"  type="text/css"  href="${resource(dir:'css',file:'main.css')}"  media="screen" />
     <link rel="stylesheet"  type="text/css"  href="${resource(dir:'css',file:'print.css')}" media="print" />
