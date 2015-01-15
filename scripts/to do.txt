@@ -41,7 +41,6 @@ if time attendance.
 verify employee history role nav pagination emp status change esp to terminated..
 implement trigger
 RequestMap
-Change redirection to dashboard
 backup db.
 Deploy !!!
 call roshan bro

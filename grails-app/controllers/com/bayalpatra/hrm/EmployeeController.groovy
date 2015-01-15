@@ -776,7 +776,7 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
                     if (status.equals(BayalpatraConstants.TERMINATED) || status.equals(BayalpatraConstants.CLEARED)) {
                         if (status.equals(BayalpatraConstants.TERMINATED)) {
                             def salClass = employeeInstance.salaryclass
-                            salaryService.generateSalaryForTermedEmployees(employeeInstance, salClass)
+//                            salaryService.generateSalaryForTermedEmployees(employeeInstance, salClass)
                             employeeService.updateSupervisor(employeeInstance)
                         }
                         User.executeUpdate("UPDATE User u SET u.enabled=0 where u.employee=" + employeeInstance.id);
@@ -1034,6 +1034,91 @@ class EmployeeController extends grails.plugin.springsecurity.ui.UserController{
 
         return [employeeInstanceList:termedEmpList,employeeInstanceTotal:count,startDate: params.startDate,endDate: params.endDate,type: type,filter:filter,sDate:startDate,eDate:endDate]
     }
+
+    def terminatedEmployeeList={
+        def max = 30
+        params.sort = params.sort?:'firstName'
+        params.order = params.order?:'asc'
+        def employeeInstanceList
+        def startDate
+        def endDate
+        def searchParams = ""
+        if(params.startDate) searchParams = "startDate="+params.startDate
+        if(params.endDate) searchParams = searchParams + "&endDate="+params.endDate
+        if(params.type) searchParams = searchParams + "&type="+params.type
+
+        session.startDate=params.startDate
+        session.endDate=params.endDate
+        session.type=params.type
+        session.emp=""
+
+        def count
+        def offset
+
+        if(params.offset){
+            offset=params.offset
+        }else{
+            offset=0
+        }
+
+        def type=params.type
+
+        def sortingParam = request.getParameter("sort") ?: 'firstName';
+        def sortingOrder = request.getParameter("order") ?: 'asc';
+
+        if(params.startDate){
+            startDate = DateUtils.stringToDate(params.startDate)
+        }
+        if(params.endDate){
+            endDate = DateUtils.stringToDate(params.endDate)
+        }
+
+
+
+        employeeInstanceList = employeeService.getTerminatedEmpForFilter(type,startDate,endDate,params,max,offset,sortingParam,sortingOrder)
+        count = employeeService.getTerminatedEmpCountForFilter(type,startDate,endDate)
+
+
+
+
+        render(template:'terminatedEmployeeList', model:[employeeInstanceList: employeeInstanceList,employeeInstanceTotal:count,startDate:params.startDate,
+                                                         endDate:params.endDate,type:type,offset: offset,searchParams:searchParams])
+    }
+
+    def filterTerminatedList={
+        def employeeInstanceList
+        def count
+        def max = 30
+        def searchParams = ""
+        if(params.emp) searchParams = "emp="+params.emp
+        def offset
+        session.emp=params.emp
+        session.startDate=""
+        session.endDate=""
+        session.type=""
+
+
+        params.max = Math.min(params.max ? params.int('max') : 30, 100)
+        if(params.offset){
+            offset=params.offset
+        }else{
+            offset=0
+        }
+        if(params.emp){
+            employeeInstanceList = employeeService.getTerminatedEmp(params.emp.toString(),params)
+            count = employeeInstanceList.size()
+        }
+        else{
+
+            employeeInstanceList = employeeService.getTerminatedEmpForFilter(null,null,null,params,params.max,params.offset,'firstName','asc')
+            count = employeeService.getTerminatedEmpCountForFilter(null,null,null)
+        }
+
+        render(template: "terminatedEmployeeList", model:[employeeInstanceList: employeeInstanceList,employeeInstanceTotal:count,emp:params.emp,searchParams:searchParams])
+
+    }
+
+
 
 
 

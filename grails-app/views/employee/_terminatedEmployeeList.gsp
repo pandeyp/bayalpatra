@@ -9,7 +9,7 @@
                     <th><g:message code="employee.id.label" default="Employee Id" /></th>
                     <th><g:message code="employee.firstName.label" default="Name" /></th>
                     <th><g:message code="employee.designation.label" default="Designation" /></th>
-                    <th><g:message code="employee.departments.label" default="Department / Unit" /></th>
+                    <th><g:message code="employee.departments.label" default="Department" /></th>
                     <th><g:message code="employee.joinDate.label" default="Join Date" /></th>
                     <th><g:message code="employee.terminatedDate.label" default="Terminated Date" /></th>
                     <th><g:message code="employee.status.label" default="Status" /></th>
@@ -26,14 +26,8 @@
                         %{--id="${employeeInstance.id}"--}%
                         <td>${fieldValue(bean: employeeInstance, field: "designation")}</td>
 
-                        <g:if test="${employeeInstance?.unit?.id}">
-                            <td>${fieldValue(bean: employeeInstance, field: "unit")}</td>
+                        <td>${fieldValue(bean: employeeInstance, field: "department")}</td>
 
-                        </g:if>
-
-                        <g:else>
-                            <td>${fieldValue(bean: employeeInstance, field: "departments")}</td>
-                        </g:else>
 
                     %{--<td>${fieldValue(bean: employeeInstance, field: "joinDate")}</td>--}%
                         <td> <g:formatDate format="yyyy-MM-dd" date="${employeeInstance?.joinDate}" /></td>

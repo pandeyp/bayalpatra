@@ -84,7 +84,7 @@
         <export:formats formats="['excel']" action="exportToExcel" params="[type: type,startDate: startDate,endDate: endDate]" title="Export to Excel"/>
         </g:if>--}%
 
-            <export:formats formats="['excel']" action="exportToExcel"  params="" title="Export to Excel"/>
+            <export:formats formats="['excel']" action="exportToExcel"  params="['exportFormat':'excel']" title="Export to Excel"/>
 
         <div class="print"><a href="#"title="print">
             <img src="${resource(dir: 'images', file: "print_icon.png")}" alt="Print Table" onclick="window.print()" >
@@ -124,15 +124,7 @@
                     <th class="thead2">
                         <g:select id ="type" name="type"  value="${type}" from="${['Appointment','Terminated']}" />
                     </th>
-                    <th class="thead2">From Date:</th>
-                    <th colspan="12" class="thead2">
-                        <input id="datepick1" type="text" name="startDate" class="employee_txt" value="${formatDate(format: 'yyyy-MM-dd',date: sDate)}"/>&nbsp;
-                    <th class="thead2">To Date:</th>
-                    <th colspan="12" class="thead2">
-                        <input id="datepick2" type="text" name="endDate" class="employee_txt" value="${formatDate(format: 'yyyy-MM-dd',date: eDate)}" />
 
-                        <input type="button" onclick="search()" value="Search" class="employee_btn">
-                    </th>
                 </tr>
 
                 </thead>
@@ -177,13 +169,8 @@
 
                             <td>${fieldValue(bean: employeeInstance, field: "designation")}</td>
 
-                            <g:if test="${employeeInstance?.unit?.id}">
-                                <td>${fieldValue(bean: employeeInstance, field: "unit")}</td>
-                            </g:if>
+                                <td>${fieldValue(bean: employeeInstance, field: "department")}</td>
 
-                            <g:else>
-                                <td>${fieldValue(bean: employeeInstance, field: "departments")}</td>
-                            </g:else>
 
                         %{--<td>${fieldValue(bean: employeeInstance, field: "joinDate")}</td>--}%
                             <td> <g:formatDate format="yyyy-MM-dd" date="${employeeInstance?.joinDate}" /></td>
