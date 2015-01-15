@@ -1,60 +1,110 @@
-<html>
-
 <head>
-<title><g:message code='spring.security.ui.login.title'/></title>
-%{--<meta name='layout' content='register'/>--}%
+	<meta name='layout' content='main_hrm' />
+	<title>Login</title>
+	<style type='text/css' media='screen'>
+	#login {
+		margin:15px 0px; padding:0px;
+		text-align:center;
+	}
+	#login .inner {
+		width:260px;
+		margin:0px auto;
+		text-align:left;
+		padding:10px;
+		border-top:1px dashed #499ede;
+		border-bottom:1px dashed #499ede;
+		background-color:#EEF;
+	}
+	#login .inner .fheader {
+		padding:4px;margin:3px 0px 3px 0;color:#2e3741;font-size:14px;font-weight:bold;
+	}
+	#login .inner .cssform p {
+		clear: left;
+		margin: 0;
+		padding: 5px 0 8px 0;
+		padding-left: 105px;
+		border-top: 1px dashed gray;
+		margin-bottom: 10px;
+		height: 1%;
+	}
+	#login .inner .cssform input[type='text'] {
+		width: 120px;
+	}
+	#login .inner .cssform label {
+		font-weight: bold;
+		float: left;
+		margin-left: -105px;
+		width: 100px;
+	}
+	#login .inner .login_message {color:red;}
+	#login .inner .text_ {width:120px;}
+	#login .inner .chk {height:12px;}
+	</style>
 </head>
 
 <body>
+<div class="body_part">
+	<div class="login_page">
+		<div id="login-box">
+		<div class="content-loginhead1">
+			<table cellspacing="0" cellpadding="0" border="0">
+				<tbody>
+				<tr>
+					<td><img src="${createLinkTo(dir:'images', file:'login_icon.png')}" alt=""/>
+						<h2>Login</h2></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="curvedlogin">
 
-<p/>
+			<g:if test="${flash.message}">
+				<div class="message">${flash.message}</div>
+			</g:if>
 
-<div class="login s2ui_center ui-corner-all" style='text-align:center;'>
-	<div class="login-inner">
-	<form action='${postUrl}' method='POST' id="loginForm" name="loginForm" autocomplete='off'>
-	<div class="sign-in">
-
-	<h1><g:message code='spring.security.ui.login.signin'/></h1>
-
-	<table>
-		<tr>
-			<td><label for="username"><g:message code='spring.security.ui.login.username'/></label></td>
-			<td><input name="j_username" id="username" size="20" /></td>
-		</tr>
-		<tr>
-			<td><label for="password"><g:message code='spring.security.ui.login.password'/></label></td>
-			<td><input type="password" name="j_password" id="password" size="20" /></td>
-		</tr>
-		<tr>
-			<td colspan='1'>
-%{--				<input type="checkbox" class="checkbox" name="${rememberMeParameter}" id="remember_me" checked="checked" />
-				<label for='remember_me'><g:message code='spring.security.ui.login.rememberme'/></label>--}% |
-				<span class="forgot-link">
-					<g:link controller='register' action='forgotPassword'><g:message code='spring.security.ui.login.forgotPassword'/></g:link>
+			<form action='${postUrl}' method='POST' id='loginForm' class='cssform' autocomplete='off'>
+				<g:hiddenField name="spring-security-redirect" value="/"/>
+				<span>
+					<label for='username'>Username:</label>
+					<input type='text' class='text_' name='j_username' id='username' />
 				</span>
-			</td>
-		</tr>
-		<tr>
-			<td colspan='1'>
-				%{--<s2ui:linkButton elementId='register' controller='register' messageCode='spring.security.ui.login.register'/>--}%
-				<s2ui:submitButton elementId='loginButton' form='loginForm' messageCode='spring.security.ui.login.login'/>
-			</td>
-		</tr>
-	</table>
+				<span>
+					<label for='password'>Password:</label>
+					<input type='password' class='text_' name='j_password' id='password' />
+				</span>
+				<span style="margin: 10px 0pt 0pt 110px;">
+					<input type="submit" class="darkgreen_btn" value="Login" id="button" name="button">
+					<g:link controller='register' action='forgotPassword' class="forgotBtn"><g:message code='spring.security.ui.login.forgotPassword'/></g:link>
+				</span>
 
+				<div class="clear"></div>
+
+			</form>
+		</div>
 	</div>
-	</form>
-	</div>
-</div>
+		<div id="login-box">
+			<div class="content-loginhead2">
+				<table width="279" cellspacing="0" cellpadding="0" border="0">
+					<tbody>
+					<tr>
+						<td><h2>About Bayalpatra Application</h2></td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="curvedlogin" style="text-align: justify; color:#005E93; line-height:17px;">
 
-<script>
-$(document).ready(function() {
-	$('#username').focus();
-});
+				Bayalpatra is a modular application designed to manage various aspects of HR a hospital. It is a user-controlled, cloud-based application with extensive reporting capabilities and a special focus on role-based security. </div>
+		</div></div>
+	<script type='text/javascript'>
+		<!--
+		(function(){
+			document.forms['loginForm'].elements['j_username'].focus();
+		})();
+		// -->
+	</script>
 
-<s2ui:initCheckboxes/>
 
-</script>
 
 </body>
-</html>
+

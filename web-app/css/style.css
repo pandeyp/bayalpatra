@@ -1406,5 +1406,61 @@ create-.list td {
 .setting{ float:left; width: 678px;}
 .payroll{ float: right; width: 457px;}
 .days-edit-empl{padding-top: 4px;}
+/* Forgot Password*/
+.ui-dialog-titlebar {
 
+	background: #CDE9EC;
+}
+.ui-dialog-title{
+	font: 18px arial !important;
+	color: #056195;
+}
+#forgotPasswordForm{
+	border: 1px solid #CDE9EC;
+	padding:10px 15px ;
+}
+#forgotPasswordForm p{
+	font: 13px/18px arial;
+	padding:10px 0 ;
+}
+#forgotPasswordForm p a{
+	font-weight: normal !important;
+}
+.ui-widget-content{
+	text-align: left !important;
+	padding:15px !important;
+	margin: 0 auto;
+}
+.resetPassword{
+	margin-left: 97px;
+}
+.resetPassword input{
+	border-radius: 5px;
+}
+.ui-widget-header{
+	background: #CDE9EC !important;
+	color: #fff;
+}
+.ui-dialog-title{
+	color: #056195 !important;
+}
+.ui-widget-content{ border:none !important;}
+.sign-in{
+	border: 1px solid #CDE9EC ;
+	padding:0 20px;
+}
+.sign-in h5{
+	font: bold 13px arial; padding: 10px 0;
+}
 
+.forgotBtn {
+	background: none repeat scroll 0 0 #0789C6;
+	border: 1px solid #128DA0;
+	border-radius: 5px;
+	color: #FFFFFF !important;
+	cursor: pointer;
+	font: bold 12px/22px arial;
+	padding: 1px 4px;
+	display: inline-block;
+	margin-top: 2px;
+}

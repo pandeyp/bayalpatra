@@ -215,12 +215,12 @@
                                 <p class="dsbord_con_txt">Unit</p></li>
                         </g:link>
 --}%
-                        <g:link controller="dateSetting" action='list'>
+%{--                        <g:link controller="dateSetting" action='list'>
                             <li><img
                                     src="${createLinkTo(dir:'images', file:'date-setting.jpg')}"
                                     alt="" /><br />
                                 <p class="dsbord_con_txt">Holiday Setting</p></li>
-                        </g:link>
+                        </g:link>--}%
 
                         <g:link controller="supervisor" action='list'>
                             <li><img
@@ -250,12 +250,12 @@
                                 <p class="dsbord_con_txt">Manage Stores Sources</p></li>
                         </g:link>
 --}%
-                        <g:link controller="earnedLeaveSetting" action='list'>
+%{--                        <g:link controller="earnedLeaveSetting" action='list'>
                             <li><img
                                     src="${createLinkTo(dir:'images', file:'leave-icon-h.jpg')}"
                                     alt="" /><br />
                                 <p class="dsbord_con_txt">Earned Leave Setting</p></li>
-                        </g:link>
+                        </g:link>--}%
                         <g:link controller="leaveType" action='list'>
                             <li><img
                                     src="${createLinkTo(dir:'images', file:'leave-icon.jpg')}"
