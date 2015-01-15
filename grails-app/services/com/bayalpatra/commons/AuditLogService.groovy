@@ -11,7 +11,6 @@ class AuditLogService {
         recMap.putAt('actor',updatedBy)
         recMap.putAt('className',eachReport.className)
         recMap.putAt('eventName',eachReport.eventName)
-        recMap.putAt('instance',eachReport.instance)
         recMap.putAt('propertyName',eachReport.propertyName)
         recMap.putAt('oldValue',eachReport.oldValue)
         recMap.putAt('newValue',eachReport.newValue)

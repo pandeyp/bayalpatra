@@ -16,16 +16,7 @@ class AuditLogController {
 
     def list = {
         Map employeeNames = [:]
-/*        def module
-        if (session['module']=="HR"){
-            module="package hrm"
-        }else if ((session['module']=="Clinical")){
-            module="package clinical"
-        }else if ((session['module']=="Inventory")){
-            module="package inventory"
-        }else{
-            module="package account"
-        }*/
+
         def max = 30
         def offset
 
@@ -57,14 +48,14 @@ class AuditLogController {
 
         if (params.updatedBy || params.startDate ||params.endDate||params.className||params.eventName ){
 
-            auditLog=employeeService.getListForAuditLog(params.module,params.startDate,params.endDate,uName,params.className,params.eventName,max,params)
+            auditLog=employeeService.getListForAuditLog(params.startDate,params.endDate,uName,params.className,params.eventName,max,params)
             auditLog.each{
                 def empName = User.findByUsername(it.actor)?.employee?.toString()
                 if (empName){
                     employeeNames.put(it.id,empName)
                 }
             }
-            auditLogLength=employeeService.getCountForAuditLog(params.module,params.startDate,params.endDate,uName,params.className,params.eventName)
+            auditLogLength=employeeService.getCountForAuditLog(params.startDate,params.endDate,uName,params.className,params.eventName)
             auditLogSize=auditLogLength.size()
         }else{
             auditLog=AuditLogEvent.findAll("from AuditLogEvent ae where ae.actor not in (:admin) order by ae.dateCreated desc",[admin:"admin"],params)
@@ -85,7 +76,6 @@ class AuditLogController {
     }
 
     def ajaxCall={
-        println("params in audi log ajax call---->"+params)
 
         Map employeeNames = [:]
         def user
@@ -161,7 +151,7 @@ class AuditLogController {
             uName=user?.username
         }
         if (updatedBy || startDate ||endDate||className||eventName ){
-            auditLog=employeeService.getListForAuditLog(modules,startDate,endDate,uName,className,eventName,size,params)
+            auditLog=employeeService.getListForAuditLog(startDate,endDate,uName,className,eventName,size,params)
 
             auditLog.each{
                 def empName = User.findByUsername(it.actor)?.employee?.toString()
@@ -196,13 +186,12 @@ class AuditLogController {
                     "actor",
                     "className",
                     "eventName",
-                    "instance",
                     "propertyName",
                     "oldValue",
                     "newValue",
                     "dateCreated"
             ]
-            Map labels=["actor":"Audit Log Report","className":"","eventName":"","instance":"","propertyName":"","oldValue":"","newValue":"","dateCreated":""]
+            Map labels=["actor":"Audit Log Report","className":"","eventName":"","propertyName":"","oldValue":"","newValue":"","dateCreated":""]
             Map parameters =["column.widths": [0.15, 0.15,0.15,0.15,0.15, 0.15,0.15,0.15]]
 
             exportService.export(params.exportFormat, response.outputStream,masterExportList, fields, labels,[:],parameters)

@@ -13,7 +13,7 @@
     function filterList(){
         var updatedBy=$("#user").val();
         var className=$("#className").val();
-        var eventName=$("#eventName").val()
+        var eventName=$("#eventName").val();
         var startDate=$("#datepick1").val();
         var endDate=$("#datepick2").val();
         if(startDate && !endDate){
@@ -65,7 +65,7 @@
 
     </g:if>
     <div align="right" class="printthis">
-        <export:formats formats="['excel']" action="exportToExcel" params="" title="Export to Excel"/>
+        <export:formats formats="['excel']" action="exportToExcel" params="['exportFormat':'excel']" title="Export to Excel"/>
 
     </div>
     <div id="filters">
@@ -98,8 +98,6 @@
 
                 <g:sortableColumn property="className" title="Class Name" />
                 <g:sortableColumn property="eventName" title="Event Name" />
-                <g:sortableColumn property="instance" title="Instance" />
-
                 <g:sortableColumn property="propertyName" title="Property Name" />
 
                 <g:sortableColumn property="oldValue" title="Old Value" />
@@ -124,9 +122,9 @@
                     <td>
                         ${fieldValue(bean:auditLogEventInstance, field:'eventName')}
                     </td>
-                    <td>
+%{--                    <td>
                         ${fieldValue(bean:auditLogEventInstance, field:'instance')}
-                    </td>
+                    </td>--}%
                     <td>
                         ${fieldValue(bean:auditLogEventInstance, field:'propertyName')}
                     </td>

@@ -9,7 +9,7 @@
 
             <g:sortableColumn property="className" title="Class Name" />
             <g:sortableColumn property="eventName" title="Event Name" />
-            <g:sortableColumn property="instance" title="Instance" />
+
 
             <g:sortableColumn property="propertyName" title="Property Name" />
 
@@ -34,9 +34,7 @@
                 <td>
                     ${fieldValue(bean:auditLogEventInstance, field:'eventName')}
                 </td>
-                <td>
-                    ${fieldValue(bean:auditLogEventInstance, field:'instance')}
-                </td>
+
                 <td>
                     ${fieldValue(bean:auditLogEventInstance, field:'propertyName')}
                 </td>

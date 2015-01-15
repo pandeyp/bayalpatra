@@ -35,7 +35,7 @@ Bug:- even if same username is supplied, the page shows error but the record is 
 
 Fix CSS issue for salary containment while viewing from employee.
 Verify salary values...
-Forgot password, audit log, design if time attendance.
+Forgot password, audit log, design if time attendance. Audit log doen't show admin values.
 
 verify employee history role nav pagination emp status change esp to terminated..
 implement trigger
