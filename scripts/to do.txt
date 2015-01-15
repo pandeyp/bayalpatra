@@ -31,9 +31,6 @@ Bug:- even if same username is supplied, the page shows error but the record is 
 6. Verify RequestMap.
 
 
-
-
-Fix CSS issue for salary containment while viewing from employee.
 Verify salary values...
 design
 if time attendance.
