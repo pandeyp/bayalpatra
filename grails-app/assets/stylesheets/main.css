@@ -17,12 +17,12 @@
 	padding:20px;
 }
 
-a:link, a:visited, a:hover {
-	color: #666;
+a {
+	color: #962800;
 	font-weight: bold;
 	text-decoration: none;
 }
-
+a:hover{color:#7c2100;}
 h1 {
 	color: #48802c;
 	font-weight: normal;
@@ -54,9 +54,7 @@ textarea {
 	vertical-align: top;
 }
 
-input:focus, select:focus, textarea:focus {
-	border: 1px solid #b2d1ff;
-}
+
 
 
 /* NAVIGATION MENU */
@@ -202,7 +200,7 @@ th.desc a {
 	border-right: 1px solid #ddd;
 }
 .list th:hover, .list tr:hover {
-	background: #b2d1ff;
+	background: #688700;
 }
 
 /* PAGINATION */
@@ -314,17 +312,13 @@ th.desc a {
 	padding-left: 28px;
 }
 
-#doubleword{
-	width:7%;
-}
-
 
 .thead1 {
-	background: #056195;
+	background: #962800;
 }
 
 .thead2 {
-	background: #1e7c42 !important;
+	background: #688700 !important;
 }
 .spinner {
 	position: fixed;

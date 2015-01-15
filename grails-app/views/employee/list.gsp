@@ -190,7 +190,7 @@
     </div>
 
     <br>
-    <div id="content-wrap">
+    <div>
 
         <div id="filters">
             <sec:ifAnyGranted roles="ROLE_ADMIN">

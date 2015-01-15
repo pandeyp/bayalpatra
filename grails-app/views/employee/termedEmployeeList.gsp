@@ -96,7 +96,7 @@
         <div class="message">${flash.message}</div>
     </g:if>
     <br>
-    <div id="content-wrap">
+    <div>
         <div id="grid">
             %{--   <div id="totalTag">
                 Total Employees&nbsp;:  ${employeeInstanceTotal}

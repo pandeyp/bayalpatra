@@ -81,7 +81,12 @@
         <g:render template='/employee/menu'></g:render>
     </g:if>
 
-    <div id="content-wrap" class="salary_report_list">
+    <g:if test="${isEmp==true}">
+        <div id="content-wrap" class="salary_report_list">
+    </g:if>
+
+
+        <div class="salary_report_list">
 
             <g:if test="${isEmp!=true}">
 

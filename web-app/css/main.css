@@ -17,12 +17,12 @@
 	padding:20px;
 }
 
-a:link, a:visited, a:hover {
-    color: #666;
+a {
+    color: #962800;
     font-weight: bold;
     text-decoration: none;
 }
-
+a:hover{color:#7c2100;}
 h1 {
     color: #48802c;
     font-weight: normal;
@@ -320,11 +320,11 @@ th.desc a {
 
 
 .thead1 {
-	background: #056195;
+	background: #962800;
 }
 
 .thead2 {
-	background: #1e7c42 !important;
+	background: #688700 !important;
 }
 .spinner {
     position: fixed;

@@ -29,13 +29,15 @@
 		<h4>
 			<g:message code="default.create.label" args="[entityName]" />
 		</h4>
-		<g:render template='/employee/menu'></g:render>
+
 		<g:if test="${flash.message}">
 			<div class="message">
 				${flash.message}
 			</div>
 		</g:if>
-		<div class="personal_detail">
+	<g:render template='/employee/menu'></g:render>
+	<div id="content-wrap">
+		<div class="personal_detail" >
 			<g:hasErrors bean="${employeeDependentsInstance}">
 				<div class="errors">
 					<g:renderErrors bean="${employeeDependentsInstance}" as="list" />
@@ -339,7 +341,7 @@
 
 			</g:form>
 		</div>
-
+	</div>
 	</div>
 </body>
 </html>

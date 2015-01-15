@@ -92,9 +92,7 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="curvedlogin" style="text-align: justify; color:#005E93; line-height:17px;">
-
-				Bayalpatra is a modular application designed to manage various aspects of HR a hospital. It is a user-controlled, cloud-based application with extensive reporting capabilities and a special focus on role-based security. </div>
+			<div class="curvedlogin" style="text-align: justify; color:#666; line-height:21px;">Bayalpatra is a modular application designed to manage various aspects of HR a hospital. It is a user-controlled, cloud-based application with extensive reporting capabilities and a special focus on role-based security. </div>
 		</div></div>
 	<script type='text/javascript'>
 		<!--

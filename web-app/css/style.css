@@ -28,10 +28,10 @@ a {
 	text-decoration: none;
 	color: #000;
 }
-
+a:focus{outline:0;}
 a:hover {
 	text-decoration: none;
-	color: #056195;
+	color: #597300;
 }
 
 .clear {
@@ -42,7 +42,7 @@ h4 {
 	font: bold 15px Arial, Helvetica, sans-serif;
 	color: #000000;
 	padding: 3px;
-	border-bottom: 2px solid #035c8e;
+	border-bottom: 2px solid #962800;
 	margin: 0 0 10px 0;
 }
 
@@ -81,7 +81,8 @@ h4 {
 */
 
 .footer {
-    background: #005e93;
+	clear:both;
+    background: #7c2100;
     width: 100%;
 }
 
@@ -108,7 +109,7 @@ h4 {
 	overflow: hidden;
 	clear: both;
 	padding: 10px 0 0 0;
-	background: url(../images/topbg.jpg) #fff repeat-x top left;
+	background: #688700;
 }
 
 .top_part {
@@ -119,17 +120,20 @@ h4 {
 .logo {
 	width: 270px;
 	float: left;
-	padding: 0 0 30px 0;
+	padding: 0 0 5px 0;
 }
+.logo img{width:275px; margin-top: -10px;}
+
 
 .header_right {
 	width: 500px;
 	float: right;
 	font: 12px Arial, Helvetica, sans-serif !important;
-	color: #004973;
+	color: #962800;
 }
 
 .header_right .admin_welcome {
+	color:#fff;
 	float: right;
 } /* padding:0 0 0 45px;*/
 .header_right .admin_welcome1 {
@@ -137,13 +141,13 @@ h4 {
 } /*padding:0 0 0 85px;*/
 .header_right a {
 	font: 12px Arial, Helvetica, sans-serif !important;
-	color: #004973;
+	color: #962800;
 	padding: 0 5px;
 }
 
 .header_right a:hover {
 	font: 12px Arial, Helvetica, sans-serif !important;
-	color: #004973;
+	color: #7c2100;
 	padding: 0 5px;
 	text-decoration: underline
 }
@@ -198,10 +202,7 @@ h4 {
 	margin: 0 auto;
 }
 
-.salary_report_list{
-	width: 90%;
 
-}
 #grid{
 	/* overflow: hidden; */
 
@@ -295,7 +296,7 @@ h4 {
 	margin:0 0 0 535px;
 }
 .employee_education{
-	padding: 0 0 0 285px;
+	padding: 10px; text-align: center;
 }
 .profile_buttons {
 	border-top: 1px solid #999999;
@@ -363,7 +364,7 @@ h4 {
 
 .leave_top {
 	background: #b7daee;
-	color: #056195;
+	color: #597300;
 }
 
 .mid_part {
@@ -389,8 +390,8 @@ h4 {
 }
 
 .dialogDependent {
-	width: 925px;
-	float: right;
+	width:865px;
+
 }
 .dialogDependent img{
 	background: none repeat scroll 0 0 #FFFFFF;
@@ -444,19 +445,19 @@ h4 {
 
 .curvedlogin {
 	background-color: #FFFFFF;
-	border: 1px solid #6ec6cf;
+	border: 1px solid #962800;
 	float: left;
 	height: 200px;
 	margin: 0;
 	padding: 10px;
-	text-indent: 4px;
+
 	width: 298px;
 	-moz-border-radius: 6px 6px 6px 6px;
 }
 
 .my_profile {
 	background-color: #FFFFFF;
-	border: 1px solid #6ec6cf;
+	border: 1px solid #962800;
 	margin: 0;
 	padding: 10px;
 	text-indent: 4px;
@@ -470,7 +471,7 @@ h4 {
 }
 
 #login-box h2 {
-	color: #056195;
+	color: #fff;
 	float: left;
 	font: 16px/20px Verdana, Arial, Helvetica, sans-serif;
 	text-indent: 6px;
@@ -483,12 +484,13 @@ h4 {
 }
 
 .content-loginhead2 {
-	background-color: #CDE9EC;
-	border: 1px solid #CBE2EF;
+	background-color: #962800;
+	border: 1px solid #7c2100;
 	margin: 0 0 10px;
 	padding: 5px;
 	width: 308px;
 	-moz-border-radius: 6px 6px 6px 6px;
+	border-radius: 6px;
 }
 
 .curvedlogin form span {
@@ -502,7 +504,7 @@ h4 {
 .curvedlogin form label {
 	float: left;
 	width: 105px;
-	color:#005E93;
+	color:#597300;
 	font:bold 12px arial;
 }
 
@@ -523,81 +525,32 @@ h4 {
 }
 
 
-.savebutton1 {
-/* 	background: none repeat scroll 0 0 #CCCCCC;
-	border: 1px solid #999999 !important; */
-	cursor: pointer;
-	margin: 10px 0 !important;
-	padding: 5px !important;
-	width: 170px !important;
-	 background-color: #E0E0E0;
-    background-image: -moz-linear-gradient(center top , #FFFFFF 0pt, #E0E0E0 100%);
-    border-color: #CCCCCC #CCCCCC #AAAAAA;
-    box-shadow: 0 0 1px #FFFFFF inset;
-    text-shadow: 0 1px 0 #FFFFFF;
+.savebutton, .savebutton1, .resetbutton {
+	background: #962800;
+	padding: 5px 15px;
+	color:#fff; border:1px solid #7c2100; font-weight: bold;
+
+
 }
-.savebutton1:hover {
-/* 	background: none repeat scroll 0 0 #CCCCCC;
-	border: 1px solid #999999 !important; */
-	cursor: pointer;	
-	margin: 10px 0 !important;
-	padding: 5px;
-	width: 170px !important;
-	 background-color: #E0E0E0;
-    background-image: -moz-linear-gradient(center top , #FFFFFF 0pt, #E0E0E0 100%);
-    border-color: #999999;
-    box-shadow: 0 0 1px #FFFFFF inset;
-    text-shadow: 0 1px 0 #FFFFFF;
+.savebutton:hover, .savebutton1:hover, .resetbutton:hover {
+	background: #7c2100;
+/
 }
-.savebutton {
-    /* 	background: none repeat scroll 0 0 #CCCCCC;
-        border: 1px solid #999999 !important; */
-    cursor: pointer;
-    margin: 10px 0 !important;
-    padding: 5px !important;
-    width: 70px !important;
-    background-color: #E0E0E0;
-    background-image: -moz-linear-gradient(center top , #FFFFFF 0pt, #E0E0E0 100%);
-    border-color: #CCCCCC #CCCCCC #AAAAAA;
-    box-shadow: 0 0 1px #FFFFFF inset;
-    text-shadow: 0 1px 0 #FFFFFF;
-}
-.savebutton:hover {
-    /* 	background: none repeat scroll 0 0 #CCCCCC;
-        border: 1px solid #999999 !important; */
-    cursor: pointer;
-    margin: 10px 0 !important;
-    padding: 5px;
-    width: 70px !important;
-    background-color: #E0E0E0;
-    background-image: -moz-linear-gradient(center top , #FFFFFF 0pt, #E0E0E0 100%);
-    border-color: #999999;
-    box-shadow: 0 0 1px #FFFFFF inset;
-    text-shadow: 0 1px 0 #FFFFFF;
-}
-.resetbutton {
-	background: none repeat scroll 0 0 #CCCCCC;
-	border: 1px solid #999999 !important;
-	cursor: pointer;
-	margin: 0 10px 0 0 !important;
-	padding: 3px;
-	width: 70px !important;
-	
-}
+
 
 /*..........................job title...................*/
 .darkgreen_btn {
-	background: #0789c6;
-	border: 1px solid #128DA0;
+	background: #962800;
+	border: 1px solid #7c2100;
 	color: #FFFFFF;
 	cursor: pointer;
 	font: bold 12px/22px arial;
 	padding: 2px 12px;
 }
 .darkgreen_btn:hover {
-	background: #CDE9EC;
-	border: 1px solid #CBE2EF;
-	color: #555;
+	background: #7c2100;
+	border: 1px solid #7c2100;
+	color: #fff;
 	cursor: pointer;
 	font: bold 12px/22px arial;
 	padding: 2px 12px;
@@ -634,7 +587,8 @@ h4 {
 #content-wrap {
 	margin: 0;
 	padding: 0;
-	width: 100%;
+	width: 860px;
+	float: left;
 }
 
 #content-wrap h4 {
@@ -644,15 +598,14 @@ h4 {
 
 .personal_detail1 {
 	color: #000000;
-	float: right;
-	width: 880px;
+	width:865px;
 }
 
 .personal_detail {
 	color: #000000;
-	float: right;
-	width: 925px;
-	padding:0 0 15px 0;
+	width:865px;
+
+
 }
 
 .personal_detail_eld {	
@@ -674,12 +627,6 @@ h4 {
 	margin: 10px 0 2px;
 	/* padding-left: 15px; */
 	width: 130px;
-}
-
-.personal_detail input {
-	border: 1px solid #666666; /*float: left;*/
-	/* margin: 10px 0; */
-	padding: 2px;
 }
 
 #volunteerDays {
@@ -887,10 +834,12 @@ label.optionlabel {
 }
 
 #photodiv p a {
-	color: #045F93;
+	color: #688700;
 	margin: 0;
 	padding: 0;
 	text-align: center;
+	display: inline-block;
+	padding: 10px 0 5px 0;
 }
 
 .detail {
@@ -949,14 +898,14 @@ label.optionlabel {
 
 .employee_detail_menu ul li {
 	list-style: none;
-	background: url(../images/emp-det-menubg.jpg) repeat-x;
+	background: #688700;
 	margin: 0 0 4px 0;
 	cursor: pointer
 }
 
 .employee_detail_menu ul li:hover {
 	list-style: none;
-	background: url(../images/emp-det-menubg-hover.jpg) repeat-x;
+	background:#597300;
 	margin: 0 0 4px 0;
 	cursor: pointer
 }
@@ -1116,7 +1065,7 @@ tr.row td {
 }
 
 .gtable thead th {
-	background: #056195 url(../images/table_th_bg2.jpg) top left repeat-x;
+	background: #597300;
 	border-left: 1px solid #ccc;
 	color: #FFF;
 }
@@ -1176,7 +1125,7 @@ tr.row td {
 }
 
 .list thead th {
-	background: #056195 url(../images/table_th_bg2.jpg) top left repeat-x;
+	background: #597300 url(../images/table_th_bg2.jpg) top left repeat-x;
 	border: 1px solid #ccc;
 	color: #FFF;
 }
@@ -1219,7 +1168,7 @@ tr.row td {
 }
 
 .create-list thead th {
-    background: #056195 url(../images/table_th_bg2.jpg) top left repeat-x;
+    background: #597300 url(../images/table_th_bg2.jpg) top left repeat-x;
     border: 1px solid #ccc;
     color: #FFF;
 }
@@ -1265,22 +1214,20 @@ create-.list td {
 }
 
 .dashbord_box h2 {
-	background: url(../images/dashbord-boxbg.jpg) repeat-x top left;
+	background: #962800;
 	font: bold 12px/27px Arial, Helvetica, sans-serif;
 	color: #fff;
 	padding: 0 0 0 12px
 }
 
 .dashbord_box_content {
-	border-left: #8cb9d3 1px solid;
-	border-right: #8cb9d3 1px solid;
-	border-bottom: #8cb9d3 1px solid;
+	border:1px solid #962800;
 	padding: 10px;
 }
 
 .content-loginhead1 {
-	background-color: #CDE9EC;
-	border: 1px solid #CBE2EF;
+	background-color: #962800;
+	border: 1px solid #7c2100;
 	border-radius: 6px 6px 6px 6px;
 	margin: 0 0 10px;
 	padding: 5px;
@@ -1305,21 +1252,21 @@ create-.list td {
 
 .employee_btn {
 	width: 55px;
-	background: #056195;
+	background: #962800;
 	cursor: pointer;
 	color: #fff;
+	border:1px solid #7c2100;
+	font-weight: bold;
 }
 
 .employee_btn:hover {
 	width: 55px;
-	background: #777;
+	background: #7c2100;
 	cursor: pointer;
 	color: #fff;
 }
 
-#linked {
-	text-decoration: underline
-}
+
 
 .export {
 	background: none !important;
@@ -1413,10 +1360,10 @@ create-.list td {
 }
 .ui-dialog-title{
 	font: 18px arial !important;
-	color: #056195;
+	color: #597300;
 }
 #forgotPasswordForm{
-	border: 1px solid #CDE9EC;
+	border: 1px solid #962800;
 	padding:10px 15px ;
 }
 #forgotPasswordForm p{
@@ -1438,11 +1385,11 @@ create-.list td {
 	border-radius: 5px;
 }
 .ui-widget-header{
-	background: #CDE9EC !important;
+	background: #962800 !important;
 	color: #fff;
 }
 .ui-dialog-title{
-	color: #056195 !important;
+	color: #fff !important;
 }
 .ui-widget-content{ border:none !important;}
 .sign-in{
@@ -1454,13 +1401,14 @@ create-.list td {
 }
 
 .forgotBtn {
-	background: none repeat scroll 0 0 #0789C6;
-	border: 1px solid #128DA0;
-	border-radius: 5px;
+	background: #962800;
+	border: 1px solid #7c2100;
+
 	color: #FFFFFF !important;
 	cursor: pointer;
 	font: bold 12px/22px arial;
-	padding: 1px 4px;
+	padding: 4px;
 	display: inline-block;
-	margin-top: 2px;
+	margin-top: 2px; margin-left: 10px;
 }
+.forgotBtn:hover{background: #7c2100;}

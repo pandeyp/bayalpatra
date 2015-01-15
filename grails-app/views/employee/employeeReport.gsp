@@ -22,8 +22,9 @@
 <div class="body">
 
   <h4><g:message code="default.list.label" args="[entityName]" /></h4>
-  <div id="content-wrap" class="list">
-    <g:render template='/employee/menu'></g:render>
+  <g:render template='/employee/menu'></g:render>
+  <div id="content-wrap">
+
     <g:if test="${flash.message}">
       <div class="message">${flash.message}</div>
     </g:if>

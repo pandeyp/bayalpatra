@@ -41,6 +41,7 @@
 				${flash.message}
 			</div>
 		</g:if>
+	<div id="content-wrap">
 		<div class="personal_detail">
 			<g:hasErrors bean="${employeeDependentsInstance}">
 				<div class="errors">
@@ -359,6 +360,7 @@
 
 			</g:form>
 		</div>
+	</div>
 	</div>
 </body>
 </html>
