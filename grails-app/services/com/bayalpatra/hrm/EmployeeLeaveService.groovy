@@ -64,7 +64,7 @@ class EmployeeLeaveService {
                     employeeLeaveList = EmployeeLeaveDetail.findAll("from EmployeeLeaveDetail eld where eld.status in(:status) and eld.employee in (:employee) and eld.leaveDifference <=:leaveDiff order by ${sort} ${order}",[status:status,employee:employee,leaveDiff:Double.valueOf(7)],params)
                 }else if(BayalpatraConstants.CLIENT_NAME==BayalpatraConstants.CLIENT_BAYALPATRA){
                     // people with role other than admin cannot approve leave greater than 7 days,unpaid leave and maternity and bereavement leave
-                    employeeLeaveList = EmployeeLeaveDetail.findAll("from EmployeeLeaveDetail eld where eld.status in(:status) and eld.employee in (:employee) and eld.leaveDifference <=:leaveDiff AND eld.leaveType.paidUnpaid = :paid AND eld.leaveType NOT IN (:type) order by ${sort} ${order}",[status:status,employee:employee,leaveDiff:Double.valueOf(7),paid:BayalpatraConstants.PAID_LEAVE,type:[bereavementLeave,maternityLeave]],params)
+                    employeeLeaveList = EmployeeLeaveDetail.findAll("from EmployeeLeaveDetail eld where eld.status in (:status) and eld.employee in (:employee) and eld.leaveDifference <=:leaveDiff order by ${sort} ${order}",[status:status,employee:employee,leaveDiff:Double.valueOf(7)],params)
                 }
             }
         }
