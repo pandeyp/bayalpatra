@@ -58,11 +58,11 @@
 		</div>
 		<div class="curvedlogin">
 
-			<g:if test="${flash.message}">
-				<div class="message">${flash.message}</div>
-			</g:if>
-
 			<form action='${postUrl}' method='POST' id='loginForm' class='cssform' autocomplete='off'>
+
+				<g:if test="${flash.message}">
+					<div class="message">${flash.message}</div>
+				</g:if>
 				<g:hiddenField name="spring-security-redirect" value="/"/>
 				<span>
 					<label for='username'>Username:</label>
