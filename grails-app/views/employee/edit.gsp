@@ -208,8 +208,7 @@
 <h4><g:message code="default.edit.label" args="[entityName]" /></h4>
 
 <g:render template="menu"/>
-
-
+    <div id="content-wrap">
 <g:if test="${flash.message}">
     <div class="messageForMenuBar">${flash.message}</div>
 </g:if>
@@ -601,6 +600,7 @@
 
 --%></g:form>
 </div>
+    </div>
 </div>
 </body>
 </html>

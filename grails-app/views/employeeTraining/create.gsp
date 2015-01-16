@@ -17,9 +17,13 @@
 <div class="body">
   <h4 class="notforprint"><g:message code="default.create.label" args="[entityName]" /></h4>
   <g:render template='/employee/menu'></g:render>
+  <div id="content-wrap">
+
   <g:if test="${flash.message}">
     <div class="message">${flash.message}</div>
   </g:if>
+
+
   <div class="personal_detail">
     <g:hasErrors bean="${employeeTrainingInstance}">
       <div class="errors">
@@ -70,7 +74,7 @@
               %{--<g:set var="nowYr" value="${new Date()}"/>--}%
               <g:set var="startYr" value="${new GregorianCalendar().get(Calendar.YEAR)-60}"/>
               <g:set var="endYr" value="${new GregorianCalendar().get(Calendar.YEAR) + 40}"/>
-              <g:datePicker name="boundPeriodFrom" precision="day" value="${employeeTrainingInstance?.boundPeriodFrom}" years="${startYr..endYr}" noSelection="['':'--']" default="none" />
+              <g:datePicker name="boundPeriodFrom" precision="day" value="${employeeTrainingInstance?.boundPeriodFrom}" years="${startYr..endYr}" />
 
               %{--<g:datePicker id = "boundPeriodFrom" name="boundPeriodFrom" precision="day" value="${employeeTrainingInstance?.boundPeriodFrom}" years="${2011..1976}" />--}%
             </td>
@@ -88,7 +92,7 @@
               <g:set var="startYr" value="${new GregorianCalendar().get(Calendar.YEAR)-60}"/>
               <g:set var="endYr" value="${new GregorianCalendar().get(Calendar.YEAR) + 40}"/>
 
-              <g:datePicker name="boundPeriodTo" precision="day" value="${employeeTrainingInstance?.boundPeriodTo}" years="${startYr..endYr}" noSelection="['null':'--']" default="none" />
+              <g:datePicker name="boundPeriodTo" precision="day" value="${employeeTrainingInstance?.boundPeriodTo}" years="${startYr..endYr}" />
             </td>
           </tr>
            %{--  <tr class="prop">
@@ -165,6 +169,7 @@
       </g:if>
 
     </g:form>
+  </div>
   </div>
 </div>
 </body>

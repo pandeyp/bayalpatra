@@ -17,6 +17,7 @@
 
       <h4 class="notforprint"><g:message code="default.create.label" args="[entityName]" /></h4>
       <g:render template='/employee/menu'></g:render>
+      <div id="content-wrap">
       <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
       </g:if>
@@ -152,6 +153,7 @@
 
 
             </g:form>
+      </div>
       </div>
 </div>
 </body>

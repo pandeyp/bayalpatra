@@ -498,7 +498,7 @@ class EmployeeLeaveDetailController {
         def sortingOrder = request.getParameter("order") ?: 'asc';
         def employeeList,employeeLeaveDetailInstanceList
         def count
-        if(role[0].toString()==BayalpatraConstants.ROLE__ADMIN){
+        if(role[0].toString()==BayalpatraConstants.ROLE_ADMIN){
             employeeList = employeeService.getEmpByStatus()
             if(employeeList){
                 count = employeeLeaveService.getCountLeaveDetailRoleDeptHead(BayalpatraConstants.LEAVE_UNAPPROVED,employeeList)

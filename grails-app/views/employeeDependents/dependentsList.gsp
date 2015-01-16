@@ -39,7 +39,7 @@
     </div>
     <h4><g:message code="default.list.label" args="[entityName]" /></h4>
 
-    <div id="content-wrap">
+    <div>
         <div id="filters">
             <table  width="100%" cellspacing="0" cellpadding="0" border="0">
 

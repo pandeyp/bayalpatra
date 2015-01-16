@@ -17,6 +17,7 @@
 <div class="body">
       <h4><g:message code="default.edit.label" args="[entityName]" /></h4>
       <g:render template='/employee/menu'></g:render>
+      <div id="content-wrap">
       <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
       </g:if>
@@ -108,6 +109,7 @@
                         %{--<g:actionSubmit class="deletebutton" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />--}%
                   </div>
             </g:form>
+      </div>
       </div>
 </div>
 </body>
