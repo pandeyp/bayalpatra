@@ -36,11 +36,11 @@
       </p>
 
       <h4>Structure
-            <div class="icon">
+      %{--      <div class="icon">
                   <a href="#"> <img align="right" src="images/print_icon.png" alt=""></a>
                   <a href="#"> <img align="right" src="images/excel_icon.png" alt="" style="padding: 0px 10px 0pt 0pt;"></a>
                   <div style="clear: both;"></div>
-            </div></h4>
+            </div>--}%</h4>
       <div id="structure">${tree}</div>   </div>
 </body>
 </html>

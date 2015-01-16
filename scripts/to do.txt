@@ -51,4 +51,6 @@ alter table eployee dependents patch
 Software needed:- tomcat, jdk, mysql, firefox
 leave approval for supervisor, dept head?
 remove attendance, no trigger
-Check Audit Log.
+
+Error while filtering in audit log and selecting choose all.
+Null pointer exception on dept head leave list?

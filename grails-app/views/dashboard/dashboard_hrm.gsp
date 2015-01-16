@@ -67,51 +67,11 @@
     </div>
 
 
+
     <sec:ifAnyGranted
             roles="ROLE_ADMIN,ROLE_DEPARTMENTHEAD,ROLE_SUPERVISOR">
 
         <div class="mid_part">
-            <div class="dashbord_box">
-                <h2>Attendance</h2>
-
-                <div class="dashbord_box_content">
-                    <div class="timesheet">
-                        <ul>
-%{--
-                            <g:link controller="dutyRoster" action='create'>
-                                <li><img
-                                        src="${createLinkTo(dir:'images', file:'duty-roster.jpg')}"
-                                        alt="" /><br />
-                                    <p class="dsbord_con_txt">Duty Roster</p></li>
-                            </g:link>
-
-                            <g:link controller="dutyRosterReport" action='report'>
-                                <li><img
-                                        src="${createLinkTo(dir:'images', file:'roster-report.png')}"
-                                        alt="" /><br />
-                                    <p class="dsbord_con_txt">Roster Report</p></li>
-                            </g:link>
---}%
-                            <g:link controller="timecard" action='index'>
-                                <li><img
-                                        src="${createLinkTo(dir:'images', file:'app-time.jpg')}"
-                                        alt="" /><br />
-                                    <p class="dsbord_con_txt">Time Card</p></li>
-                            </g:link>
-
-
-
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </sec:ifAnyGranted>
-    <sec:ifAnyGranted
-            roles="ROLE_ADMIN,ROLE_DEPARTMENTHEAD,ROLE_SUPERVISOR">
-
-        <div class="leave">
             <div class="dashbord_box">
                 <h2>Leave</h2>
 
@@ -151,6 +111,48 @@
             </div>
         </div>
     </sec:ifAnyGranted>
+
+    <sec:ifAnyGranted
+        roles="ROLE_ADMIN,ROLE_DEPARTMENTHEAD,ROLE_SUPERVISOR">
+
+    %{--<div class="leave">
+        <div class="dashbord_box">
+            <h2>Attendance</h2>
+
+            <div class="dashbord_box_content">
+                <div class="timesheet">
+                    <ul>
+
+--}%%{--                        <g:link controller="dutyRoster" action='create'>
+                            <li><img
+                                    src="${createLinkTo(dir:'images', file:'duty-roster.jpg')}"
+                                    alt="" /><br />
+                                <p class="dsbord_con_txt">Duty Roster</p></li>
+                        </g:link>
+
+                        <g:link controller="dutyRosterReport" action='report'>
+                            <li><img
+                                    src="${createLinkTo(dir:'images', file:'roster-report.png')}"
+                                    alt="" /><br />
+                                <p class="dsbord_con_txt">Roster Report</p></li>
+                        </g:link>--}%%{--
+
+                        <g:link controller="timecard" action='index'>
+                            <li><img
+                                    src="${createLinkTo(dir:'images', file:'app-time.jpg')}"
+                                    alt="" /><br />
+                                <p class="dsbord_con_txt">Time Card</p></li>
+                        </g:link>
+
+
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>--}%
+</sec:ifAnyGranted>
 </div>
 
 <sec:ifAllGranted roles="ROLE_ADMIN">
@@ -262,11 +264,11 @@
                                     alt="" /><br />
                                 <p class="dsbord_con_txt">Leave Type</p></li>
                         </g:link>
-                        <g:link controller="report" action='list'>
+%{--                        <g:link controller="report" action='list'>
                             <li><img src="${createLinkTo(dir:'images', file:'report-hrm-setting.png')}" alt=""/><br/>
                                 <p class="dsbord_con_txt">Report</p>
                             </li>
-                        </g:link>
+                        </g:link>--}%
                     </ul>
                 </div>
             </div>

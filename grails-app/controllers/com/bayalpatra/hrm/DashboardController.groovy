@@ -13,7 +13,7 @@ class DashboardController {
             def role = springSecurityService.getAuthentication().authorities
             def currentUser = User.findById(springSecurityService.principal.id)
             if(currentUser.employee){
-                session["employeeName"] = currentUser.employee.firstName + " " + currentUser.employee.middleName+ " " + currentUser.employee.lastName
+                session["employeeName"] = currentUser.employee.firstName + " " + currentUser.employee.lastName
                 session["department"] = currentUser.employee.department.id
             }
             else{

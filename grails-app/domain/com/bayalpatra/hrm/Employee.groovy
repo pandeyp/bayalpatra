@@ -51,7 +51,7 @@ class Employee {
     String fullName
     static transients = ['fullName']
     String getFullName (){
-        return firstName+" "+middleName+" "+lastName+"-"+employeeId
+        return firstName+" "+lastName+"-"+employeeId
     }
 
     String toString(){
