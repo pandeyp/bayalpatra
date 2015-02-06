@@ -4,7 +4,7 @@ class SalaryReport {
 
     Employee employee
     Date salaryDate
-    Date salaryMonth
+    String salaryMonth
     Double tax
     Double total
 

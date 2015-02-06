@@ -1,17 +1,22 @@
-DROP PROCEDURE IF EXISTS dynamic_table_structure1;
-CREATE PROCEDURE dynamic_table_structure1 ()
-BEGIN
+DROP PROCEDURE IF EXISTS sp_populate_salary_report; 
 
-    insert into salary_report (version,employee_id,salary_date,tax,total)
+CREATE PROCEDURE sp_populate_salary_report()
+BEGIN
+    
+    insert into salary_report (version,employee_id,salary_date,salary_month,tax,total)
     select '0' as version,
 		a.id as employee_id,
-		sysdate() as salary_date,
-		b.basic_salary*5/100 as tax,
-		b.basic_salary - b.basic_salary*5/100 as total
+		NOW() as salary_date,
+		DATE_FORMAT(NOW(),'%m-%Y'),
+		b.basic_salary*0.15 as tax, 
+		b.basic_salary - b.basic_salary*0.15 as total
 	from employee a
 	join salary b
 	on a.designation_id=b.designation_id;
-
+    
 END
 
-call dynamic_table_structure1();
+--call sp_populate_salary_report();
+
+--if domain unique does not work then use this.
+--ALTER TABLE `salary_report` ADD UNIQUE `unique_index`(`employee_id`, `salary_month`);
